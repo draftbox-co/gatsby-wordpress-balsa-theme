@@ -4,6 +4,7 @@ import { graphql } from "gatsby";
 import "../styles/richtext.css";
 import { PageDetails } from "../models/page-description.model";
 import CtaMini from "../components/CtaMini";
+import WebsiteMeta from "../components/meta/website-meta";
 
 type IndexPageProps = {
   data: {
@@ -16,6 +17,7 @@ const PageTemplate: React.FC<IndexPageProps> = ({ data, location }) => {
   const { wordpressPage } = data;
   return (
     <Layout>
+      <WebsiteMeta/>
       <div className="spacer my-6"></div>
       <div
         dangerouslySetInnerHTML={{ __html: wordpressPage.content }}

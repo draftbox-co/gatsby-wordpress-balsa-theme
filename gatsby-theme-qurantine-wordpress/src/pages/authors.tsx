@@ -4,6 +4,7 @@ import userAvatar from "../images/female_avatar.svg";
 import { graphql, Link } from "gatsby";
 import CtaMini from "../components/CtaMini";
 import { AuthorDescription } from "../models/author-description.model";
+import WebsiteMeta from "../components/meta/website-meta";
 
 type AuthorsProps = {
   data: {
@@ -18,6 +19,7 @@ const Authors: React.FC<AuthorsProps> = ({ data }) => {
 
   return (
     <Layout>
+      <WebsiteMeta />
       <div className="spacer my-6"></div>
       <h1 className="text-4xl font-bold text-center">Authors</h1>
       <div className="spacer my-6"></div>

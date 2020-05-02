@@ -4,6 +4,7 @@ import randomColor from "randomcolor";
 import CtaMini from "../components/CtaMini";
 import { graphql, Link } from "gatsby";
 import { AllTagsInfo } from "../models/all-tags-description.model";
+import WebsiteMeta from "../components/meta/website-meta";
 
 type TagsProps = AllTagsInfo;
 
@@ -11,6 +12,7 @@ const Tags: React.FC<TagsProps> = ({ data }) => {
   const { allWordpressTag } = data;
   return (
     <Layout>
+      <WebsiteMeta />
       <div className="spacer my-6"></div>
       <h1 className="text-4xl font-bold text-center">
         {allWordpressTag && allWordpressTag.edges.length > 0

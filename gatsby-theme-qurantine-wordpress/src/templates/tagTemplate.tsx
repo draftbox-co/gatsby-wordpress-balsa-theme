@@ -7,6 +7,7 @@ import Pagination from "../components/Pagination";
 import CtaBig from "../components/CtaBig";
 import randomColor from "randomcolor";
 import { PostDescription } from "../models/all-post-description.model";
+import WebsiteMeta from "../components/meta/website-meta";
 
 type TagTemplateProps = {
   location: any;
@@ -30,6 +31,7 @@ const TagTemplate: React.FC<TagTemplateProps> = ({
   const { wordpressTag, allWordpressPost } = data;
   return (
     <Layout>
+      <WebsiteMeta />
       <section
         className="text-center bg-cover"
         style={{

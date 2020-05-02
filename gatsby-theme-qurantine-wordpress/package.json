@@ -58,6 +58,7 @@
     "@armada-inc/gatsby-plugin-amp": "^0.2.3",
     "@tryghost/helpers": "^1.1.22",
     "@tryghost/url-utils": "^0.6.13",
+    "@types/react-helmet": "^5.0.15",
     "autoprefixer": "^9.7.4",
     "babel-plugin-prismjs": "^2.0.1",
     "babel-plugin-styled-components": "^1.10.7",

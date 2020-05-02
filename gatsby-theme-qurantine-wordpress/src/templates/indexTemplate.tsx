@@ -6,6 +6,7 @@ import { PostDescription } from "../models/all-post-description.model";
 import { PaginationContext } from "../models/pagination.model";
 import PostCard from "../components/PostCard";
 import Pagination from "../components/Pagination";
+import WebsiteMeta from "../components/meta/website-meta";
 
 type IndexPageProps = {
   data: {
@@ -38,9 +39,8 @@ const IndexPage: React.FC<IndexPageProps> = ({
 
   return (
     <>
-      {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
       <Layout>
-        {/* <MetaData data={data} location={location} /> */}
+        <WebsiteMeta />
         <section
           className="text-center bg-cover"
           style={{

@@ -7,6 +7,7 @@ import Pagination from "../components/Pagination";
 import userAvatar from "../images/female_avatar.svg";
 import { PostDescription } from "../models/all-post-description.model";
 import { AuthorDescription } from "../models/author-description.model";
+import WebsiteMeta from "../components/meta/website-meta";
 
 type AuthorTemplateProps = {
   data: {
@@ -29,6 +30,7 @@ const AuthorTemplate: React.FC<AuthorTemplateProps> = ({
   const { allWordpressPost, wordpressWpUsers } = data;
   return (
     <Layout>
+      <WebsiteMeta/>
       <section
         className="text-center bg-cover"
         style={{ backgroundColor: "pink" }}
