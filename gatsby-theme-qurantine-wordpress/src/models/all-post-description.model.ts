@@ -1,34 +1,28 @@
-export interface PrimaryAuthor {
+interface Tag {
   name: string;
   slug: string;
 }
-
-export interface Tag {
-  name: string;
-  slug: string;
-}
-
-export interface GhostPostDescription {
+export interface PostDescription {
   title: string;
+  content: string;
   excerpt: string;
-  updated_at: string;
-  primary_author: PrimaryAuthor;
-  tags: Tag[];
-  reading_time: number;
-  feature_image: any;
-  localFeatureImage: {
-    childImageSharp: {
-      fluid: any;
+  plainExcerpt: string;
+  slug: string;
+  categories: {
+    name: string;
+    slug: string;
+  };
+  featured_media: {
+    localFile: {
+      childImageSharp: {
+        fluid: any;
+      };
     };
   };
-  slug: string;
-}
-
-export interface Edge {
-  __typename: string;
-  node: GhostPostDescription;
-}
-
-export interface AllGhostPostDescription {
-  edges: Edge[];
+  author: {
+    name: string;
+    slug: string;
+  };
+  tags: Tag[];
+  date: string;
 }

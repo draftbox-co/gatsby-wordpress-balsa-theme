@@ -1,17 +1,17 @@
-export interface GhostTagInfo {
+export interface TagInfo {
   node: {
     name: string;
     slug: string;
-    postCount: number;
+    count: number;
   };
 }
 
-export interface AllGhostTag {
-  edges: GhostTagInfo[];
+export interface AllTags {
+  edges: TagInfo[];
 }
 
 export interface Data {
-  allGhostTag: AllGhostTag;
+  allWordpressTag: AllTags;
 }
 
 export interface AllTagsInfo {

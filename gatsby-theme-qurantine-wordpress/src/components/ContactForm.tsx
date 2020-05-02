@@ -3,8 +3,19 @@ import Layout from "./Layout";
 import CtaBig from "./CtaBig";
 import { useForm } from "../hook/useForm";
 import checkMark from "../images/check.svg";
+import { useStaticQuery, graphql } from "gatsby";
 
 const ContactForm = () => {
+  const {
+    wordpressSiteMetadata: { name },
+  } = useStaticQuery(graphql`
+    query {
+      wordpressSiteMetadata {
+        name
+      }
+    }
+  `);
+
   const [{ handleSubmit: submitForm, submitting, succeeded }] = useForm(
     "contact"
   );
@@ -52,39 +63,41 @@ const ContactForm = () => {
       {!succeeded && (
         <section className="py-12 px-4">
           <h2 className="text-3xl mb-8 text-center font-heading">
-            Contact Dunder Mifflin
+            Contact {name}
           </h2>
           <div className="w-full max-w-2xl mx-auto mb-8">
             <form onSubmit={(e) => handleSubmit(e)}>
               <div className="flex mb-4 -mx-2">
                 <div className="w-1/2 px-2">
-                  <label className="hidden" htmlFor="name"></label>
+                  <label className="hidden" htmlFor="name">
+                    Name
+                  </label>
                   <input
                     className="appearance-none block w-full py-3 px-4 leading-tight text-gray-700 bg-gray-200 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none"
                     type="name"
                     id="name"
-                    placeholder="Name"
+                    placeholder="Your name (optional)"
                     onChange={(e) => handleChange(e.target.id, e.target.value)}
                   />
                 </div>
                 <div className="w-1/2 px-2">
-                  <label className="hidden" htmlFor="email"></label>
+                  <label className="hidden" htmlFor="email">Email</label>
                   <input
                     className="appearance-none block w-full py-3 px-4 leading-tight text-gray-700 bg-gray-200 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none"
                     type="email"
                     id="email"
                     required
-                    placeholder="Email"
+                    placeholder="Your email address"
                     onChange={(e) => handleChange(e.target.id, e.target.value)}
                   />
                 </div>
               </div>
               <div className="mb-4">
-                <label className="hidden" htmlFor="message"></label>
+                <label className="hidden" htmlFor="message">Message</label>
                 <textarea
                   required
                   className="appearance-none block w-full py-3 px-4 leading-tight text-gray-700 bg-gray-200 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none"
-                  placeholder="Write something..."
+                  placeholder="Your message"
                   rows={5}
                   onChange={(e) => handleChange(e.target.id, e.target.value)}
                   id="message"

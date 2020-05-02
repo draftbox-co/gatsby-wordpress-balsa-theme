@@ -1,24 +1,38 @@
 const path = require(`path`);
 
-const siteConfigDefaults = require(`./src/utils/siteConfig`);
-const ghostConfigDefaults = require(`./src/utils/.ghost.json`);
+const siteConfigDefaults = require(`./src/utils/siteConfigDefaults`);
 
-const generateRSSFeed = require(`./src/utils/rss/generate-feed`);
-
+/**
+ * This is the place where you can tell Gatsby which plugins to use
+ * and set them up the way you want.
+ *
+ * Further info 👉🏼 https://www.gatsbyjs.org/docs/gatsby-config/
+ *
+ */
 module.exports = (themeOptions) => {
   const siteConfig = themeOptions.siteConfig || siteConfigDefaults;
-  const ghostConfig = themeOptions.ghostConfig || ghostConfigDefaults;
+  const wordpressConfig = themeOptions.wordpressConfig;
 
   return {
     siteMetadata: siteConfig,
     plugins: [
+      /**
+       *  Content Plugins
+       */
       `gatsby-plugin-typescript`,
       {
-        resolve: `gatsby-plugin-page-creator`,
+        resolve: `gatsby-source-wordpress`,
+        options: wordpressConfig,
+      },
+      {
+        resolve: `gatsby-source-filesystem`,
         options: {
           path: path.join(__dirname, `src`, `pages`),
+          name: `pages`,
         },
       },
+      // Setup for optimized images.
+      // See https://www.gatsbyjs.org/packages/gatsby-image/
       {
         resolve: `gatsby-source-filesystem`,
         options: {
@@ -29,127 +43,45 @@ module.exports = (themeOptions) => {
       `gatsby-plugin-sharp`,
       `gatsby-transformer-sharp`,
       {
-        resolve: `gatsby-source-ghost`,
-        options:
-          process.env.NODE_ENV === `development`
-            ? ghostConfig.development
-            : ghostConfig.production,
-      },
-      {
-        resolve: `gatsby-transformer-rehype`,
-        options: {
-          filter: (node) =>
-            node.internal.type === `GhostPost` ||
-            node.internal.type === `GhostPage`,
-          plugins: [
-            {
-              resolve: `gatsby-rehype-prismjs`,
-            },
-            {
-              resolve: `gatsby-rehype-ghost-links`,
-            },
-          ],
-        },
-      },
-      /**
-       *  Utility Plugins
-       */
-      {
-        resolve: require.resolve(`./plugins/gatsby-plugin-ghost-manifest`),
-        options: {
-          short_name: siteConfig.shortTitle,
-          start_url: `/`,
-          background_color: siteConfig.backgroundColor,
-          theme_color: siteConfig.themeColor,
-          display: `minimal-ui`,
-          icon: `static/${siteConfig.siteIcon}`,
-          legacy: true,
-          query: `{
-            allGhostSettings {
-              edges {
-                node {
-                  title
-                  description
-                }
-              }
-            }
-          }`,
-        },
-      },
-      {
-        resolve: `gatsby-plugin-feed`,
-        options: {
-          query: `{
-            allGhostSettings {
-              edges {
-                node {
-                  title
-                  description
-                }
-              }
-            }
-          }`,
-          feeds: [generateRSSFeed(siteConfig)],
-        },
-      },
-      {
         resolve: `gatsby-plugin-advanced-sitemap`,
         options: {
-          query: `{
-            allGhostPost {
-              edges {
-                node {
-                  id
-                  slug
-                  updated_at
-                  created_at
-                  feature_image
-                }
-              }
-            }
-            allGhostPage {
-              edges {
-                node {
-                  id
-                  slug
-                  updated_at
-                  created_at
-                  feature_image
-                }
-              }
-            }
-            allGhostTag {
-              edges {
-                node {
-                  id
-                  slug
-                  feature_image
-                }
-              }
-            }
-            allGhostAuthor {
-              edges {
-                node {
-                  id
-                  slug
-                  profile_image
-                }
-              }
-            }
-          }
-          `,
+          query: `
+                    {
+                      allWordpressPost {
+                        edges {
+                          node {
+                            id
+                            slug
+                            date
+                          }
+                        }
+                      }
+                      allWordpressCategory(filter: { count: { gt: 0 } }) {
+                        edges {
+                          node {
+                            name
+                            slug
+                          }
+                        }
+                      }
+                      allWordpressWpUsers {
+                        edges {
+                          node {
+                            name
+                            slug
+                          }
+                        }
+                      }
+                    }`,
           mapping: {
-            allGhostPost: {
+            allWordpressPost: {
               sitemap: `posts`,
             },
-            allGhostTag: {
+            allWordpressCategory: {
               sitemap: `tags`,
             },
-            allGhostAuthor: {
+            allWordpressWpUsers: {
               sitemap: `authors`,
-            },
-            allGhostPage: {
-              sitemap: `pages`,
             },
           },
           exclude: [
@@ -166,6 +98,65 @@ module.exports = (themeOptions) => {
       `gatsby-plugin-react-helmet`,
       `gatsby-plugin-force-trailing-slashes`,
       `gatsby-plugin-offline`,
+      {
+        resolve: `gatsby-plugin-manifest`,
+        options: {
+          name: siteConfig.siteTitleMeta,
+          short_name: siteConfig.shortTitle,
+          start_url: `/`,
+          background_color: siteConfig.backgroundColor,
+          theme_color: siteConfig.themeColor,
+          display: `standalone`,
+          icon: "static/favicon.png",
+        },
+      },
+      {
+        resolve: `gatsby-plugin-feed`,
+        options: {
+          query: `
+            {
+              site {
+                siteMetadata {
+                  siteUrl
+                }
+              }
+            }
+          `,
+          feeds: [
+            {
+              serialize: ({ query: { site, allWordpressPost } }) => {
+                return allWordpressPost.edges.map((edge) => {
+                  return {
+                    title: edge.node.title,
+                    description: edge.node.excerpt,
+                    date: edge.node.date,
+                    url: site.siteMetadata.siteUrl + edge.node.slug,
+                    guid: site.siteMetadata.siteUrl + edge.node.slug,
+                    custom_elements: [{ "content:encoded": edge.node.content }],
+                  };
+                });
+              },
+              query: `
+                {
+                  allWordpressPost(sort: {fields: date, order: DESC}) {
+                    edges {
+                      node {
+                        slug
+                        content
+                        title
+                        excerpt
+                        date
+                      }
+                    }
+                  }
+                }
+              `,
+              output: "/rss.xml",
+              title: "Your Site's RSS Feed",
+            },
+          ],
+        },
+      },
       `gatsby-plugin-postcss`,
       {
         resolve: `gatsby-plugin-purgecss`,
@@ -184,7 +175,7 @@ module.exports = (themeOptions) => {
         },
       },
       {
-        resolve: `@armada-inc/gatsby-plugin-amp`,
+        resolve: "@armada-inc/gatsby-plugin-amp",
         options: {
           canonicalBaseUrl: siteConfig.siteUrl,
           components: [`amp-form`],

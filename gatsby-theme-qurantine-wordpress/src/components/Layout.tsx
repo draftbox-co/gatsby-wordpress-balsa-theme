@@ -12,17 +12,8 @@ const Layout: React.FC = ({ children }) => {
 
   const data = useStaticQuery<SettingsAndSlugs>(graphql`
     query {
-      ghostSettings {
-        title
-        navigation {
-          label
-          url
-        }
-      }
-      site {
-        siteMetadata {
-          siteUrl
-        }
+      wordpressSiteMetadata {
+        name
       }
     }
   `);

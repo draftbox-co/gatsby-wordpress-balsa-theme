@@ -8,18 +8,20 @@ import { AllTagsInfo } from "../models/all-tags-description.model";
 type TagsProps = AllTagsInfo;
 
 const Tags: React.FC<TagsProps> = ({ data }) => {
-  const { allGhostTag } = data;
+  const { allWordpressTag } = data;
   return (
     <Layout>
       <div className="spacer my-6"></div>
       <h1 className="text-4xl font-bold text-center">
-        {allGhostTag.edges.length > 0 ? "Tags" : "No tags available."}
+        {allWordpressTag && allWordpressTag.edges.length > 0
+          ? "Tags"
+          : "No tags available."}
       </h1>
       <div className="spacer my-6"></div>
-      {allGhostTag.edges.length > 0 && (
+      {allWordpressTag && allWordpressTag.edges.length > 0 && (
         <section className="px-4 container mx-auto">
           <div className="flex flex-wrap justify-center -mx-4">
-            {allGhostTag.edges.map(({ node }, i) => {
+            {allWordpressTag.edges.map(({ node }, i) => {
               return (
                 <Link
                   key={i}
@@ -40,7 +42,7 @@ const Tags: React.FC<TagsProps> = ({ data }) => {
                         {node.name}
                       </h1>
                       <span className="text-gray-600">
-                        {node.postCount} {node.postCount > 1 ? "posts" : "post"}
+                        {node.count} {node.count > 1 ? "posts" : "post"}
                       </span>
                     </div>
                   </div>
@@ -50,7 +52,7 @@ const Tags: React.FC<TagsProps> = ({ data }) => {
           </div>
         </section>
       )}
-      <CtaMini />
+      {/* <CtaMini /> */}
     </Layout>
   );
 };
@@ -59,12 +61,12 @@ export default Tags;
 
 export const TagsQuery = graphql`
   query {
-    allGhostTag {
+    allWordpressTag(filter: { count: { gt: 0 } }) {
       edges {
         node {
           name
           slug
-          postCount
+          count
         }
       }
     }

@@ -9,17 +9,14 @@ type FooterProps = {
 
 const Footer: React.FC<FooterProps> = ({ footerData }) => {
   const {
-    ghostSettings: { title, navigation },
-    site: {
-      siteMetadata: { siteUrl },
-    },
+    wordpressSiteMetadata: { name },
   } = footerData;
   return (
     <footer className="bg-gray-100">
       <div className="flex flex-wrap items-center py-4 px-4 border-b container mx-auto">
         <div className="w-full lg:w-1/5 text-center lg:text-left">
           <a className="text-xl text-indigo-500 font-semibold" href="#">
-            {title}
+            {name}
           </a>
         </div>
         <div className="w-full lg:w-4/5 mt-4 lg:mt-0 text-center lg:text-right">
@@ -47,7 +44,7 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
           >
             Contact Us
           </Link> */}
-          {navigation.map(({ label, url }, i) => {
+          {/* {navigation.map(({ label, url }, i) => {
             return url.startsWith("/") || url.startsWith(siteUrl) ? (
               <Link
                 key={i}
@@ -69,12 +66,12 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
                 {label}
               </a>
             );
-          })}
+          })} */}
         </div>
       </div>
       <div className="py-4 flex justify-center">
         <span className="block md:inline-block md:mb-0">
-          © {new Date().getFullYear()} {title}
+          © {new Date().getFullYear()} {name}
         </span>
         <span className="mx-2">&bull;</span>
         <a href="/rss" className="flex items-center">

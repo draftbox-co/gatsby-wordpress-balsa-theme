@@ -1,253 +1,229 @@
-// const _ = require(`lodash`);
+/**
+ * Implement Gatsby's Node APIs in this file.
+ *
+ * See: https://www.gatsbyjs.org/docs/node-apis/
+ */
+
 const { paginate } = require(`gatsby-awesome-pagination`);
-const { createRemoteFileNode } = require(`gatsby-source-filesystem`);
+const htmlToText = require("html-to-text");
 
-// /**
-//  * Here is the place where Gatsby creates the URLs for all the
-//  * posts, tags, pages and authors that we fetched from the Ghost site.
-//  */
+exports.createSchemaCustomization = ({ actions, schema }) => {
+  const { createFieldExtension, createTypes } = actions;
 
-exports.onCreateNode = async ({
-  node,
-  actions,
-  store,
-  createNodeId,
-  cache,
-}) => {
-  // Check that we are modifying right node types.
-  const nodeTypes = [`GhostPost`, `GhostPage`];
-  if (!nodeTypes.includes(node.internal.type)) {
-    return;
-  }
+  createFieldExtension({
+    name: "plainExcerpt",
+    extend(options, prevFieldConfig) {
+      return {
+        resolve(source) {
+          let plainExcerpt = htmlToText
+            .fromString(source.excerpt, {
+              wordWrap: 155,
+              ignoreHref: true,
+            })
+            .slice(0, 156);
 
-  const { createNode } = actions;
+          if (plainExcerpt.length > 155) {
+            plainExcerpt = plainExcerpt.slice(0, 152) + "...";
+          }
+          return plainExcerpt;
+        },
+      };
+    },
+  });
 
-  // Download image and create a File node with gatsby-transformer-sharp.
-  if (node.feature_image) {
-    const fileNode = await createRemoteFileNode({
-      url: node.feature_image,
-      store,
-      cache,
-      createNode,
-      parentNodeId: node.id,
-      createNodeId,
-    });
-
-    if (fileNode) {
-      // Link File node to GhostPost node at field image.
-      node.localFeatureImage___NODE = fileNode.id;
+  createTypes(`
+    type wordpress__POST implements Node {
+      plainExcerpt: String @plainExcerpt
     }
+  `);
+
+  createTypes(`
+    type wordpress__PAGE implements Node {
+      plainExcerpt: String @plainExcerpt
+    }
+  `);
+
+  const typeDefs = `
+  type WPSiteMetaData implements Node {
+    siteDescription: String
+    siteName: String
   }
+`;
+  createTypes(typeDefs);
 };
 
-exports.createPages = async ({ graphql, actions }) => {
-  const { createPage } = actions;
+exports.createResolvers = async ({
+  actions,
+  cache,
+  createNodeId,
+  createResolvers,
+  store,
+  reporter,
+}) => {
+  const { createNode } = actions;
+  console.log("createResolvers called");
 
-  const result = await graphql(`
-    {
-      allGhostPost(
-        sort: { order: ASC, fields: published_at }
-        filter: { slug: { ne: "data-schema" } }
-      ) {
-        edges {
-          node {
-            slug
-            primary_tag {
+  createResolvers({
+    Query: {
+      wpSiteMetaData: {
+        type: `WPSiteMetaData`,
+        resolve(source, args, context, info) {
+          let title = "";
+          let description = "";
+          const metadata = context.nodeModel.getAllNodes({
+            type: `wordpress__site_metadata`,
+          });
+          const wordPressSetting = context.nodeModel.getAllNodes({
+            type: `wordpress__wp_settings`,
+          });
+          title = metadata[0].name
+            ? metadata[0].name
+            : wordPressSetting[0].title;
+          description = metadata[0].description
+            ? metadata[0].description
+            : wordPressSetting[0].description;
+          return {
+            siteName: title,
+            siteDescription: description,
+          };
+        },
+      },
+    },
+  });
+};
+
+exports.createPages = async ({ graphql, actions, reporter }) => {
+  const indexTemplate = require.resolve("./src/templates/indexTemplate.tsx");
+  const postTemplate = require.resolve("./src/templates/postTemplate.tsx");
+  // const authorTemplate = require.resolve("./src/templates/post-by-author.js");
+  // const categoryTemplate = require.resolve(
+  //   "./src/templates/post-by-category.js"
+  // );
+  // const pageTemplate = require.resolve("./src/templates/page.js");
+  // const postAmpTemplate = require.resolve("./src/templates/post.amp.js");
+
+  const { createPage } = actions;
+  const result = await graphql(
+    `
+      {
+        allWordpressPost {
+          edges {
+            node {
+              id
               slug
             }
           }
         }
-      }
-      allGhostTag(sort: { order: ASC, fields: name }) {
-        edges {
-          node {
-            slug
-            url
-            postCount
+
+        allWordpressCategory(filter: { count: { gt: 0 } }) {
+          edges {
+            node {
+              name
+              slug
+            }
           }
         }
-      }
-      allGhostAuthor(sort: { order: ASC, fields: name }) {
-        edges {
-          node {
-            slug
-            url
-            postCount
+
+        allWordpressWpUsers {
+          edges {
+            node {
+              name
+              slug
+            }
           }
         }
-      }
-      allGhostPage(sort: { order: ASC, fields: published_at }) {
-        edges {
-          node {
-            slug
-            url
+
+        allWordpressPage {
+          edges {
+            node {
+              slug
+            }
           }
         }
-      }
-      site {
-        siteMetadata {
-          postsPerPage
+
+        site {
+          siteMetadata {
+            postsPerPage
+          }
+        }
+
+        wpSiteMetaData {
+          siteName
         }
       }
-
-      ghostSettings {
-        title
-      }
-    }
-  `);
-
-  // Check for any errors
-  if (result.errors) {
-    throw new Error(result.errors);
-  }
-
-  // Extract query results
-  const tags = result.data.allGhostTag.edges;
-  const authors = result.data.allGhostAuthor.edges;
-  const pages = result.data.allGhostPage.edges;
-  const posts = result.data.allGhostPost.edges;
-  const postsPerPage = result.data.site.siteMetadata.postsPerPage;
-  const websiteTitle = result.data.ghostSettings.title;
-
-  // Load templates
-  const indexTemplate = require.resolve(`./src/templates/indexTemplate.tsx`);
-  const postTemplate = require.resolve("./src/templates/postTemplate.tsx");
-  const tagsTemplate = require.resolve(`./src/templates/tagTemplate.tsx`);
-  const authorTemplate = require.resolve(`./src/templates/authorTemplate.tsx`);
-  const pageTemplate = require.resolve(`./src/templates/pageTemplate.tsx`);
-  const postAmpTemplate = require.resolve(
-    `./src/templates/postTemplate.amp.tsx`
+    `
   );
 
-  // Create author pages
-  authors.forEach(({ node }) => {
-    const totalPosts = node.postCount !== null ? node.postCount : 0;
-    const numberOfPages = Math.ceil(totalPosts / postsPerPage);
+  if (result.errors) {
+    reporter.panicOnBuild(`Error while running GraphQL query.`);
+    return;
+  }
 
-    // This part here defines, that our author pages will use
-    // a `/author/:slug/` permalink.
-    node.url = `/author/${node.slug}/`;
+  const postsPerPage = result.data.site.siteMetadata.postsPerPage;
+  const posts = result.data.allWordpressPost.edges;
+  const authors = result.data.allWordpressWpUsers.edges;
+  const categories = result.data.allWordpressCategory.edges;
+  const pages = result.data.allWordpressPage.edges;
+  const siteTitle = result.data.wpSiteMetaData.siteName;
 
-    Array.from({ length: numberOfPages }).forEach((_, i) => {
-      const currentPage = i + 1;
-      const prevPageNumber = currentPage <= 1 ? null : currentPage - 1;
-      const nextPageNumber =
-        currentPage + 1 > numberOfPages ? null : currentPage + 1;
-      const previousPagePath = prevPageNumber
-        ? prevPageNumber === 1
-          ? node.url
-          : `${node.url}page/${prevPageNumber}/`
-        : null;
-      const nextPagePath = nextPageNumber
-        ? `${node.url}page/${nextPageNumber}/`
-        : null;
-
-      createPage({
-        path: i === 0 ? node.url : `${node.url}page/${i + 1}/`,
-        component: authorTemplate,
-        context: {
-          // Data passed to context is available
-          // in page queries as GraphQL variables.
-          slug: node.slug,
-          limit: postsPerPage,
-          skip: i * postsPerPage,
-          numberOfPages: numberOfPages,
-          humanPageNumber: currentPage,
-          prevPageNumber: prevPageNumber,
-          nextPageNumber: nextPageNumber,
-          previousPagePath: previousPagePath,
-          nextPagePath: nextPagePath,
-        },
-      });
-    });
-  });
-
-  //   // Create pages
-
-  posts.forEach(({ node }, index, array) => {
+  posts.forEach((post, i, arr) => {
     createPage({
-      path: node.slug,
+      path: `/${post.node.slug}`,
       component: postTemplate,
       context: {
-        slug: node.slug,
-        prev: index !== 0 ? array[index - 1].node.slug : null,
-        next: index !== array.length - 1 ? array[index + 1].node.slug : null,
+        slug: post.node.slug,
+        next: i === arr.length - 1 ? null : arr[i + 1].node.id,
+        prev: i !== 0 ? arr[i - 1].node.id : null,
       },
     });
 
-    createPage({
-      path: `${node.slug}/amp`,
-      component: postAmpTemplate,
-      context: {
-        slug: node.slug,
-        title: websiteTitle,
-        amp: true,
-      },
-    });
+    // createPage({
+    //   path: `/${post.node.slug}/amp`,
+    //   component: postAmpTemplate,
+    //   context: {
+    //     slug: post.node.slug,
+    //     amp: true,
+    //     title: siteTitle,
+    //   },
+    // });
   });
 
-    tags.forEach(({ node }, i) => {
-      const totalPosts = node.postCount !== null ? node.postCount : 0;
-      const numberOfPages = Math.ceil(totalPosts / postsPerPage);
-      node.url = `/tag/${node.slug}/`;
+  // authors.forEach((post) => {
+  //   createPage({
+  //     path: `/author/${post.node.slug}`,
+  //     component: authorTemplate,
+  //     context: {
+  //       slug: post.node.slug,
+  //     },
+  //   });
+  // });
 
-      Array.from({ length: numberOfPages }).forEach((_, i) => {
-        const currentPage = i + 1;
-        const prevPageNumber = currentPage <= 1 ? null : currentPage - 1;
-        const nextPageNumber =
-          currentPage + 1 > numberOfPages ? null : currentPage + 1;
-        const previousPagePath = prevPageNumber
-          ? prevPageNumber === 1
-            ? node.url
-            : `${node.url}page/${prevPageNumber}/`
-          : null;
-        const nextPagePath = nextPageNumber
-          ? `${node.url}page/${nextPageNumber}/`
-          : null;
+  // categories.forEach((post) => {
+  //   createPage({
+  //     path: `/category/${post.node.slug}`,
+  //     component: categoryTemplate,
+  //     context: {
+  //       slug: post.node.slug,
+  //     },
+  //   });
+  // });
 
-        createPage({
-          path: i === 0 ? node.url : `${node.url}page/${i + 1}/`,
-          component: tagsTemplate,
-          context: {
-            // Data passed to context is available
-            // in page queries as GraphQL variables.
-            slug: node.slug,
-            limit: postsPerPage,
-            skip: i * postsPerPage,
-            numberOfPages: numberOfPages,
-            humanPageNumber: currentPage,
-            prevPageNumber: prevPageNumber,
-            nextPageNumber: nextPageNumber,
-            previousPagePath: previousPagePath,
-            nextPagePath: nextPagePath
-          }
-        });
-      });
-    });
+  // pages
+  //   .filter((page) => !page.node.slug.startsWith("contact"))
+  //   .forEach((page) => {
+  //     createPage({
+  //       path: `/${page.node.slug}`,
+  //       component: pageTemplate,
+  //       context: {
+  //         slug: page.node.slug,
+  //       },
+  //     });
+  //   });
 
-  pages
-    .filter(({ node }) => !node.slug.startsWith("contact"))
-    .forEach(({ node }) => {
-      // This part here defines, that our pages will use
-      // a `/:slug/` permalink.
-      node.url = `/${node.slug}/`;
-
-      createPage({
-        path: node.url,
-        component: pageTemplate,
-        context: {
-          // Data passed to context is available
-          // in page queries as GraphQL variables.
-          slug: node.slug,
-        },
-      });
-    });
-
-  // Create pagination
   paginate({
     createPage,
     items: posts,
-    itemsPerPage: 6,
+    itemsPerPage: postsPerPage,
     component: indexTemplate,
     pathPrefix: ({ pageNumber }) => {
       if (pageNumber === 0) {

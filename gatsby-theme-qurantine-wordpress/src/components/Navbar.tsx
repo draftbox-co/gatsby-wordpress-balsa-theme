@@ -9,10 +9,7 @@ type NavbarProps = {
 
 const Navbar: React.FC<NavbarProps> = ({ navbarData }) => {
   const {
-    ghostSettings: { title, navigation },
-    site: {
-      siteMetadata: { siteUrl },
-    },
+    wordpressSiteMetadata: { name },
   } = navbarData;
 
   const [isMenuToggled, setIsMenuToggled] = useState(false);
@@ -24,7 +21,7 @@ const Navbar: React.FC<NavbarProps> = ({ navbarData }) => {
           className="text-2xl text-indigo-500 font-semibold font-serif"
           to="/"
         >
-          {title}
+          {name}
         </Link>
       </div>
       <div className="block lg:hidden">
@@ -50,13 +47,13 @@ const Navbar: React.FC<NavbarProps> = ({ navbarData }) => {
         )}
       >
         <div>
-          {/* <Link
-            className="block lg:inline-block mt-4 lg:mt-0 lg:mx-5 text-blue-900 hover:text-blue-700"
-            to="/"
-          >
-            Home
-          </Link>
           <Link
+            className="block lg:inline-block mt-4 lg:mt-0 lg:mx-5 text-blue-900 hover:text-blue-700"
+            to="/contact"
+          >
+            Contact Us
+          </Link>
+          {/* <Link
             className="block lg:inline-block mt-4 lg:mt-0 lg:mx-5 text-blue-900 hover:text-blue-700"
             to="/tags"
           >
@@ -75,7 +72,7 @@ const Navbar: React.FC<NavbarProps> = ({ navbarData }) => {
           >
             Contact Us
           </Link> */}
-          {navigation.map(({ label, url }, i) => {
+          {/* {navigation.map(({ label, url }, i) => {
             return url.startsWith("/") || url.startsWith(siteUrl) ? (
               <Link
                 key={i}
@@ -97,7 +94,7 @@ const Navbar: React.FC<NavbarProps> = ({ navbarData }) => {
                 {label}
               </a>
             );
-          })}
+          })} */}
         </div>
       </div>
     </nav>

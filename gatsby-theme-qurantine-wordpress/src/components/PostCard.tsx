@@ -1,18 +1,18 @@
 import React from "react";
 import { Link } from "gatsby";
 import randomColor from "randomcolor";
-import { GhostPostDescription } from "../models/all-post-description.model";
+import { PostDescription } from "../models/all-post-description.model";
 import Img from "gatsby-image";
 
 type PostCardTypes = {
-  post: GhostPostDescription;
+  post: PostDescription;
 };
 
 const PostCard: React.FC<PostCardTypes> = ({ post }) => {
   const excerpt =
-    post.excerpt.split(" ").length > 30
-      ? post.excerpt.split(" ").slice(0, 30).join(" ") + "..."
-      : post.excerpt;
+    post.plainExcerpt.split(" ").length > 30
+      ? post.plainExcerpt.split(" ").slice(0, 30).join(" ") + "..."
+      : post.plainExcerpt;
   return (
     <Link
       to={`/${post.slug}`}
@@ -20,13 +20,13 @@ const PostCard: React.FC<PostCardTypes> = ({ post }) => {
     >
       <div className="h-full rounded shadow-md flex flex-col justify-between">
         <div>
-          {post.localFeatureImage && (
+          {post.featured_media && (
             <Img
               className="mb-4 h-48 w-full object-cover rounded-t"
-              fluid={post.localFeatureImage.childImageSharp.fluid}
+              fluid={post.featured_media.localFile.childImageSharp.fluid}
             />
           )}
-          {!post.feature_image && (
+          {!post.featured_media && (
             <div
               className="flex justify-center items-center text-white font-black mb-4 h-48 w-full object-cover rounded-t"
               style={{
@@ -43,10 +43,10 @@ const PostCard: React.FC<PostCardTypes> = ({ post }) => {
           <div className="px-6">
             <div className="mb-4">
               <p className="text-sm text-gray-500">
-                {post.updated_at}
-                {post.tags.length > 0 && <span className="mx-2">•</span>}
+                {post.date}
+                {post.tags && post.tags.length > 0 && <span className="mx-2">•</span>}
                 <span className="text-gray-600">
-                  {post.tags.map((tag, i) => {
+                  {post.tags && post.tags.map((tag, i) => {
                     return (
                       <Link
                         to={`tag/${tag.slug}`}
@@ -68,18 +68,18 @@ const PostCard: React.FC<PostCardTypes> = ({ post }) => {
         </div>
         <div className="my-4 flex justify-between px-6">
           <Link
-            to={`/author/${post.primary_author.slug}`}
+            to={`/author/${post.author.slug}`}
             className="text-gray-600 no-underline hover:underline"
           >
-            <small>{post.primary_author.name}</small>
+            <small>{post.author.name}</small>
           </Link>
-          {post.reading_time ? (
+          {/* {post.reading_time ? (
             <small className="text-gray-500">
               {post.reading_time} min read
             </small>
           ) : (
             <></>
-          )}
+          )} */}
         </div>
       </div>
     </Link>

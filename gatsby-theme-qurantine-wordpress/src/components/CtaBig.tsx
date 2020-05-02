@@ -6,11 +6,11 @@ import { graphql, useStaticQuery } from "gatsby";
 
 const CtaBig = () => {
   const {
-    ghostSettings: { title },
+    wordpressSiteMetadata: { name },
   } = useStaticQuery(graphql`
     query {
-      ghostSettings {
-        title
+      wordpressSiteMetadata {
+        name
       }
     }
   `);
@@ -34,7 +34,7 @@ const CtaBig = () => {
             <div className="px-12 py-6 mb-8 lg:mb-0 text-center bg-green-200 text-green-900 mx-auto rounded">
               <h2 className="text-2xl font-heading text-center flex items-center">
                 <img className="mr-2 h-6 mt-1" src={checkMark} alt="" />
-                You've successfully subscribed to {title}.{" "}
+                You've successfully subscribed to {name}.{" "}
               </h2>
             </div>
           </div>
@@ -45,7 +45,7 @@ const CtaBig = () => {
           <div className="flex flex-wrap items-center text-center md:text-left -mx-2">
             <div className="lg:w-1/2 px-2 lg:pl-16 mt-10 lg:mt-0 order-1 lg:order-none mx-auto">
               <h2 className="text-4xl mb-6 font-heading">
-                Subscribe to {title}
+                Subscribe to {name}
               </h2>
               <form
                 onSubmit={(e) => onSubmit(e)}
@@ -53,7 +53,7 @@ const CtaBig = () => {
               >
                 <div className="flex flex-wrap">
                   <div className="w-full md:w-2/3 mb-4">
-                    <label className="hidden" htmlFor="email"></label>
+                    <label className="hidden" htmlFor="email">Email</label>
                     <input
                       id="email"
                       onChange={(e: any) => setEmail(e.target.value)}
