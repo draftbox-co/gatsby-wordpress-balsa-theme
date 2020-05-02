@@ -6,6 +6,7 @@ import Img from "gatsby-image";
 import Disqus from "../components/disqus";
 import "../styles/richtext.css";
 import { PostDescription } from "../models/all-post-description.model";
+import ArticleMeta from "../components/meta/article-meta";
 
 type PostTemplateProps = {
   data: {
@@ -19,6 +20,7 @@ const PostTemplate: React.FC<PostTemplateProps> = ({ data, location }) => {
 
   return (
     <Layout>
+      <ArticleMeta data={wordpressPost} amp={false} />
       <div className="spacer my-6"></div>
       <section className="px-4 max-w-4xl mx-auto">
         <h1 className=" text-4xl text-center font-heading font-semibold">

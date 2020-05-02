@@ -1,6 +1,7 @@
 import React from "react";
 import { graphql, Link } from "gatsby";
 import { PostDescription } from "../models/all-post-description.model";
+import ArticleMeta from "../components/meta/article-meta";
 
 type PostTemplate = {
   data: {
@@ -9,6 +10,7 @@ type PostTemplate = {
   location: any;
   pageContext: {
     title: string;
+    amp: boolean;
   };
 };
 
@@ -17,8 +19,10 @@ const PostTemplate: React.FC<PostTemplate> = ({
   location,
   pageContext,
 }) => {
+  const { wordpressPost } = data;
   return (
     <>
+      <ArticleMeta data={wordpressPost} amp={pageContext.amp} />
       <header className="main-header">
         <nav className="blog-title">
           <Link to="/">{pageContext.title}</Link>
