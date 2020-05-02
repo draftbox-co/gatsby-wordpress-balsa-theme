@@ -56,11 +56,23 @@ export const wordpressSiteMetaData = graphql`
 `;
 
 export const wordpressPageData = graphql`
-  fragment wordpressPageData on wordpress__PAGE {
+  fragment WordpressPageData on wordpress__PAGE {
     slug
     title
     excerpt
     plainExcerpt
     content
+    date(formatString: "MMMM DD YYYY")
+  }
+`;
+
+export const wordpressAuthorData = graphql`
+  fragment WordpressAuthorData on wordpress__wp_users {
+    name
+    slug
+    description
+    avatar_urls {
+      wordpress_96
+    }
   }
 `;

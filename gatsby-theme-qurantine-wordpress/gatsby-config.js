@@ -169,7 +169,7 @@ module.exports = (themeOptions) => {
           content: [
             path.join(
               process.cwd(),
-              "../gatsby-theme-ghost-attila/src/**/!(*.d).{ts,js,jsx,tsx}"
+              "../gatsby-theme-qurantine-wordpress/src/**/!(*.d).{ts,js,jsx,tsx}"
             ),
           ],
         },

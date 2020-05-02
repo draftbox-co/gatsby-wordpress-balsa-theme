@@ -95,12 +95,10 @@ exports.createResolvers = async ({
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const indexTemplate = require.resolve("./src/templates/indexTemplate.tsx");
   const postTemplate = require.resolve("./src/templates/postTemplate.tsx");
-  // const authorTemplate = require.resolve("./src/templates/post-by-author.js");
-  // const categoryTemplate = require.resolve(
-  //   "./src/templates/post-by-category.js"
-  // );
-  // const pageTemplate = require.resolve("./src/templates/page.js");
-  // const postAmpTemplate = require.resolve("./src/templates/post.amp.js");
+  const authorTemplate = require.resolve("./src/templates/authorTemplate.tsx");
+  const tagsTemplate = require.resolve("./src/templates/tagTemplate.tsx");
+  const pageTemplate = require.resolve("./src/templates/pageTemplate.tsx");
+  const postAmpTemplate = require.resolve("./src/templates/postTemplate.amp.tsx");
 
   const { createPage } = actions;
   const result = await graphql(
@@ -115,11 +113,12 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           }
         }
 
-        allWordpressCategory(filter: { count: { gt: 0 } }) {
+        allWordpressTag(filter: { count: { gt: 0 } }) {
           edges {
             node {
               name
               slug
+              count
             }
           }
         }
@@ -162,7 +161,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const postsPerPage = result.data.site.siteMetadata.postsPerPage;
   const posts = result.data.allWordpressPost.edges;
   const authors = result.data.allWordpressWpUsers.edges;
-  const categories = result.data.allWordpressCategory.edges;
+  const tags = result.data.allWordpressTag.edges;
   const pages = result.data.allWordpressPage.edges;
   const siteTitle = result.data.wpSiteMetaData.siteName;
 
@@ -177,48 +176,126 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       },
     });
 
-    // createPage({
-    //   path: `/${post.node.slug}/amp`,
-    //   component: postAmpTemplate,
-    //   context: {
-    //     slug: post.node.slug,
-    //     amp: true,
-    //     title: siteTitle,
-    //   },
-    // });
+    createPage({
+      path: `/${post.node.slug}/amp`,
+      component: postAmpTemplate,
+      context: {
+        slug: post.node.slug,
+        amp: true,
+        title: siteTitle,
+      },
+    });
   });
 
-  // authors.forEach((post) => {
-  //   createPage({
-  //     path: `/author/${post.node.slug}`,
-  //     component: authorTemplate,
-  //     context: {
-  //       slug: post.node.slug,
-  //     },
-  //   });
-  // });
+  authors.forEach(async ({ node }) => {
+    const authorPosts = await graphql(`
+    {
+      allWordpressPost(filter: {author: {slug: {eq: "${node.slug}"}}}) {
+        edges {
+          node {
+            id
+          }
+        }
+    }
+  }
+    `);
 
-  // categories.forEach((post) => {
-  //   createPage({
-  //     path: `/category/${post.node.slug}`,
-  //     component: categoryTemplate,
-  //     context: {
-  //       slug: post.node.slug,
-  //     },
-  //   });
-  // });
+    const authorPostCount = authorPosts.data.allWordpressPost.edges.length;
 
-  // pages
-  //   .filter((page) => !page.node.slug.startsWith("contact"))
-  //   .forEach((page) => {
-  //     createPage({
-  //       path: `/${page.node.slug}`,
-  //       component: pageTemplate,
-  //       context: {
-  //         slug: page.node.slug,
-  //       },
-  //     });
-  //   });
+    const totalPosts = authorPostCount ? authorPostCount : 0;
+    const numberOfPages = Math.ceil(totalPosts / postsPerPage);
+
+    // This part here defines, that our author pages will use
+    // a `/author/:slug/` permalink.
+    node.url = `/author/${node.slug}/`;
+
+    console.log(numberOfPages, "number of pages");
+    console.log(node.url, "number of pages");
+
+    Array.from({ length: numberOfPages }).forEach((_, i) => {
+      const currentPage = i + 1;
+      const prevPageNumber = currentPage <= 1 ? null : currentPage - 1;
+      const nextPageNumber =
+        currentPage + 1 > numberOfPages ? null : currentPage + 1;
+      const previousPagePath = prevPageNumber
+        ? prevPageNumber === 1
+          ? node.url
+          : `${node.url}page/${prevPageNumber}/`
+        : null;
+      const nextPagePath = nextPageNumber
+        ? `${node.url}page/${nextPageNumber}/`
+        : null;
+
+      createPage({
+        path: i === 0 ? node.url : `${node.url}page/${i + 1}/`,
+        component: authorTemplate,
+        context: {
+          // Data passed to context is available
+          // in page queries as GraphQL variables.
+          slug: node.slug,
+          limit: postsPerPage,
+          skip: i * postsPerPage,
+          numberOfPages: numberOfPages,
+          humanPageNumber: currentPage,
+          prevPageNumber: prevPageNumber,
+          nextPageNumber: nextPageNumber,
+          previousPagePath: previousPagePath,
+          nextPagePath: nextPagePath,
+        },
+      });
+    });
+  });
+
+  tags.forEach(({ node }, i) => {
+    const totalPosts = node.count !== null ? node.count : 0;
+    const numberOfPages = Math.ceil(totalPosts / postsPerPage);
+    node.url = `/tag/${node.slug}/`;
+
+    Array.from({ length: numberOfPages }).forEach((_, i) => {
+      const currentPage = i + 1;
+      const prevPageNumber = currentPage <= 1 ? null : currentPage - 1;
+      const nextPageNumber =
+        currentPage + 1 > numberOfPages ? null : currentPage + 1;
+      const previousPagePath = prevPageNumber
+        ? prevPageNumber === 1
+          ? node.url
+          : `${node.url}page/${prevPageNumber}/`
+        : null;
+      const nextPagePath = nextPageNumber
+        ? `${node.url}page/${nextPageNumber}/`
+        : null;
+
+      createPage({
+        path: i === 0 ? node.url : `${node.url}page/${i + 1}/`,
+        component: tagsTemplate,
+        context: {
+          // Data passed to context is available
+          // in page queries as GraphQL variables.
+          slug: node.slug,
+          limit: postsPerPage,
+          skip: i * postsPerPage,
+          numberOfPages: numberOfPages,
+          humanPageNumber: currentPage,
+          prevPageNumber: prevPageNumber,
+          nextPageNumber: nextPageNumber,
+          previousPagePath: previousPagePath,
+          nextPagePath: nextPagePath,
+        },
+      });
+    });
+  });
+
+  pages
+    .filter((page) => !page.node.slug.startsWith("contact"))
+    .forEach((page) => {
+      createPage({
+        path: `/${page.node.slug}`,
+        component: pageTemplate,
+        context: {
+          slug: page.node.slug,
+        },
+      });
+    });
 
   paginate({
     createPage,
