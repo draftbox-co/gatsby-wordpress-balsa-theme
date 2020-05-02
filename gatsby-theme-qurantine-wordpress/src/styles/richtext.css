@@ -1,679 +1,128 @@
- /*!purgecss start ignore */
+/*!purgecss start ignore */
 
-.richtext article,
-.richtext aside,
-.richtext details,
-.richtext figcaption,
-.richtext figure,
-.richtext footer,
-.richtext header,
-.richtext main,
-.richtext menu,
-.richtext nav,
-.richtext section,
-.richtext summary {
-  display: block;
+.py-05 {
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
 }
 
-.richtext audio,
-.richtext canvas,
-.richtext progress,
-.richtext video {
-  display: inline-block;
+.richtext {
+  @apply leading-normal break-words text-body font-serif text-lg;
 }
 
-.richtext audio:not([controls]) {
-  display: none;
-  height: 0;
+@screen lg {
+  .richtext {
+    @apply leading-loose text-xl;
+  }
 }
 
-.richtext progress {
-  vertical-align: baseline;
+.richtext > * {
+  @apply mt-0 mb-4;
 }
 
-.richtext [hidden],
-.richtext template {
-  display: none;
+.richtext li + li {
+  @apply mt-1;
+}
+
+/* Could not understand the logic here */
+/* .richtext li > p + p {
+  @apply mt-6;
+} */
+
+.richtext strong {
+  @apply font-medium;
 }
 
 .richtext a {
-  background-color: transparent;
-  -webkit-text-decoration-skip: objects;
+  @apply border-blue-200 border-b-2;
 }
 
-.richtext a:active,
+.richtext strong a {
+  @apply font-medium;
+}
+
 .richtext a:hover {
-  outline-width: 0;
-}
-
-.richtext abbr[title] {
-  border-bottom: none;
-  text-decoration: underline;
-  text-decoration: underline dotted;
-}
-
-.richtext b,
-.richtext strong {
-  font-weight: inherit;
-  font-weight: bolder;
-}
-
-.richtext dfn {
-  font-style: italic;
+  @apply border-blue-700;
 }
 
 .richtext h1 {
-  font-size: 2em;
-  margin: 0.67em 0;
-}
-
-.richtext mark {
-  background-color: #ff0;
-  color: #000;
-}
-
-.richtext small {
-  font-size: 80%;
-}
-
-.richtext sub,
-.richtext sup {
-  font-size: 75%;
-  line-height: 0;
-  position: relative;
-  vertical-align: baseline;
-}
-
-.richtext sub {
-  bottom: -0.25em;
-}
-
-.richtext sup {
-  top: -0.5em;
-}
-
-.richtext img {
-  border-style: none;
-}
-
-.richtext svg:not(:root) {
-  overflow: hidden;
-}
-
-.richtext code,
-.richtext kbd,
-.richtext pre,
-.richtext samp {
-  font-family: monospace, monospace;
-  font-size: 1em;
-}
-
-.richtext figure {
-  margin: 1em 40px;
-}
-
-.richtext hr {
-  box-sizing: content-box;
-  height: 0;
-  overflow: visible;
-}
-
-.richtext button,
-.richtext input,
-.richtext optgroup,
-.richtext select,
-.richtext textarea {
-  font: inherit;
-  margin: 0;
-}
-
-.richtext optgroup {
-  font-weight: 700;
-}
-
-.richtext button,
-.richtext input {
-  overflow: visible;
-}
-
-.richtext button,
-.richtext select {
-  text-transform: none;
-}
-
-.richtext [type="reset"],
-.richtext [type="submit"],
-.richtext button,
-.richtext html [type="button"] {
-  -webkit-appearance: button;
-}
-
-.richtext [type="button"]::-moz-focus-inner,
-.richtext [type="reset"]::-moz-focus-inner,
-.richtext [type="submit"]::-moz-focus-inner,
-.richtext button::-moz-focus-inner {
-  border-style: none;
-  padding: 0;
-}
-
-.richtext [type="button"]:-moz-focusring,
-.richtext [type="reset"]:-moz-focusring,
-.richtext [type="submit"]:-moz-focusring,
-.richtext button:-moz-focusring {
-  outline: 1px dotted ButtonText;
-}
-
-.richtext fieldset {
-  border: 1px solid silver;
-  margin: 0 2px;
-  padding: 0.35em 0.625em 0.75em;
-}
-
-.richtext legend {
-  box-sizing: border-box;
-  color: inherit;
-  display: table;
-  max-width: 100%;
-  padding: 0;
-  white-space: normal;
-}
-
-.richtext textarea {
-  overflow: auto;
-}
-
-.richtext [type="checkbox"],
-.richtext [type="radio"] {
-  box-sizing: border-box;
-  padding: 0;
-}
-
-.richtext [type="number"]::-webkit-inner-spin-button,
-.richtext [type="number"]::-webkit-outer-spin-button {
-  height: auto;
-}
-
-.richtext [type="search"] {
-  -webkit-appearance: textfield;
-  outline-offset: -2px;
-}
-
-.richtext [type="search"]::-webkit-search-cancel-button,
-.richtext [type="search"]::-webkit-search-decoration {
-  -webkit-appearance: none;
-}
-
-.richtext ::-webkit-input-placeholder {
-  color: inherit;
-  opacity: 0.54;
-}
-
-.richtext ::-webkit-file-upload-button {
-  -webkit-appearance: button;
-  font: inherit;
-}
-
-.richtext * {
-  box-sizing: inherit;
-}
-
-.richtext *:before {
-  box-sizing: inherit;
-}
-
-.richtext *:after {
-  box-sizing: inherit;
-}
-
-.richtext body {
-  color: rgba(0, 0, 0, 0.8);
-  font-family: georgia, serif;
-  font-weight: normal;
-  word-wrap: break-word;
-}
-
-.richtext img {
-  max-width: 100%;
-  margin-left: 0;
-  margin-right: 0;
-  margin-top: 0;
-  padding-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 0;
-  margin-bottom: 1.5rem;
-}
-
-.richtext h1 {
-  margin-left: 0;
-  margin-right: 0;
-  margin-top: 0;
-  padding-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 0;
-  margin-bottom: 1.5rem;
-  color: rgba(0, 0, 0, 0.8);
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  font-weight: bold;
-  text-rendering: optimizeLegibility;
-  font-size: 2rem;
-  line-height: 2.25rem;
+  @apply leading-tight text-3xl font-medium mb-4 mt-6 pb-2;
 }
 
 .richtext h2 {
-  margin-left: 0;
-  margin-right: 0;
-  margin-top: 0;
-  padding-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 0;
-  margin-bottom: 1.5rem;
-  color: rgba(0, 0, 0, 0.8);
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  font-weight: bold;
-  text-rendering: optimizeLegibility;
-  font-size: 1.51572rem;
-  line-height: 2.25rem;
+  @apply leading-tight text-2xl font-medium mb-4 mt-6 pb-2;
 }
 
 .richtext h3 {
-  margin-left: 0;
-  margin-right: 0;
-  margin-top: 0;
-  padding-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 0;
-  margin-bottom: 1.5rem;
-  color: rgba(0, 0, 0, 0.8);
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  font-weight: bold;
-  text-rendering: optimizeLegibility;
-  font-size: 1.31951rem;
-  line-height: 2.25rem;
+  @apply leading-snug text-xl font-medium mb-4 mt-6;
 }
 
 .richtext h4 {
-  margin-left: 0;
-  margin-right: 0;
-  margin-top: 0;
-  padding-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 0;
-  margin-bottom: 1.5rem;
-  color: rgba(0, 0, 0, 0.8);
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  font-weight: bold;
-  text-rendering: optimizeLegibility;
-  font-size: 1rem;
-  line-height: 1.5rem;
+  @apply leading-none text-lg uppercase font-medium mb-4 mt-6;
 }
 
 .richtext h5 {
-  margin-left: 0;
-  margin-right: 0;
-  margin-top: 0;
-  padding-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 0;
-  margin-bottom: 1.5rem;
-  color: rgba(0, 0, 0, 0.8);
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  font-weight: bold;
-  text-rendering: optimizeLegibility;
-  font-size: 0.87055rem;
-  line-height: 1.5rem;
+  @apply leading-tight font-medium mb-4 mt-6;
 }
 
 .richtext h6 {
-  margin-left: 0;
-  margin-right: 0;
-  margin-top: 0;
-  padding-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 0;
-  margin-bottom: 1.5rem;
-  color: rgba(0, 0, 0, 0.8);
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  font-weight: bold;
-  text-rendering: optimizeLegibility;
-  font-size: 0.81225rem;
-  line-height: 1.5rem;
-}
-
-.richtext hgroup {
-  margin-left: 0;
-  margin-right: 0;
-  margin-top: 0;
-  padding-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 0;
-  margin-bottom: 1.5rem;
-}
-
-.richtext ul {
-  margin-left: 1.5rem;
-  margin-right: 0;
-  margin-top: 0;
-  padding-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 0;
-  margin-bottom: 1.5rem;
-  list-style-position: outside;
-  list-style-image: none;
-}
-
-.richtext ol {
-  margin-left: 1.5rem;
-  margin-right: 0;
-  margin-top: 0;
-  padding-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 0;
-  margin-bottom: 1.5rem;
-  list-style-position: outside;
-  list-style-image: none;
-}
-
-.richtext dl {
-  margin-left: 0;
-  margin-right: 0;
-  margin-top: 0;
-  padding-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 0;
-  margin-bottom: 1.5rem;
-}
-
-.richtext dd {
-  margin-left: 0;
-  margin-right: 0;
-  margin-top: 0;
-  padding-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 0;
-  margin-bottom: 1.5rem;
-}
-
-.richtext p {
-  margin-left: 0;
-  margin-right: 0;
-  margin-top: 0;
-  padding-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 0;
-  margin-bottom: 1.5rem;
-}
-
-.richtext figure {
-  margin-left: 0;
-  margin-right: 0;
-  margin-top: 0;
-  padding-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 0;
-  margin-bottom: 1.5rem;
-}
-
-.richtext pre {
-  margin-left: 0;
-  margin-right: 0;
-  margin-top: 0;
-  padding-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 0;
-  margin-bottom: 1.5rem;
-  font-size: 0.85rem;
-  line-height: 1.42;
-  background: rgba(0, 0, 0, 0.04);
-  border-radius: 3px;
-  overflow: auto;
-  padding: 1.5rem;
-}
-
-.richtext table {
-  margin-left: 0;
-  margin-right: 0;
-  margin-top: 0;
-  padding-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 0;
-  margin-bottom: 1.5rem;
-  font-size: 1rem;
-  line-height: 1.5rem;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-.richtext fieldset {
-  margin-left: 0;
-  margin-right: 0;
-  margin-top: 0;
-  padding-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 0;
-  margin-bottom: 1.5rem;
+  @apply leading-tight italic font-medium mb-4 mt-6;
 }
 
 .richtext blockquote {
-  margin-left: 1.5rem;
-  margin-right: 1.5rem;
-  margin-top: 0;
-  padding-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 0;
-  margin-bottom: 1.5rem;
-}
-
-.richtext form {
-  margin-left: 0;
-  margin-right: 0;
-  margin-top: 0;
-  padding-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 0;
-  margin-bottom: 1.5rem;
-}
-
-.richtext noscript {
-  margin-left: 0;
-  margin-right: 0;
-  margin-top: 0;
-  padding-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 0;
-  margin-bottom: 1.5rem;
-}
-
-.richtext iframe {
-  margin-left: 0;
-  margin-right: 0;
-  margin-top: 0;
-  padding-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 0;
-  margin-bottom: 1.5rem;
-}
-
-.richtext hr {
-  margin-left: 0;
-  margin-right: 0;
-  margin-top: 0;
-  padding-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 0;
-  margin-bottom: calc(1.5rem - 1px);
-  background: rgba(0, 0, 0, 0.2);
-  border: none;
-  height: 1px;
-}
-
-.richtext address {
-  margin-left: 0;
-  margin-right: 0;
-  margin-top: 0;
-  padding-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 0;
-  margin-bottom: 1.5rem;
-}
-
-.richtext b {
-  font-weight: bold;
-}
-
-.richtext strong {
-  font-weight: bold;
-}
-
-.richtext dt {
-  font-weight: bold;
-}
-
-.richtext th {
-  font-weight: bold;
-}
-
-.richtext li {
-  margin-bottom: calc(1.5rem / 2);
-}
-
-.richtext ol li {
-  padding-left: 0;
-}
-
-.richtext ul li {
-  padding-left: 0;
-}
-
-.richtext li > ol {
-  margin-left: 1.5rem;
-  margin-bottom: calc(1.5rem / 2);
-  margin-top: calc(1.5rem / 2);
-}
-
-.richtext li > ul {
-  margin-left: 1.5rem;
-  margin-bottom: calc(1.5rem / 2);
-  margin-top: calc(1.5rem / 2);
+  @apply text-xl border-l-4 border-blue-600 pl-4 pr-4 text-gray-900 italic;
 }
 
 .richtext code {
-  font-size: 0.85rem;
-  line-height: 1.5rem;
+  @apply font-mono text-sm inline bg-gray-200 rounded px-1 py-05;
 }
 
-.richtext kbd {
-  font-size: 0.85rem;
-  line-height: 1.5rem;
-}
-
-.richtext samp {
-  font-size: 0.85rem;
-  line-height: 1.5rem;
-}
-
-.richtext abbr {
-  border-bottom: 1px dotted rgba(0, 0, 0, 0.5);
-  cursor: help;
-}
-
-.richtext acronym {
-  border-bottom: 1px dotted rgba(0, 0, 0, 0.5);
-  cursor: help;
-}
-
-.richtext abbr[title] {
-  border-bottom: 1px dotted rgba(0, 0, 0, 0.5);
-  cursor: help;
-  text-decoration: none;
-}
-
-.richtext thead {
-  text-align: left;
-}
-
-.richtext td,
-.richtext th {
-  text-align: left;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-  font-feature-settings: tnum;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-top: 0.75rem;
-  padding-bottom: calc(0.75rem - 1px);
-}
-
-.richtext th:first-child,
-.richtext td:first-child {
-  padding-left: 0;
-}
-
-.richtext th:last-child,
-.richtext td:last-child {
-  padding-right: 0;
-}
-
-.richtext tt,
-.richtext code {
-  background-color: rgba(0, 0, 0, 0.04);
-  border-radius: 3px;
-  font-family: Consolas, "Roboto Mono", "Liberation Mono", Menlo, Courier,
-    monospace;
-  padding: 0;
-  padding-top: 0.2em;
-  padding-bottom: 0.2em;
+.richtext pre {
+  @apply bg-gray-100 rounded p-4 mt-1;
 }
 
 .richtext pre code {
-  background: none;
-  line-height: 1.42;
+  @apply block text-sm bg-transparent p-0 overflow-visible rounded-none;
 }
 
-.richtext code:before,
-.richtext code:after,
-.richtext tt:before,
-.richtext tt:after {
-  letter-spacing: -0.2em;
-  content: " ";
-}
-
-.richtext pre code:before,
-.richtext pre code:after,
-.richtext pre tt:before,
-.richtext pre tt:after {
-  content: "";
+.richtext ul {
+  @apply pl-8 list-disc;
 }
 
 .richtext ol {
-  list-style: decimal;
+  @apply pl-8 list-decimal;
 }
 
- /*!purgecss end ignore */
+.richtext kbd {
+  @apply inline-block rounded border px-1 py-05 align-middle font-normal font-mono shadow;
+}
+
+.richtext table {
+  @apply text-base border-gray-600;
+}
+
+.richtext th {
+  @apply border py-1 px-3;
+}
+
+.richtext td {
+  @apply border py-1 px-3;
+}
+
+.richtext .highlight pre {
+  @apply bg-gray-100 !important;
+}
+
+.richtext p img {
+  @apply inline;
+}
+
+.richtext figure,
+.richtext img {
+  @apply max-w-3xl;
+}
+
+.richtext figcaption {
+  @apply max-w-3xl text-center text-gray-600 text-sm;
+}
+
+/*!purgecss end ignore */
