@@ -50,8 +50,11 @@ const CtaMini = () => {
             >
               <div className="flex flex-wrap mb-4">
                 <div className="w-full md:w-2/3 mb-4">
-                  <label className="hidden" htmlFor="email">Email</label>
+                  <label className="fixed opacity-0 h-1" htmlFor="email">
+                    Email
+                  </label>
                   <input
+                    name="email"
                     id="email"
                     onChange={(e: any) => setEmail(e.target.value)}
                     className="appearance-none block w-full py-3 px-4 leading-snug text-gray-700 bg-white focus:bg-white border border-white focus:border-gray-500 rounded md:rounded-r-none focus:outline-none"

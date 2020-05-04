@@ -79,13 +79,9 @@ const PostCard: React.FC<PostCardTypes> = ({ post }) => {
           >
             <small>{post.author.name}</small>
           </a>
-          {/* {post.reading_time ? (
-            <small className="text-gray-500">
-              {post.reading_time} min read
-            </small>
-          ) : (
-            <></>
-          )} */}
+          {post.readingTime && (
+            <small className="text-gray-500">{post.readingTime}</small>
+          )}
         </div>
       </div>
     </div>

@@ -23,6 +23,7 @@ export const wordPressPostData = graphql`
       name
       slug
     }
+    readingTime
     featured_media {
       localFile {
         childImageSharp {

@@ -19,6 +19,7 @@ export interface GhostPost {
   feature_image?: any;
   primary_author: PrimaryAuthor;
   updated_at: string;
+  readingTime: string;
   localFeatureImage: {
     childImageSharp: {
       fluid: any;

@@ -69,10 +69,11 @@ const ContactForm = () => {
             <form onSubmit={(e) => handleSubmit(e)}>
               <div className="flex mb-4 -mx-2">
                 <div className="w-1/2 px-2">
-                  <label className="hidden" htmlFor="name">
+                  <label className="fixed opacity-0 h-1" htmlFor="name">
                     Name
                   </label>
                   <input
+                    name="name"
                     className="appearance-none block w-full py-3 px-4 leading-tight text-gray-700 bg-gray-200 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none"
                     type="name"
                     id="name"
@@ -81,8 +82,11 @@ const ContactForm = () => {
                   />
                 </div>
                 <div className="w-1/2 px-2">
-                  <label className="hidden" htmlFor="email">Email</label>
+                  <label className="fixed opacity-0 h-1" htmlFor="email">
+                    Email
+                  </label>
                   <input
+                    name="email"
                     className="appearance-none block w-full py-3 px-4 leading-tight text-gray-700 bg-gray-200 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none"
                     type="email"
                     id="email"
@@ -93,9 +97,12 @@ const ContactForm = () => {
                 </div>
               </div>
               <div className="mb-4">
-                <label className="hidden" htmlFor="message">Message</label>
+                <label className="fixed opacity-0 h-1" htmlFor="message">
+                  Message
+                </label>
                 <textarea
                   required
+                  name="message"
                   className="appearance-none block w-full py-3 px-4 leading-tight text-gray-700 bg-gray-200 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none"
                   placeholder="Your message"
                   rows={5}

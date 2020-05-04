@@ -6,6 +6,7 @@
 
 const { paginate } = require(`gatsby-awesome-pagination`);
 const htmlToText = require("html-to-text");
+const readingTime = require("reading-time");
 
 exports.createSchemaCustomization = ({ actions, schema }) => {
   const { createFieldExtension, createTypes } = actions;
@@ -31,15 +32,29 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
     },
   });
 
+  createFieldExtension({
+    name: "readingTime",
+    extend() {
+      return {
+        resolve(source) {
+          const readingTimeValue = readingTime(source.content);
+          return readingTimeValue.text;
+        },
+      };
+    },
+  });
+
   createTypes(`
     type wordpress__POST implements Node {
       plainExcerpt: String @plainExcerpt
+      readingTime: String @readingTime
     }
   `);
 
   createTypes(`
     type wordpress__PAGE implements Node {
       plainExcerpt: String @plainExcerpt
+      readingTime: String @readingTime
     }
   `);
 
@@ -98,7 +113,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const authorTemplate = require.resolve("./src/templates/authorTemplate.tsx");
   const tagsTemplate = require.resolve("./src/templates/tagTemplate.tsx");
   const pageTemplate = require.resolve("./src/templates/pageTemplate.tsx");
-  const postAmpTemplate = require.resolve("./src/templates/postTemplate.amp.tsx");
+  const postAmpTemplate = require.resolve(
+    "./src/templates/postTemplate.amp.tsx"
+  );
 
   const { createPage } = actions;
   const result = await graphql(
