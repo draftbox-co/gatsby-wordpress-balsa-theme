@@ -168,9 +168,9 @@ module.exports = (themeOptions) => {
           purgeOnly: ["components/", "styles/"],
           content: [
             path.join(
-              process.cwd(),
-              "../gatsby-wordpress-balsa-theme/src/**/!(*.d).{ts,js,jsx,tsx}"
-            ),
+              __dirname,
+              "src/**/!(*.d).{ts,js,jsx,tsx}"
+            ),    
           ],
         },
       },
