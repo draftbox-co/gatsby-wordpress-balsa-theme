@@ -47,7 +47,7 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
         </div>
       </div>
       <div className="py-4 flex justify-center">
-        <p className="text-blue-500 uppercase">Published with DraftBox</p>
+        <a href="https://draftbox.co" target="_blank" rel="norefferer noopener" className="text-blue-500 uppercase">Published with DraftBox</a>
       </div>
     </footer>
   );
