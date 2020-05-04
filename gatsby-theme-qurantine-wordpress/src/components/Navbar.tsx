@@ -18,7 +18,7 @@ const Navbar: React.FC<NavbarProps> = ({ navbarData }) => {
     <nav className="flex flex-wrap items-center justify-between p-4 container mx-auto">
       <div className="flex flex-shrink-0 mr-6">
         <Link
-          className="text-2xl text-indigo-500 font-semibold font-serif"
+          className="text-2xl text-blue-700 font-semibold font-serif"
           to="/"
         >
           {name}
@@ -28,7 +28,7 @@ const Navbar: React.FC<NavbarProps> = ({ navbarData }) => {
         {" "}
         <button
           onClick={(e) => setIsMenuToggled(!isMenuToggled)}
-          className="navbar-burger flex items-center py-2 px-3 text-indigo-500 rounded border border-indigo-500"
+          className="navbar-burger flex items-center py-2 px-3 text-blue-700 rounded border border-blue-700"
         >
           <svg
             className="fill-current h-3 w-3"

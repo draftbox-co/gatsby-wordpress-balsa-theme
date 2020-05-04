@@ -31,12 +31,7 @@ const Tags: React.FC<TagsProps> = ({ data }) => {
                   className="w-full lg:w-1/3 px-4 mb-8 cursor-pointer"
                 >
                   <div className="h-full overflow-hidden rounded shadow-md flex flex-col justify-between">
-                    <div
-                      className="h-32 flex justify-center items-center text-white text-6xl font-black"
-                      style={{
-                        backgroundColor: randomColor({ luminosity: "dark" }),
-                      }}
-                    >
+                    <div className="h-32 flex bg-blue-900 justify-center items-center text-white text-6xl font-black">
                       {node.name[0]}
                     </div>
                     <div className="text-center p-4">

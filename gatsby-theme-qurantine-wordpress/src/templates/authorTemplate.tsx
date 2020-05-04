@@ -30,13 +30,10 @@ const AuthorTemplate: React.FC<AuthorTemplateProps> = ({
   const { allWordpressPost, wordpressWpUsers } = data;
   return (
     <Layout>
-      <WebsiteMeta/>
-      <section
-        className="text-center bg-cover"
-        style={{ backgroundColor: "pink" }}
-      >
+      <WebsiteMeta />
+      <section className="text-center bg-cover">
         <div className="relative flex items-center py-32">
-          <div className="absolute bg-black opacity-50 inset-0"></div>
+          <div className="absolute bg-blue-900 inset-0"></div>
           <div className="z-10 max-w-2xl mx-auto px-4">
             <img
               className="w-16 mx-auto mb-4 rounded-full"

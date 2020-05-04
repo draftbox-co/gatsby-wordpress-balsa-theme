@@ -61,7 +61,7 @@ const CtaMini = () => {
                   />
                 </div>
                 <div className="w-full md:w-1/3">
-                  <button className="inline-block w-full py-4 px-8 leading-none text-white bg-indigo-500 hover:bg-indigo-600 rounded md:rounded-l-none">
+                  <button className="inline-block w-full py-4 px-8 leading-none text-white bg-blue-700 hover:bg-blue-900 rounded md:rounded-l-none">
                     {submitting ? "Subscribing..." : "Subscribe"}
                   </button>
                 </div>

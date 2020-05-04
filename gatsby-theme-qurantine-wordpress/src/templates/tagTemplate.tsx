@@ -5,7 +5,6 @@ import { PaginationContext } from "../models/pagination.model";
 import PostCard from "../components/PostCard";
 import Pagination from "../components/Pagination";
 import CtaBig from "../components/CtaBig";
-import randomColor from "randomcolor";
 import { PostDescription } from "../models/all-post-description.model";
 import WebsiteMeta from "../components/meta/website-meta";
 
@@ -32,14 +31,9 @@ const TagTemplate: React.FC<TagTemplateProps> = ({
   return (
     <Layout>
       <WebsiteMeta />
-      <section
-        className="text-center bg-cover"
-        style={{
-          background: randomColor({ luminosity: "dark" }),
-        }}
-      >
+      <section className="text-center bg-cover">
         <div className="relative flex items-center py-32">
-          <div className="absolute bg-black opacity-50 inset-0" />
+          <div className="absolute bg-blue-900 inset-0" />
           <div className="z-10 max-w-2xl mx-auto px-4">
             <h3 className="text-3xl font-semibold font-heading text-white capitalize">
               {wordpressTag.name}

@@ -104,7 +104,7 @@ const ContactForm = () => {
                 ></textarea>
               </div>
               <div>
-                <button className="inline-block w-full py-4 px-8 leading-none text-white bg-indigo-500 hover:bg-indigo-600 rounded shadow">
+                <button className="inline-block w-full py-4 px-8 leading-none text-white bg-blue-700 hover:bg-blue-900 rounded shadow">
                   {submitting ? "Submitting..." : "Submit"}
                 </button>
               </div>
