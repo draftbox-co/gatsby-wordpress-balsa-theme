@@ -1,5 +1,5 @@
 {
-  "baseUrl": "*insert your wordpress url here*",
+  "baseUrl": "ipldreampredictions.com",
   "protocol": "https",
   "hostingWPCOM": false,
   "useACF": true,

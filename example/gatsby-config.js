@@ -10,7 +10,7 @@ try {
 module.exports = {
   plugins: [
     {
-      resolve: `@armada-inc/gatsby-theme-qurantine-wordpress`,
+      resolve: `@draftbox-co/gatsby-wordpress-balsa-theme`,
       options: {
         wordpressConfig,
         siteConfig,
