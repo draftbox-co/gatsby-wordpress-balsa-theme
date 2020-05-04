@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import bigCta from "../images/mobile_login.svg";
+import bigCta from "../images/subscribe_to_newsletter.svg";
 import { useForm } from "../hook/useForm";
 import checkMark from "../images/check.svg";
 import { graphql, useStaticQuery } from "gatsby";
@@ -43,7 +43,7 @@ const CtaBig = () => {
       {!succeeded && (
         <section className="px-4 py-12 bg-gray-200">
           <div className="flex flex-wrap items-center text-center md:text-left -mx-2">
-            <div className="lg:w-1/2 px-2 lg:pl-16 mt-10 lg:mt-0 order-1 lg:order-none mx-auto">
+            <div className="lg:w-2/3 px-2 lg:pl-16 mt-10 lg:mt-0 order-1 lg:order-none mx-auto">
               <h2 className="text-4xl mb-6 font-heading">
                 Subscribe to {name}
               </h2>
@@ -53,7 +53,9 @@ const CtaBig = () => {
               >
                 <div className="flex flex-wrap">
                   <div className="w-full md:w-2/3 mb-4">
-                    <label className="hidden" htmlFor="email">Email</label>
+                    <label className="hidden" htmlFor="email">
+                      Email
+                    </label>
                     <input
                       id="email"
                       onChange={(e: any) => setEmail(e.target.value)}
@@ -74,7 +76,7 @@ const CtaBig = () => {
                 </div>
               </form>
             </div>
-            <div className="lg:w-1/2 px-2 mx-auto">
+            <div className="lg:w-1/3 px-2 mx-auto">
               <img src={bigCta} alt="" />
             </div>
           </div>
