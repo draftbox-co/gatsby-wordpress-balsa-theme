@@ -112,4 +112,4 @@ If your blog is hosted on wordpress.com you will have to add few extra keys for 
 
 # Copyright & License
 
-Copyright (c) 2020 Armada Intelligence Inc - Released under the [MIT license](LICENSE).
+Copyright (c) 2020 Draftbox - Released under the [MIT license](LICENSE).
