@@ -7,6 +7,10 @@ import Disqus from "../components/disqus";
 import "../styles/richtext.css";
 import { PostDescription } from "../models/all-post-description.model";
 import ArticleMeta from "../components/meta/article-meta";
+import facebookShare from "../images/facebook-share.svg";
+import twitterShare from "../images/twitter-share.svg";
+import linkedInShare from "../images/linkedin.svg";
+import mailShare from "../images/mail.svg";
 
 type PostTemplateProps = {
   data: {
@@ -17,6 +21,14 @@ type PostTemplateProps = {
 
 const PostTemplate: React.FC<PostTemplateProps> = ({ data, location }) => {
   const { wordpressPost } = data;
+
+  const twitterShareUrl = `https://twitter.com/share?text=${wordpressPost.title}&url=${location.href}`;
+
+  const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${location.href}`;
+
+  const linkedInShareUrl = `https://www.linkedin.com/shareArticle?mini=true&amp;url=${location.href}/&amp;title=${wordpressPost.title}`;
+
+  const mailShareUrl = `mailto:?subject=${wordpressPost.title}&amp;body=${location.href}`;
 
   return (
     <Layout>
@@ -51,6 +63,53 @@ const PostTemplate: React.FC<PostTemplateProps> = ({ data, location }) => {
         dangerouslySetInnerHTML={{ __html: wordpressPost.content }}
         className="richtext max-w-3xl mx-4 lg:mx-auto font-serif text-gray-800"
       ></div>
+      <div className="flex items-center max-w-3xl mt-8 mx-4 lg:mx-auto">
+        <span className="mr-2 text-lg text-gray-700">Share:</span>
+        <div className="social-icons">
+          <ul className="flex">
+            <li>
+              <a
+                className="block p-2 bg-blue-500 hover:bg-blue-700 rounded-full mr-2"
+                href={facebookShareUrl}
+                target="_blank"
+                rel="norefferer noopener"
+              >
+                <img className="h-4" src={facebookShare} alt="Facebook Share" />
+              </a>
+            </li>
+            <li>
+              <a
+                className="block p-2 bg-blue-500 hover:bg-blue-700 rounded-full mr-2"
+                href={twitterShareUrl}
+                target="_blank"
+                rel="norefferer noopener"
+              >
+                <img className="h-4" src={twitterShare} alt="" />
+              </a>
+            </li>
+            <li>
+              <a
+                className="block p-2 bg-blue-500 hover:bg-blue-700 rounded-full mr-2"
+                href={linkedInShareUrl}
+                target="_blank"
+                rel="norefferer noopener"
+              >
+                <img className="h-4" src={linkedInShare} alt="" />
+              </a>
+            </li>
+            <li>
+              <a
+                className="block p-2 bg-blue-500 hover:bg-blue-700 rounded-full mr-2"
+                href={mailShareUrl}
+                target="_blank"
+                rel="norefferer noopener"
+              >
+                <img className="h-4" src={mailShare} alt="" />
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
       <hr className="spacer my-8 container mx-auto" />
       <section className="max-w-3xl container mx-auto">
         <Disqus slug={wordpressPost.slug} title={wordpressPost.title} />
