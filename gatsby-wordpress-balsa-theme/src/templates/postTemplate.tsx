@@ -72,7 +72,7 @@ const PostTemplate: React.FC<PostTemplateProps> = ({ data, location }) => {
                 className="block p-2 bg-blue-500 hover:bg-blue-700 rounded-full mr-2"
                 href={facebookShareUrl}
                 target="_blank"
-                rel="norefferer noopener"
+                rel="noopener noreferrer"
               >
                 <img className="h-4" src={facebookShare} alt="Facebook Share" />
               </a>
@@ -82,7 +82,7 @@ const PostTemplate: React.FC<PostTemplateProps> = ({ data, location }) => {
                 className="block p-2 bg-blue-500 hover:bg-blue-700 rounded-full mr-2"
                 href={twitterShareUrl}
                 target="_blank"
-                rel="norefferer noopener"
+                rel="noopener noreferrer"
               >
                 <img className="h-4" src={twitterShare} alt="" />
               </a>
@@ -92,7 +92,7 @@ const PostTemplate: React.FC<PostTemplateProps> = ({ data, location }) => {
                 className="block p-2 bg-blue-500 hover:bg-blue-700 rounded-full mr-2"
                 href={linkedInShareUrl}
                 target="_blank"
-                rel="norefferer noopener"
+                rel="noopener noreferrer"
               >
                 <img className="h-4" src={linkedInShare} alt="" />
               </a>
@@ -102,7 +102,7 @@ const PostTemplate: React.FC<PostTemplateProps> = ({ data, location }) => {
                 className="block p-2 bg-blue-500 hover:bg-blue-700 rounded-full mr-2"
                 href={mailShareUrl}
                 target="_blank"
-                rel="norefferer noopener"
+                rel="noopener noreferrer"
               >
                 <img className="h-4" src={mailShare} alt="" />
               </a>
