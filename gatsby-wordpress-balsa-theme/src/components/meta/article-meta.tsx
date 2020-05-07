@@ -50,7 +50,7 @@ const ArticleMeta: React.FC<ArticleMetaProps> = ({ data, amp }) => {
   return (
     <>
       <Helmet>
-        <title>{`${name} | ${capitalize(data.title)}`}</title>
+        <title>{`${name} | ${capitalize(data.plainTitle)}`}</title>
         {!amp && <link rel="ampHtml" href={`${canonicalUrl}/amp`} />}
         <meta name="description" content={data.plainExcerpt} />
         {!amp && <link rel="canonical" href={canonicalUrl} />}

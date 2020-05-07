@@ -7,11 +7,11 @@ import { useStaticQuery, graphql } from "gatsby";
 
 const ContactForm = () => {
   const {
-    wordpressSiteMetadata: { name },
+    wpSiteMetaData: { name },
   } = useStaticQuery(graphql`
     query {
-      wordpressSiteMetadata {
-        name
+      wpSiteMetaData {
+        ...WordpressSiteMetaData
       }
     }
   `);

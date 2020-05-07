@@ -3,6 +3,7 @@ export interface PageDetails {
   title: string;
   excerpt: string;
   plainExcerpt: string;
+  plainTitle: string;
   content: string;
   date: string;
 }

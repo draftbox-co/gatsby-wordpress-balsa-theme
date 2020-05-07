@@ -8,8 +8,9 @@ type NavbarProps = {
 };
 
 const Navbar: React.FC<NavbarProps> = ({ navbarData }) => {
+  console.log({navbarData});
   const {
-    wordpressSiteMetadata: { name },
+    wpSiteMetaData: { name },
   } = navbarData;
 
   const [isMenuToggled, setIsMenuToggled] = useState(false);

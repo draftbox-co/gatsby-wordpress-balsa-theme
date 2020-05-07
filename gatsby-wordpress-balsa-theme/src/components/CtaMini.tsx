@@ -5,11 +5,11 @@ import { useStaticQuery, graphql } from "gatsby";
 
 const CtaMini = () => {
   const {
-    wordpressSiteMetadata: { name },
+    wpSiteMetaData: { name },
   } = useStaticQuery(graphql`
     query {
-      wordpressSiteMetadata {
-        name
+      wpSiteMetaData {
+        ...WordpressSiteMetaData
       }
     }
   `);

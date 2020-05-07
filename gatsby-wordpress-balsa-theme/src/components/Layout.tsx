@@ -13,8 +13,8 @@ const Layout: React.FC = ({ children }) => {
 
   const data = useStaticQuery<SettingsAndSlugs>(graphql`
     query {
-      wordpressSiteMetadata {
-        name
+      wpSiteMetaData {
+        ...WordpressSiteMetaData
       }
     }
   `);

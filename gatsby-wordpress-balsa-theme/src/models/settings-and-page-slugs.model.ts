@@ -1,5 +1,6 @@
 export interface SettingsAndSlugs {
-  wordpressSiteMetadata: {
+  wpSiteMetaData: {
     name: string;
+    description: string;
   };
 }

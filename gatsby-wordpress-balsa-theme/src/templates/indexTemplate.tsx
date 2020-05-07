@@ -21,7 +21,7 @@ type IndexPageProps = {
         node: PostDescription;
       }[];
     };
-    wordpressSiteMetadata: {
+    wpSiteMetaData: {
       name: string;
       description: string;
     };
@@ -35,7 +35,7 @@ const IndexPage: React.FC<IndexPageProps> = ({
   location,
   pageContext,
 }) => {
-  const { wordpressSiteMetadata, allWordpressPost } = data;
+  const { wpSiteMetaData, allWordpressPost } = data;
 
   return (
     <>
@@ -48,10 +48,10 @@ const IndexPage: React.FC<IndexPageProps> = ({
             <div className="absolute bg-black opacity-50 inset-0" />
             <div className="z-10 max-w-2xl mx-auto px-4">
               <h1 className="mb-4 text-4xl leading-tight font-semibold font-heading text-white">
-                {wordpressSiteMetadata.name}
+                {wpSiteMetaData.name}
               </h1>
               <p className="text-2xl leading-tight font-light text-white">
-                {wordpressSiteMetadata.description}
+                {wpSiteMetaData.description}
               </p>
             </div>
           </div>
@@ -89,9 +89,8 @@ export const pageQuery = graphql`
       }
     }
 
-    wordpressSiteMetadata {
-      name
-      description
+    wpSiteMetaData {
+      ...WordpressSiteMetaData
     }
   }
 `;

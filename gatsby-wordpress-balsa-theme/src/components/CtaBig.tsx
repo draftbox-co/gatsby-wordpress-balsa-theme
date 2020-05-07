@@ -6,11 +6,11 @@ import { graphql, useStaticQuery } from "gatsby";
 
 const CtaBig = () => {
   const {
-    wordpressSiteMetadata: { name },
+    wpSiteMetaData: { name },
   } = useStaticQuery(graphql`
     query {
-      wordpressSiteMetadata {
-        name
+      wpSiteMetaData {
+        ...WordpressSiteMetaData
       }
     }
   `);

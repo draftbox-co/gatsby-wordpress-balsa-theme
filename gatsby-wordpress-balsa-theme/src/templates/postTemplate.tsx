@@ -35,8 +35,7 @@ const PostTemplate: React.FC<PostTemplateProps> = ({ data, location }) => {
       <ArticleMeta data={wordpressPost} amp={false} />
       <div className="spacer my-6"></div>
       <section className="px-4 max-w-4xl mx-auto">
-        <h1 className=" text-4xl text-center font-heading font-semibold">
-          {wordpressPost.title}
+        <h1 className=" text-4xl text-center font-heading font-semibold" dangerouslySetInnerHTML={{__html: wordpressPost.title}}>
         </h1>
         <p className="text-center">
           <span>{wordpressPost.date}, by </span>

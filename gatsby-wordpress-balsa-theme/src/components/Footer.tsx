@@ -9,7 +9,7 @@ type FooterProps = {
 
 const Footer: React.FC<FooterProps> = ({ footerData }) => {
   const {
-    wordpressSiteMetadata: { name },
+    wpSiteMetaData: { name },
   } = footerData;
   return (
     <footer className="bg-gray-100">

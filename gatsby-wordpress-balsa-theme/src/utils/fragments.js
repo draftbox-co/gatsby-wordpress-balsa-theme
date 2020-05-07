@@ -18,6 +18,7 @@ export const wordPressPostData = graphql`
     content
     excerpt
     plainExcerpt
+    plainTitle
     slug
     categories {
       name
@@ -62,6 +63,7 @@ export const wordpressPageData = graphql`
     title
     excerpt
     plainExcerpt
+    plainTitle
     content
     date(formatString: "MMMM DD YYYY")
   }

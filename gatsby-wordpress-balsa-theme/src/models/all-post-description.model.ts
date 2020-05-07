@@ -8,6 +8,7 @@ export interface PostDescription {
   content: string;
   excerpt: string;
   plainExcerpt: string;
+  plainTitle: string;
   slug: string;
   categories: {
     name: string;
