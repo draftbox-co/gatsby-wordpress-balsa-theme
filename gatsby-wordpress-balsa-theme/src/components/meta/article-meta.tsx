@@ -5,8 +5,13 @@ import url from "url";
 import { globalHistory } from "@reach/router";
 import { PostDescription } from "../../models/all-post-description.model";
 
-const capitalize = (str) => {
-  return str.charAt(0).toUpperCase() + str.slice(1);
+const capitalize = (str: String) => {
+  if(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  } else {
+    return  ""
+  }
+  
 };
 
 type ArticleMetaProps = {
@@ -58,7 +63,7 @@ const ArticleMeta: React.FC<ArticleMetaProps> = ({ data, amp }) => {
         <meta property="og:type" content="website" />
         <meta
           property="og:title"
-          content={`${name} | ${capitalize(data.title)}`}
+          content={`${name} | ${capitalize(data.plainTitle)}`}
         />
         <meta property="og:description" content={data.plainExcerpt} />
         <meta property="og:url" content={canonicalUrl} />
@@ -70,7 +75,7 @@ const ArticleMeta: React.FC<ArticleMetaProps> = ({ data, amp }) => {
         )}
         <meta
           name="twitter:title"
-          content={`${name} | ${capitalize(data.title)}`}
+          content={`${name} | ${capitalize(data.plainTitle)}`}
         />
         <meta name="twitter:description" content={data.plainExcerpt} />
         <meta name="twitter:url" content={canonicalUrl} />

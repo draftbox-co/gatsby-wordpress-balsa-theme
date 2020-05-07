@@ -8,7 +8,6 @@ type NavbarProps = {
 };
 
 const Navbar: React.FC<NavbarProps> = ({ navbarData }) => {
-  console.log({navbarData});
   const {
     wpSiteMetaData: { name },
   } = navbarData;

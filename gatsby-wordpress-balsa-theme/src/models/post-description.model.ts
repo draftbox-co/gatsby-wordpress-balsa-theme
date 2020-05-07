@@ -37,6 +37,7 @@ export interface GhostPost {
   };
   published_at: string;
   og_description: string;
+  plainTitle: string;
 }
 
 export interface GhostPostDescription {
