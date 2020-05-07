@@ -28,7 +28,7 @@ export const wordPressPostData = graphql`
     featured_media {
       localFile {
         childImageSharp {
-          fluid {
+          fluid(maxWidth: 2000, sizes: "90") {
             ...GatsbyImageSharpFluid
           }
         }
