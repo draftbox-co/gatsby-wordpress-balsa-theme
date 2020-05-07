@@ -39,7 +39,7 @@ const CtaMini = () => {
         </section>
       )}
       {!succeeded && (
-        <section className="px-4 py-12 bg-gray-200">
+        <section className="px-4 py-12 bg-gray-200" id="subscribe">
           <div className="w-full max-w-2xl mx-auto text-center">
             <h2 className="text-5xl mt-4 mb-8 leading-tight font-heading">
               Subscribe to {name}
