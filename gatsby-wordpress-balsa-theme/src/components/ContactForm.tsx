@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Layout from "./Layout";
 import CtaBig from "./CtaBig";
 import { useForm } from "../hook/useForm";
 import checkMark from "../images/check.svg";
@@ -46,7 +45,7 @@ const ContactForm = () => {
     }
   };
   return (
-    <Layout>
+    <>
       <div className="spacer my-6"></div>
       {succeeded && (
         <section className="py-8 px-4">
@@ -121,7 +120,7 @@ const ContactForm = () => {
       )}
       <div className="spacer my-8"></div>
       <CtaBig />
-    </Layout>
+    </>
   );
 };
 

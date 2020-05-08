@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Layout from "../components/Layout";
 import { graphql, Link } from "gatsby";
 import CtaMini from "../components/CtaMini";
@@ -21,14 +21,21 @@ type PostTemplateProps = {
 
 const PostTemplate: React.FC<PostTemplateProps> = ({ data, location }) => {
   const { wordpressPost } = data;
+  const [href, sethref] = useState("");
 
-  const twitterShareUrl = `https://twitter.com/share?text=${wordpressPost.title}&url=${location.href}`;
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      sethref(window.location.href);
+    }
+  }, []);
+  const twitterShareUrl = `https://twitter.com/share?text=${wordpressPost.plainTitle}&url=${href}`;
 
-  const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${location.href}`;
+  const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${href}`;
 
-  const linkedInShareUrl = `https://www.linkedin.com/shareArticle?mini=true&amp;url=${location.href}/&amp;title=${wordpressPost.title}`;
+  const linkedInShareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${href}&title=${wordpressPost.plainTitle}`;
 
-  const mailShareUrl = `mailto:?subject=${wordpressPost.title}&amp;body=${location.href}`;
+  const mailShareUrl = `mailto:?subject=${wordpressPost.plainTitle}&body=${href}`;
+
 
   return (
     <Layout>
