@@ -11,6 +11,7 @@ import facebookShare from "../images/facebook-share.svg";
 import twitterShare from "../images/twitter-share.svg";
 import linkedInShare from "../images/linkedin.svg";
 import mailShare from "../images/mail.svg";
+import CopyLink from "../components/copy-link";
 
 type PostTemplateProps = {
   data: {
@@ -36,14 +37,15 @@ const PostTemplate: React.FC<PostTemplateProps> = ({ data, location }) => {
 
   const mailShareUrl = `mailto:?subject=${wordpressPost.plainTitle}&body=${href}`;
 
-
   return (
     <Layout>
       <ArticleMeta data={wordpressPost} amp={false} />
       <div className="spacer my-6"></div>
       <section className="px-4 max-w-4xl mx-auto">
-        <h1 className=" text-4xl text-center font-heading font-semibold" dangerouslySetInnerHTML={{__html: wordpressPost.title}}>
-        </h1>
+        <h1
+          className=" text-4xl text-center font-heading font-semibold"
+          dangerouslySetInnerHTML={{ __html: wordpressPost.title }}
+        ></h1>
         <p className="text-center">
           <span>{wordpressPost.date}, by </span>
           <Link
@@ -112,6 +114,9 @@ const PostTemplate: React.FC<PostTemplateProps> = ({ data, location }) => {
               >
                 <img className="h-4" src={mailShare} alt="Mail" />
               </a>
+            </li>
+            <li>
+              <CopyLink textToCopy={href} />
             </li>
           </ul>
         </div>
