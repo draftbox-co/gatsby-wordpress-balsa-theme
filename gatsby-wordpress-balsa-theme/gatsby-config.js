@@ -159,7 +159,7 @@ module.exports = (themeOptions) => {
       },
       `gatsby-plugin-postcss`,
       {
-        resolve: `gatsby-plugin-webfonts`,
+        resolve: `@draftbox-co/gatsby-plugin-webfonts`,
         options: {
           fonts: {
             google: [
@@ -185,6 +185,7 @@ module.exports = (themeOptions) => {
           useMinify: true,
           usePreload: true,
           usePreconnect: true,
+          blacklist: ['/amp']
         },
       },
       {

@@ -45,19 +45,19 @@
 }
 
 .richtext h1 {
-  @apply leading-tight text-3xl font-medium mb-4 mt-6 pb-2;
+  @apply leading-tight text-3xl font-medium mb-4 mt-12 pb-2;
 }
 
 .richtext h2 {
-  @apply leading-tight text-2xl font-medium mb-4 mt-6 pb-2;
+  @apply leading-tight text-2xl font-medium mb-4 mt-12 pb-2;
 }
 
 .richtext h3 {
-  @apply leading-snug text-xl font-medium mb-4 mt-6;
+  @apply leading-snug text-xl font-medium mb-4 mt-8;
 }
 
 .richtext h4 {
-  @apply leading-none text-lg uppercase font-medium mb-4 mt-6;
+  @apply leading-none text-lg uppercase font-medium mb-4 mt-8;
 }
 
 .richtext h5 {
@@ -114,6 +114,10 @@
 
 .richtext p img {
   @apply inline;
+}
+
+.richtext figure {
+  @apply flex flex-col items-center justify-center;
 }
 
 .richtext figure,
