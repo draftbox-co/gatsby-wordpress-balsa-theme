@@ -67,7 +67,7 @@ export const TagTemplateQuery = graphql`
       count
     }
     allWordpressPost(
-      filter: { tags: { elemMatch: { slug: { eq: $slug } } } }
+      filter: { tags_custom: { elemMatch: { slug: { eq: $slug } } } }
       limit: $limit
       skip: $skip
     ) {

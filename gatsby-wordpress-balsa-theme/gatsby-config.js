@@ -56,7 +56,7 @@ module.exports = (themeOptions) => {
                           }
                         }
                       }
-                      allWordpressCategory(filter: { count: { gt: 0 } }) {
+                      allWordpressTag(filter: { count: { gt: 0 } }) {
                         edges {
                           node {
                             name
@@ -77,7 +77,7 @@ module.exports = (themeOptions) => {
             allWordpressPost: {
               sitemap: `posts`,
             },
-            allWordpressCategory: {
+            allWordpressTag: {
               sitemap: `tags`,
             },
             allWordpressWpUsers: {

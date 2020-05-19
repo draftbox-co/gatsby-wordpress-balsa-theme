@@ -78,7 +78,7 @@ export const postDataQuery = graphql`
         name
         slug
       }
-      featured_media {
+      featured_media: featured_media_custom {
         localFile {
           childImageSharp {
             fluid {
@@ -95,7 +95,7 @@ export const postDataQuery = graphql`
         }
         description
       }
-      tags {
+      tags: tags_custom {
         name
         slug
       }
