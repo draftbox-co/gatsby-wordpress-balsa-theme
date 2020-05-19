@@ -36,9 +36,8 @@ const PostCard: React.FC<PostCardTypes> = ({ post }) => {
               style={{
                 fontSize: "6rem",
               }}
-            >
-              {post.title[0]}
-            </div>
+              dangerouslySetInnerHTML={{ __html: post.title[0] }}
+            ></div>
           )}
 
           <div className="px-6">
@@ -65,10 +64,14 @@ const PostCard: React.FC<PostCardTypes> = ({ post }) => {
                     })}
                 </span>
               </p>
-              <h3 className="text-2xl my-2 font-heading font-semibold tracking-tight leading-tight" dangerouslySetInnerHTML={{__html: post.title}}>
-                
-              </h3>
-              <p className="text-gray-600 font-serif">{excerpt}</p>
+              <h3
+                className="text-2xl my-2 font-heading font-semibold tracking-tight leading-tight break-all"
+                dangerouslySetInnerHTML={{ __html: post.title }}
+              ></h3>
+              <p
+                className="text-gray-600 font-serif break-all"
+                dangerouslySetInnerHTML={{ __html: excerpt }}
+              ></p>
             </div>
           </div>
         </div>

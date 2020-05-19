@@ -41,18 +41,18 @@ const IndexPage: React.FC<IndexPageProps> = ({
     <>
       <Layout>
         <WebsiteMeta />
-        <section
-          className="text-center bg-cover bg-blue-900"
-        >
+        <section className="text-center bg-cover max-w-full bg-blue-900">
           <div className="relative flex items-center py-32">
             <div className="absolute bg-black opacity-50 inset-0" />
             <div className="z-10 max-w-2xl mx-auto px-4">
-              <h1 className="mb-4 text-4xl leading-tight font-semibold font-heading text-white">
-                {wpSiteMetaData.name}
-              </h1>
-              <p className="text-2xl leading-tight font-light text-white">
-                {wpSiteMetaData.description}
-              </p>
+              <h1
+                dangerouslySetInnerHTML={{ __html: wpSiteMetaData.name }}
+                className="mb-4 text-4xl leading-tight font-semibold font-heading text-white break-all"
+              ></h1>
+              <p
+                dangerouslySetInnerHTML={{ __html: wpSiteMetaData.description }}
+                className="text-2xl leading-tight font-light text-white"
+              ></p>
             </div>
           </div>
         </section>

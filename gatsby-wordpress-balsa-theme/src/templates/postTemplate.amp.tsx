@@ -25,13 +25,19 @@ const PostTemplate: React.FC<PostTemplate> = ({
       <ArticleMeta data={wordpressPost} amp={pageContext.amp} />
       <header className="main-header">
         <nav className="blog-title">
-          <Link to="/">{pageContext.title}</Link>
+          <Link
+            to="/"
+            dangerouslySetInnerHTML={{ __html: pageContext.title }}
+          ></Link>
         </nav>
       </header>
       <main className="content" role="main">
         <article className="post tag-getting-started">
           <header className="post-header">
-            <h1 className="post-title">{data.wordpressPost.title}</h1>
+            <h1
+              className="post-title"
+              dangerouslySetInnerHTML={{ __html: data.wordpressPost.title }}
+            ></h1>
             <div className="post-meta">
               <div className="post-meta-avatars">
                 <p className="author">{data.wordpressPost.author.name}</p>

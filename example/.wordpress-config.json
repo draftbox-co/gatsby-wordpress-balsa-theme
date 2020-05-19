@@ -4,12 +4,6 @@
   "hostingWPCOM": false,
   "useACF": true,
   "verboseOutput": true,
-  "auth": {
-    "wpcom_app_clientSecret": "40H9BUZQFyeitT74Gos93s1WtcGQcgAEQjLC1jqOHxkCwi1fCOLhYtFqUHiZhwa8",
-    "wpcom_app_clientId": "69024",
-    "wpcom_user": "shyamlohar1996@gmail.com",
-    "wpcom_pass": "ZD''x@?3E6#_u&N"
-  },
   "includedRoutes": [
     "**/categories",
     "**/posts",
@@ -17,7 +11,6 @@
     "**/media",
     "**/tags",
     "**/taxonomies",
-    "**/users",
-    "**/settings"
+    "**/users"
   ]
 }

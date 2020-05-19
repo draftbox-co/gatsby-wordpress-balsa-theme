@@ -20,9 +20,8 @@ const Navbar: React.FC<NavbarProps> = ({ navbarData }) => {
         <Link
           className="text-2xl text-blue-700 font-semibold font-serif"
           to="/"
-        >
-          {name}
-        </Link>
+          dangerouslySetInnerHTML={{ __html: name }}
+        ></Link>
       </div>
       <div className="block lg:hidden">
         {" "}

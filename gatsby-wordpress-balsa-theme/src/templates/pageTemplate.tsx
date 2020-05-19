@@ -17,7 +17,14 @@ const PageTemplate: React.FC<IndexPageProps> = ({ data, location }) => {
   const { wordpressPage } = data;
   return (
     <Layout>
-      <WebsiteMeta/>
+      <WebsiteMeta />
+      <div className="spacer my-6"></div>
+      <section className="px-4 max-w-4xl mx-auto">
+        <h1
+          dangerouslySetInnerHTML={{ __html: wordpressPage.title }}
+          className="text-4xl text-center font-heading font-semibold break-all"
+        ></h1>
+      </section>
       <div className="spacer my-6"></div>
       <div
         dangerouslySetInnerHTML={{ __html: wordpressPage.content }}

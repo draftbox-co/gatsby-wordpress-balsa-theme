@@ -16,7 +16,8 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
       <div className="flex flex-wrap items-center py-4 px-4 border-b container mx-auto">
         <div className="w-full lg:w-1/5 text-center lg:text-left">
           <span className="block md:inline-block md:mb-0">
-            {name} © {new Date().getFullYear()}
+            <span dangerouslySetInnerHTML={{ __html: name }}></span> ©{" "}
+            {new Date().getFullYear()}
           </span>
         </div>
         <div className="w-full lg:w-4/5 mt-4 lg:mt-0 text-center lg:text-right">
@@ -47,7 +48,14 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
         </div>
       </div>
       <div className="py-4 flex justify-center">
-        <a href="https://draftbox.co?ref=preview" target="_blank" rel="noopener noreferrer" className="text-blue-500 uppercase">Published with DraftBox</a>
+        <a
+          href="https://draftbox.co?ref=preview"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-500 uppercase"
+        >
+          Published with DraftBox
+        </a>
       </div>
     </footer>
   );

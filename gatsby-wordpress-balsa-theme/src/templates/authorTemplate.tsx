@@ -51,9 +51,12 @@ const AuthorTemplate: React.FC<AuthorTemplateProps> = ({
               Regional Manager
             </span> */}
             {wordpressWpUsers.description && (
-              <p className="mt-4 text-gray-100 leading-relaxed">
-                {wordpressWpUsers.description}
-              </p>
+              <p
+                dangerouslySetInnerHTML={{
+                  __html: wordpressWpUsers.description,
+                }}
+                className="mt-4 text-gray-100 leading-relaxed break-all"
+              ></p>
             )}
           </div>
         </div>

@@ -43,7 +43,7 @@ const PostTemplate: React.FC<PostTemplateProps> = ({ data, location }) => {
       <div className="spacer my-6"></div>
       <section className="px-4 max-w-4xl mx-auto">
         <h1
-          className=" text-4xl text-center font-heading font-semibold"
+          className=" text-4xl text-center font-heading font-semibo break-allld"
           dangerouslySetInnerHTML={{ __html: wordpressPost.title }}
         ></h1>
         <p className="text-center">
@@ -60,7 +60,7 @@ const PostTemplate: React.FC<PostTemplateProps> = ({ data, location }) => {
       {wordpressPost.featured_media && (
         <section className="px-4 container mx-auto">
           <Img
-            style={{ maxHeight: "60vh" }}
+            style={{ maxHeight: "60vh", maxWidth: "100%" }}
             fluid={wordpressPost.featured_media.localFile.childImageSharp.fluid}
             alt=""
           />
