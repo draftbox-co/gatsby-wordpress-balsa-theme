@@ -34,7 +34,6 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
     extend() {
       return {
         resolve(sources, args, context, info) {
-          console.log(sources.tags___NODE, "tags sources");
           if (sources.tags___NODE && sources.tags___NODE.length > 0) {
             return sources.tags___NODE.map((tagNode) =>
               context.nodeModel.getNodeById({
@@ -191,6 +190,18 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           }
         }
 
+        
+          allWordpressTag(filter: { count: { gt: 0 } }) {
+            edges {
+              node {
+                name
+                slug
+                count
+              }
+            }
+          }
+        
+
         allWordpressWpUsers {
           edges {
             node {
@@ -229,7 +240,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const postsPerPage = result.data.site.siteMetadata.postsPerPage;
   const posts = result.data.allWordpressPost.edges;
   const authors = result.data.allWordpressWpUsers.edges;
-  // const tags = result.data.allWordpressTag.edges;
+  const tags = result.data.allWordpressTag.edges;
   const pages = result.data.allWordpressPage.edges;
   const siteTitle = result.data.wpSiteMetaData.siteName;
 
@@ -314,63 +325,44 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     });
   });
 
-  try {
-    // const data = await graphql(`
-    //   {
-    //     allWordpressTag(filter: { count: { gt: 0 } }) {
-    //       edges {
-    //         node {
-    //           name
-    //           slug
-    //           count
-    //         }
-    //       }
-    //     }
-    //   }
-    // `);
-    // console.log(JSON.stringify(data), "this is tags data");
-  } catch (error) {
-    console.log(error, "this is error");
-  }
+  tags.forEach(({ node }, i) => {
+    const totalPosts = node.count !== null ? node.count : 0;
+    const numberOfPages = Math.ceil(totalPosts / postsPerPage);
+    node.url = `/tag/${node.slug}/`;
 
-  // tags.forEach(({ node }, i) => {
-  //   const totalPosts = node.count !== null ? node.count : 0;
-  //   const numberOfPages = Math.ceil(totalPosts / postsPerPage);
-  //   node.url = `/tag/${node.slug}/`;
+    Array.from({ length: numberOfPages }).forEach((_, i) => {
+      const currentPage = i + 1;
+      const prevPageNumber = currentPage <= 1 ? null : currentPage - 1;
+      const nextPageNumber =
+        currentPage + 1 > numberOfPages ? null : currentPage + 1;
+      const previousPagePath = prevPageNumber
+        ? prevPageNumber === 1
+          ? node.url
+          : `${node.url}page/${prevPageNumber}/`
+        : null;
+      const nextPagePath = nextPageNumber
+        ? `${node.url}page/${nextPageNumber}/`
+        : null;
 
-  //   Array.from({ length: numberOfPages }).forEach((_, i) => {
-  //     const currentPage = i + 1;
-  //     const prevPageNumber = currentPage <= 1 ? null : currentPage - 1;
-  //     const nextPageNumber =
-  //       currentPage + 1 > numberOfPages ? null : currentPage + 1;
-  //     const previousPagePath = prevPageNumber
-  //       ? prevPageNumber === 1
-  //         ? node.url
-  //         : `${node.url}page/${prevPageNumber}/`
-  //       : null;
-  //     const nextPagePath = nextPageNumber
-  //       ? `${node.url}page/${nextPageNumber}/`
-  //       : null;
-
-  //     createPage({
-  //       path: i === 0 ? node.url : `${node.url}page/${i + 1}/`,
-  //       component: tagsTemplate,
-  //       context: {
-  //         // Data passed to context is available
-  //         // in page queries as GraphQL variables.
-  //         slug: node.slug,
-  //         limit: postsPerPage,
-  //         skip: i * postsPerPage,
-  //         numberOfPages: numberOfPages,
-  //         humanPageNumber: currentPage,
-  //         prevPageNumber: prevPageNumber,
-  //         nextPageNumber: nextPageNumber,
-  //         previousPagePath: previousPagePath,
-  //         nextPagePath: nextPagePath,
-  //       },
-  //     });
-  //   });
-  // });
+      createPage({
+        path: i === 0 ? node.url : `${node.url}page/${i + 1}/`,
+        component: tagsTemplate,
+        context: {
+          // Data passed to context is available
+          // in page queries as GraphQL variables.
+          slug: node.slug,
+          limit: postsPerPage,
+          skip: i * postsPerPage,
+          numberOfPages: numberOfPages,
+          humanPageNumber: currentPage,
+          prevPageNumber: prevPageNumber,
+          nextPageNumber: nextPageNumber,
+          previousPagePath: previousPagePath,
+          nextPagePath: nextPagePath,
+        },
+      });
+    });
+  });
 
   pages
     .filter((page) => !page.node.slug.startsWith("contact"))
