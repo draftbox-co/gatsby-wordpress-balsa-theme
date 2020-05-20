@@ -32,7 +32,8 @@ const CtaMini = () => {
             <div className="px-12 py-6 mb-8 lg:mb-0 text-center bg-green-200 text-green-900 mx-auto rounded">
               <h2 className="text-2xl font-heading text-center flex items-center">
                 <img className="mr-2 h-6 mt-1" src={checkMark} alt="" />
-                You've successfully subscribed to {name}.{" "}
+                You've successfully subscribed to{" "}
+                <span dangerouslySetInnerHTML={{ __html: name }}></span>.{" "}
               </h2>
             </div>
           </div>
@@ -42,7 +43,8 @@ const CtaMini = () => {
         <section className="px-4 py-12 bg-gray-200" id="subscribe">
           <div className="w-full max-w-2xl mx-auto text-center">
             <h2 className="text-5xl mt-4 mb-8 leading-tight font-heading">
-              Subscribe to {name}
+              Subscribe to{" "}
+              <span dangerouslySetInnerHTML={{ __html: name }}></span>
             </h2>
             <form
               onSubmit={(e) => onSubmit(e)}

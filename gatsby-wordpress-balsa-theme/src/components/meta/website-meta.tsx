@@ -3,6 +3,7 @@ import Helmet from "react-helmet";
 import { graphql, useStaticQuery } from "gatsby";
 import url from "url";
 import { globalHistory } from "@reach/router";
+const htmlToText = require("html-to-text");
 
 type SeoData = {
   wpSiteMetaData: {
@@ -36,10 +37,12 @@ const WebsiteMeta = () => {
 
   const canonicalUrl = url.resolve(baseUrl, globalHistory.location.pathname);
 
+  let plainName = htmlToText.fromString(name);
+
   return (
     <>
       <Helmet>
-        <title>{name}</title>
+        <title>{plainName}</title>
         <meta name="description" content={description} />
         <link rel="canonical" href={canonicalUrl} />
         <meta property="og:site_name" content={name} />

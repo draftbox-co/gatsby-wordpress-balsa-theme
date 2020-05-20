@@ -34,7 +34,8 @@ const CtaBig = () => {
             <div className="px-12 py-6 mb-8 lg:mb-0 text-center bg-green-200 text-green-900 mx-auto rounded">
               <h2 className="text-2xl font-heading text-center flex items-center">
                 <img className="mr-2 h-6 mt-1" src={checkMark} alt="" />
-                You've successfully subscribed to {name}.{" "}
+                You've successfully subscribed to{" "}
+                <span dangerouslySetInnerHTML={{ __html: name }}></span>.{" "}
               </h2>
             </div>
           </div>
@@ -45,7 +46,8 @@ const CtaBig = () => {
           <div className="flex flex-wrap items-center text-center md:text-left -mx-2">
             <div className="lg:w-2/3 px-2 lg:pl-16 mt-10 lg:mt-0 order-1 lg:order-none mx-auto">
               <h2 className="text-4xl mb-6 font-heading">
-                Subscribe to {name}
+                Subscribe to{" "}
+                <span dangerouslySetInnerHTML={{ __html: name }}></span>
               </h2>
               <form
                 onSubmit={(e) => onSubmit(e)}
