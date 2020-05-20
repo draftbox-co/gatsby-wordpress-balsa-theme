@@ -65,11 +65,11 @@ const PostCard: React.FC<PostCardTypes> = ({ post }) => {
                 </span>
               </p>
               <h3
-                className="text-2xl my-2 font-heading font-semibold tracking-tight leading-tight break-all"
+                className="text-2xl my-2 font-heading font-semibold tracking-tight leading-tight break-words"
                 dangerouslySetInnerHTML={{ __html: post.title }}
               ></h3>
               <p
-                className="text-gray-600 font-serif break-all"
+                className="text-gray-600 font-serif break-words"
                 dangerouslySetInnerHTML={{ __html: excerpt }}
               ></p>
             </div>

@@ -22,7 +22,7 @@ const PageTemplate: React.FC<IndexPageProps> = ({ data, location }) => {
       <section className="px-4 max-w-4xl mx-auto">
         <h1
           dangerouslySetInnerHTML={{ __html: wordpressPage.title }}
-          className="text-4xl text-center font-heading font-semibold break-all"
+          className="text-4xl text-center font-heading font-semibold break-words"
         ></h1>
       </section>
       <div className="spacer my-6"></div>

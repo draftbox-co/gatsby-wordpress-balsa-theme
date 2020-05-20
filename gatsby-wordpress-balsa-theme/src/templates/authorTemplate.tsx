@@ -55,7 +55,7 @@ const AuthorTemplate: React.FC<AuthorTemplateProps> = ({
                 dangerouslySetInnerHTML={{
                   __html: wordpressWpUsers.description,
                 }}
-                className="mt-4 text-gray-100 leading-relaxed break-all"
+                className="mt-4 text-gray-100 leading-relaxed break-words"
               ></p>
             )}
           </div>
