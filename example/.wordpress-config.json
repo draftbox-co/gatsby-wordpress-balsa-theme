@@ -3,7 +3,6 @@
   "protocol": "https",
   "hostingWPCOM": false,
   "useACF": true,
-  "verboseOutput": true,
   "includedRoutes": [
     "**/categories",
     "**/posts",
