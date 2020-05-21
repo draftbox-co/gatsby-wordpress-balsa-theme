@@ -13,10 +13,15 @@ const PostCard: React.FC<PostCardTypes> = ({ post }) => {
     navigate(slug);
   };
 
-  const excerpt =
-    post.plainExcerpt.split(" ").length > 30
-      ? post.plainExcerpt.split(" ").slice(0, 30).join(" ") + "..."
-      : post.plainExcerpt;
+  let excerpt = "";
+
+  if (post.excerpt) {
+    excerpt =
+      post.plainExcerpt.split(" ").length > 30
+        ? post.plainExcerpt.split(" ").slice(0, 30).join(" ") + "..."
+        : post.plainExcerpt;
+  }
+
   return (
     <div
       onClick={(e) => handleNavigation(e, `/${post.slug}`)}
@@ -42,7 +47,7 @@ const PostCard: React.FC<PostCardTypes> = ({ post }) => {
 
           <div className="px-6">
             <div className="mb-4">
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-gray-500 break-words">
                 {post.date}
                 {post.tags && post.tags.length > 0 && (
                   <span className="mx-2">•</span>

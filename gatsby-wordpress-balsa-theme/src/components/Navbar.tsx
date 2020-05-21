@@ -16,7 +16,7 @@ const Navbar: React.FC<NavbarProps> = ({ navbarData }) => {
 
   return (
     <nav className="flex flex-wrap items-center justify-between p-4 container mx-auto">
-      <div className="flex flex-shrink-0 mr-6">
+      <div className="flex flex-shrink-0 mr-6 w-4/5 lg:w-auto">
         <Link
           className="text-2xl text-blue-700 font-semibold font-serif"
           to="/"
