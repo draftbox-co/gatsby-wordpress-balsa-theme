@@ -190,17 +190,15 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           }
         }
 
-        
-          allWordpressTag(filter: { count: { gt: 0 } }) {
-            edges {
-              node {
-                name
-                slug
-                count
-              }
+        allWordpressTag(filter: { count: { gt: 0 } }) {
+          edges {
+            node {
+              name
+              slug
+              count
             }
           }
-        
+        }
 
         allWordpressWpUsers {
           edges {
@@ -237,7 +235,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     return;
   }
 
-  const postsPerPage = result.data.site.siteMetadata.postsPerPage;
+  // const postsPerPage = result.data.site.siteMetadata.postsPerPage;
+  const postsPerPage = 9;
   const posts = result.data.allWordpressPost.edges;
   const authors = result.data.allWordpressWpUsers.edges;
   const tags = result.data.allWordpressTag.edges;

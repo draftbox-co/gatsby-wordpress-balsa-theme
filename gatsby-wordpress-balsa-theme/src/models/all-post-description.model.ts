@@ -4,7 +4,7 @@ interface Tag {
 }
 export interface PostDescription {
   title: string;
-  readingTime: string
+  readingTime: string;
   content: string;
   excerpt: string;
   plainExcerpt: string;
@@ -16,6 +16,7 @@ export interface PostDescription {
   };
   featured_media: {
     localFile: {
+      publicURL;
       childImageSharp: {
         fluid: any;
       };
