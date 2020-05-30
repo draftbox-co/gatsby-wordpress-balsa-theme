@@ -8,6 +8,7 @@ const { paginate } = require(`gatsby-awesome-pagination`);
 const htmlToText = require("html-to-text");
 const readingTime = require("reading-time");
 exports.sourceNodes = require("./fix-source-nodes");
+const fetch = require('node-fetch');
 
 exports.createSchemaCustomization = ({ actions, schema }) => {
   const { createFieldExtension, createTypes } = actions;
@@ -143,7 +144,7 @@ exports.createResolvers = async ({
     Query: {
       wpSiteMetaData: {
         type: `WPSiteMetaData`,
-        resolve(source, args, context, info) {
+        async resolve(source, args, context, info) {
           let title = "";
           let description = "";
           let language = "auto";
@@ -161,6 +162,16 @@ exports.createResolvers = async ({
             : wordPressSetting[0].description;
           if (wordPressSetting && wordPressSetting.length > 0) {
             language = wordPressSetting[0].language;
+          } else {
+            try {
+              const response = await fetch(metadata[0].url);
+              const responseHTML = await response.text();
+              const firstValue = responseHTML.match(/(?<=")(?:\\.|[^"\\])*(?=")/)[0];
+              language = firstValue;
+            } catch (error) {
+              console.log('fetching html error');
+              language = "auto";
+            }
           }
           return {
             siteName: title,
@@ -196,17 +207,15 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           }
         }
 
-        
-          allWordpressTag(filter: { count: { gt: 0 } }) {
-            edges {
-              node {
-                name
-                slug
-                count
-              }
+        allWordpressTag(filter: { count: { gt: 0 } }) {
+          edges {
+            node {
+              name
+              slug
+              count
             }
           }
-        
+        }
 
         allWordpressWpUsers {
           edges {
@@ -243,7 +252,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     return;
   }
 
-  const postsPerPage = result.data.site.siteMetadata.postsPerPage;
+  // const postsPerPage = result.data.site.siteMetadata.postsPerPage;
+  const postsPerPage = 9;
   const posts = result.data.allWordpressPost.edges;
   const authors = result.data.allWordpressWpUsers.edges;
   const tags = result.data.allWordpressTag.edges;

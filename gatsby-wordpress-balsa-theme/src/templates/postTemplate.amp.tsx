@@ -50,7 +50,8 @@ const PostTemplate: React.FC<PostTemplate> = ({
               </time>{" "}
             </div>
           </header>
-          {data.wordpressPost.featured_media && (
+          {data.wordpressPost.featured_media?.localFile?.childImageSharp
+            ?.fluid && (
             <figure className="post-image">
               <img
                 src={

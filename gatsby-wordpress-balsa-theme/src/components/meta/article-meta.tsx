@@ -50,7 +50,7 @@ const ArticleMeta: React.FC<ArticleMetaProps> = ({ data, amp }) => {
   const baseUrl = queryData.site.siteMetadata.siteUrl;
   const canonicalUrl = url.resolve(baseUrl, globalHistory.location.pathname);
 
-  const feature_image = data.featured_media && data.featured_media.localFile;
+  const feature_image = data.featured_media?.localFile?.publicURL;
 
   return (
     <>
@@ -70,7 +70,7 @@ const ArticleMeta: React.FC<ArticleMetaProps> = ({ data, amp }) => {
         {feature_image && (
           <meta
             property="og:image"
-            content={feature_image.childImageSharp.fluid.src}
+            content={feature_image}
           />
         )}
         <meta
@@ -85,7 +85,7 @@ const ArticleMeta: React.FC<ArticleMetaProps> = ({ data, amp }) => {
         {feature_image && (
           <meta
             name="twitter:image"
-            content={feature_image.childImageSharp.fluid.src}
+            content={feature_image}
           />
         )}
       </Helmet>

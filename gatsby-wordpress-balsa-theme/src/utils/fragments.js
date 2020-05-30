@@ -27,6 +27,7 @@ export const wordPressPostData = graphql`
     readingTime
     featured_media: featured_media_custom {
       localFile {
+        publicURL
         childImageSharp {
           fluid(maxWidth: 2000, sizes: "90") {
             ...GatsbyImageSharpFluid

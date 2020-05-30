@@ -62,7 +62,7 @@ const PostTemplate: React.FC<PostTemplateProps> = ({ data, location }) => {
         </p>
       </section>
       <div className="spacer my-6"></div>
-      {wordpressPost.featured_media && (
+      {wordpressPost.featured_media?.localFile?.childImageSharp?.fluid && (
         <section className="px-4 container mx-auto">
           <Img
             style={{ maxHeight: "60vh", maxWidth: "100%" }}
@@ -71,6 +71,18 @@ const PostTemplate: React.FC<PostTemplateProps> = ({ data, location }) => {
           />
         </section>
       )}
+      {!wordpressPost.featured_media?.localFile?.childImageSharp?.fluid &&
+        wordpressPost.featured_media?.localFile?.publicURL && (
+          <section className="px-4 container mx-auto">
+            <img
+              className="mx-auto"
+              style={{ maxHeight: "60vh", maxWidth: "100%" }}
+              src={wordpressPost.featured_media.localFile.publicURL}
+              alt=""
+            />
+          </section>
+        )}
+
       <div className="spacer my-6"></div>
       <div
         dangerouslySetInnerHTML={{ __html: wordpressPost.content }}

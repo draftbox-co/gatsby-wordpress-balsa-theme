@@ -13,10 +13,15 @@ const PostCard: React.FC<PostCardTypes> = ({ post }) => {
     navigate(slug);
   };
 
-  const excerpt =
-    post.plainExcerpt.split(" ").length > 30
-      ? post.plainExcerpt.split(" ").slice(0, 30).join(" ") + "..."
-      : post.plainExcerpt;
+  let excerpt = "";
+
+  if (post.excerpt) {
+    excerpt =
+      post.plainExcerpt.split(" ").length > 30
+        ? post.plainExcerpt.split(" ").slice(0, 30).join(" ") + "..."
+        : post.plainExcerpt;
+  }
+
   return (
     <div
       onClick={(e) => handleNavigation(e, `/${post.slug}`)}
@@ -24,25 +29,33 @@ const PostCard: React.FC<PostCardTypes> = ({ post }) => {
     >
       <div className="h-full rounded shadow-md flex flex-col justify-between hover:shadow-2xl">
         <div>
-          {post.featured_media && (
+          {post.featured_media?.localFile?.childImageSharp?.fluid && (
             <Img
               className="mb-4 h-48 w-full object-cover rounded-t"
               fluid={post.featured_media.localFile.childImageSharp.fluid}
             />
           )}
-          {!post.featured_media && (
-            <div
-              className="flex justify-center bg-blue-500 items-center text-white font-black mb-4 h-48 w-full object-cover rounded-t"
-              style={{
-                fontSize: "6rem",
-              }}
-              dangerouslySetInnerHTML={{ __html: post.title[0] }}
-            ></div>
-          )}
+          {!post.featured_media?.localFile?.childImageSharp &&
+            post.featured_media?.localFile?.publicURL && (
+              <img
+                className="mb-4 h-48 w-full object-cover rounded-t"
+                src={post.featured_media.localFile.publicURL}
+              />
+            )}
+          {!post.featured_media?.localFile?.childImageSharp?.fluid &&
+            !post.featured_media?.localFile.publicURL && (
+              <div
+                className="flex justify-center bg-blue-500 items-center text-white font-black mb-4 h-48 w-full object-cover rounded-t"
+                style={{
+                  fontSize: "6rem",
+                }}
+                dangerouslySetInnerHTML={{ __html: post.title[0] }}
+              ></div>
+            )}
 
           <div className="px-6">
             <div className="mb-4">
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-gray-600 break-words">
                 {post.date}
                 {post.tags && post.tags.length > 0 && (
                   <>
