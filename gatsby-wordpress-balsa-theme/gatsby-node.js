@@ -121,7 +121,8 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
   const typeDefs = `
   type WPSiteMetaData implements Node {
     siteDescription: String
-    siteName: String
+    siteName: String,
+    language: String
   }
 `;
   createTypes(typeDefs);
@@ -145,6 +146,7 @@ exports.createResolvers = async ({
         resolve(source, args, context, info) {
           let title = "";
           let description = "";
+          let language = "auto";
           const metadata = context.nodeModel.getAllNodes({
             type: `wordpress__site_metadata`,
           });
@@ -157,9 +159,13 @@ exports.createResolvers = async ({
           description = metadata[0].description
             ? metadata[0].description
             : wordPressSetting[0].description;
+          if (wordPressSetting && wordPressSetting.length > 0) {
+            language = wordPressSetting[0].language;
+          }
           return {
             siteName: title,
             siteDescription: description,
+            language: language,
           };
         },
       },

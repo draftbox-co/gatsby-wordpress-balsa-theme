@@ -21,7 +21,7 @@ const Layout: React.FC = ({ children }) => {
 
   return (
     <ArmadaFormsProvider client={process.env.GATSBY_FORM_URL}>
-      <Helmet htmlAttributes={{ lang: "en" }} />
+      <Helmet htmlAttributes={{ lang: data.wpSiteMetaData.language }} />
       <div>
         <Navbar navbarData={data} />
         <hr />

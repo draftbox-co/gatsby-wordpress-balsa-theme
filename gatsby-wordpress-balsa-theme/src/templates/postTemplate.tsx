@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../components/Layout";
-import { graphql, Link } from "gatsby";
+import { graphql, Link, navigate } from "gatsby";
 import CtaMini from "../components/CtaMini";
 import Img from "gatsby-image";
 import Disqus from "../components/disqus";
@@ -37,6 +37,11 @@ const PostTemplate: React.FC<PostTemplateProps> = ({ data, location }) => {
 
   const mailShareUrl = `mailto:?subject=${wordpressPost.plainTitle}&body=${href}`;
 
+  const handleNavigation = (e: any, slug) => {
+    e.stopPropagation();
+    navigate(slug);
+  };
+
   return (
     <Layout>
       <ArticleMeta data={wordpressPost} amp={false} />
@@ -49,7 +54,7 @@ const PostTemplate: React.FC<PostTemplateProps> = ({ data, location }) => {
         <p className="text-center">
           <span>{wordpressPost.date}, by </span>
           <Link
-            className="ml-1 text-blue-700 hover:underline"
+            className="text-blue-700 hover:underline"
             to={`/author/${wordpressPost.author.slug}`}
           >
             {wordpressPost.author.name}
@@ -71,6 +76,22 @@ const PostTemplate: React.FC<PostTemplateProps> = ({ data, location }) => {
         dangerouslySetInnerHTML={{ __html: wordpressPost.content }}
         className="richtext max-w-3xl mx-4 lg:mx-auto font-serif text-gray-800"
       ></div>
+
+      {wordpressPost.tags && wordpressPost.tags.length > 0 && (
+        <div className="flex items-center max-w-3xl mt-8 mx-4 lg:mx-auto flex-wrap">
+          {wordpressPost.tags.map((tag, index) => {
+            return (
+              <div
+                onClick={(e) => handleNavigation(e, `tag/${tag.slug}`)}
+                className="px-3 py-1 rounded-full mr-3 text-gray-700 cursor-pointer hover:text-white hover:border-gray-700 hover:bg-gray-700 bg-gray-300 mb-4"
+                key={index}
+              >
+                #{tag.name}
+              </div>
+            );
+          })}
+        </div>
+      )}
       <div className="flex items-center max-w-3xl mt-8 mx-4 lg:mx-auto">
         <span className="mr-2 text-lg text-gray-700">Share:</span>
         <div className="social-icons">
@@ -121,10 +142,14 @@ const PostTemplate: React.FC<PostTemplateProps> = ({ data, location }) => {
           </ul>
         </div>
       </div>
-      <hr className="spacer my-8 container mx-auto" />
-      <section className="max-w-3xl container mx-auto">
-        <Disqus slug={wordpressPost.slug} title={wordpressPost.title} />
-      </section>
+      {process.env.GATSBY_DISQUS_SHORTNAME && (
+        <>
+          <hr className="spacer my-8 container mx-auto" />
+          <section className="max-w-3xl container mx-auto">
+            <Disqus slug={wordpressPost.slug} title={wordpressPost.title} />
+          </section>
+        </>
+      )}
       <div className="spacer my-8"></div>
       <CtaMini />
     </Layout>
