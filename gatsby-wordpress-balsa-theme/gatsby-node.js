@@ -154,22 +154,24 @@ exports.createResolvers = async ({
           const wordPressSetting = context.nodeModel.getAllNodes({
             type: `wordpress__wp_settings`,
           });
-          title = metadata[0].name
-            ? metadata[0].name
-            : wordPressSetting[0].title;
-          description = metadata[0].description
-            ? metadata[0].description
-            : wordPressSetting[0].description;
+          if (metadata && metadata.length > 0) {
+            title = metadata[0].name;
+            description = metadata[0].description;
+          }
           if (wordPressSetting && wordPressSetting.length > 0) {
+            title = wordPressSetting[0].title;
+            description = wordPressSetting[0].description;
             language = wordPressSetting[0].language;
           } else {
             try {
               const response = await fetch(metadata[0].url);
               const responseHTML = await response.text();
-              const firstValue = responseHTML.match(/(?<=")(?:\\.|[^"\\])*(?=")/)[0];
+              const firstValue = responseHTML.match(
+                /(?<=")(?:\\.|[^"\\])*(?=")/
+              )[0];
               language = firstValue;
             } catch (error) {
-              console.log('fetching html error');
+              console.log("fetching html error");
               language = "auto";
             }
           }
