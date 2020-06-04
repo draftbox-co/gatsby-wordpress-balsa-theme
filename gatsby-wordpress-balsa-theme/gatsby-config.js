@@ -185,7 +185,7 @@ module.exports = (themeOptions) => {
           useMinify: true,
           usePreload: true,
           usePreconnect: true,
-          blacklist: ['/amp']
+          blacklist: ["/amp"],
         },
       },
       {
@@ -200,7 +200,7 @@ module.exports = (themeOptions) => {
         },
       },
       {
-        resolve: "@armada-inc/gatsby-plugin-amp",
+        resolve: `@armada-inc/gatsby-plugin-amp`,
         options: {
           canonicalBaseUrl: siteConfig.siteUrl,
           components: [`amp-form`],
@@ -210,6 +210,12 @@ module.exports = (themeOptions) => {
           useAmpClientIdApi: true,
           dirName: __dirname,
           themePath: `src/amp-styles/post.amp.css`,
+        },
+      },
+      {
+        resolve: `gatsby-plugin-remove-generator`,
+        options: {
+          content: `Draftbox`,
         },
       },
     ],
