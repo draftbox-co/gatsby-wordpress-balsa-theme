@@ -74,7 +74,7 @@ const ContactForm = () => {
                   <input
                     name="name"
                     className="appearance-none block w-full py-3 px-4 leading-tight text-gray-700 bg-gray-200 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none"
-                    type="name"
+                    type="email"
                     id="name"
                     placeholder="Your name (optional)"
                     onChange={(e) => handleChange(e.target.id, e.target.value)}
