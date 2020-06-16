@@ -16,6 +16,32 @@ const Layout: React.FC = ({ children }) => {
       wpSiteMetaData {
         ...WordpressSiteMetaData
       }
+      site {
+        siteMetadata {
+          siteUrl
+          apiUrl
+          header {
+            navigation {
+              url
+              label
+            }
+          }
+          footer {
+            copyright
+            navigation {
+              label
+              url
+            }
+          }
+          socialLinks {
+            twitter
+            facebook
+            instagram
+            linkedin
+            github
+          }
+        }
+      }
     }
   `);
 

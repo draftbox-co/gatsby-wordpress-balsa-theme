@@ -7,10 +7,22 @@ import { graphql, useStaticQuery } from "gatsby";
 const CtaBig = () => {
   const {
     wpSiteMetaData: { name },
+    site: {
+      siteMetadata: { subscribeWidget },
+    },
   } = useStaticQuery(graphql`
     query {
       wpSiteMetaData {
         ...WordpressSiteMetaData
+      }
+      site {
+        siteMetadata {
+          subscribeWidget {
+            title
+            helpText
+            successMessage
+          }
+        }
       }
     }
   `);
@@ -34,7 +46,8 @@ const CtaBig = () => {
             <div className="px-12 py-6 mb-8 lg:mb-0 text-center bg-green-200 text-green-900 mx-auto rounded">
               <h2 className="text-2xl font-heading text-center flex items-center">
                 <img className="mr-2 h-6 mt-1" src={checkMark} alt="" />
-                <span dangerouslySetInnerHTML={{ __html: `You've successfully subscribed to ${name}.` }}></span>
+                {subscribeWidget.successMessage && <span dangerouslySetInnerHTML={{ __html: subscribeWidget.successMessage }}></span>}
+                {!subscribeWidget.successMessage && <span dangerouslySetInnerHTML={{ __html: `You've successfully subscribed to ${name}.` }}></span>}
               </h2>
             </div>
           </div>
@@ -45,8 +58,7 @@ const CtaBig = () => {
           <div className="flex flex-wrap items-center text-center md:text-left -mx-2">
             <div className="lg:w-2/3 px-2 lg:pl-16 mt-10 lg:mt-0 order-1 lg:order-none mx-auto">
               <h2 className="text-4xl mb-6 font-heading">
-                Subscribe to{" "}
-                <span dangerouslySetInnerHTML={{ __html: name }}></span>
+                <span dangerouslySetInnerHTML={{ __html: `${subscribeWidget.title ? subscribeWidget.title : "Subscribe to " + name}` }}></span>
               </h2>
               <form
                 onSubmit={(e) => onSubmit(e)}
@@ -73,7 +85,7 @@ const CtaBig = () => {
                     </button>
                   </div>
                   <p className="text-sm text-gray-500 leading-relaxed">
-                    Get the latest posts delivered right to your inbox.
+                    {subscribeWidget.helpText ? subscribeWidget.helpText: `Get the latest posts delivered right to your inbox.`}
                   </p>
                 </div>
               </form>

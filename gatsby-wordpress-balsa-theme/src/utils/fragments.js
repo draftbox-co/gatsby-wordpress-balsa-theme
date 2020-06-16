@@ -48,6 +48,7 @@ export const wordPressPostData = graphql`
       slug
     }
     date(formatString: "MMMM DD YYYY")
+    sticky
   }
 `;
 

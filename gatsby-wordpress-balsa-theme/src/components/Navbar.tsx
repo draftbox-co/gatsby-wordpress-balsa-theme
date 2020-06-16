@@ -10,6 +10,7 @@ type NavbarProps = {
 const Navbar: React.FC<NavbarProps> = ({ navbarData }) => {
   const {
     wpSiteMetaData: { name },
+    site: {siteMetadata : { header: { navigation }, siteUrl, apiUrl }}
   } = navbarData;
 
   const [isMenuToggled, setIsMenuToggled] = useState(false);
@@ -46,54 +47,38 @@ const Navbar: React.FC<NavbarProps> = ({ navbarData }) => {
         )}
       >
         <div>
-          <Link
-            className="block lg:inline-block mt-4 lg:mt-0 lg:mx-5 text-blue-900 hover:text-blue-700"
-            to="/contact"
-          >
-            Contact Us
-          </Link>
-          {/* <Link
-            className="block lg:inline-block mt-4 lg:mt-0 lg:mx-5 text-blue-900 hover:text-blue-700"
-            to="/tags"
-          >
-            Tags
-          </Link>
-
-          <Link
-            className="block lg:inline-block mt-4 lg:mt-0 lg:mx-5 text-blue-900 hover:text-blue-700"
-            to="/authors"
-          >
-            Authors
-          </Link>
-          <Link
-            className="block lg:inline-block mt-4 lg:mt-0 lg:mx-5 text-blue-900 hover:text-blue-700"
-            to="/contact"
-          >
-            Contact Us
-          </Link> */}
-          {/* {navigation.map(({ label, url }, i) => {
-            return url.startsWith("/") || url.startsWith(siteUrl) ? (
+        {navigation.map(({ label, url }, i) => {
+            return url.startsWith("/") || url.startsWith(siteUrl) || url.startsWith(apiUrl) ? (
               <Link
                 key={i}
                 className="block lg:inline-block mt-4 lg:mt-0 lg:mx-5 text-blue-900 hover:text-blue-700"
                 to={`${
                   url.startsWith("/")
-                    ? "/" + url
-                    : "/" + url.slice(siteUrl.length, url.length)
+                    ? url
+                    : (url.startsWith(siteUrl) ? url.slice(siteUrl.length, url.length): url.slice(apiUrl.length, url.length))
                 }`}
               >
                 {label}
               </Link>
             ) : (
               <a
+                key={i}
                 href={url}
+                rel="noreferrer noopener"
                 target="_blank"
                 className="block lg:inline-block mt-4 lg:mt-0 lg:mx-5 text-blue-900 hover:text-blue-700"
               >
                 {label}
               </a>
             );
-          })} */}
+          })}
+          {/* <Link
+            className="block lg:inline-block mt-4 lg:mt-0 lg:mx-5 text-blue-900 hover:text-blue-700"
+            to="/contact"
+          >
+            Contact
+          </Link> */}
+          {}
         </div>
       </div>
     </nav>
