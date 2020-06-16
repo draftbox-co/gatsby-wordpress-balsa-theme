@@ -63,7 +63,7 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
             );
           })}
         </div>
-        <div className="flex justify-center items-center lg:justify-end w-full lg:w-1/5 my-2 lg:my-0">
+        <div className="flex justify-center items-center lg:justify-end w-full lg:w-1/5 my-2 lg:my-0 mt-4 lg:mt-0">
           {socialLinks && socialLinks.facebook && (
             <a
               rel="noreferrer noopener"

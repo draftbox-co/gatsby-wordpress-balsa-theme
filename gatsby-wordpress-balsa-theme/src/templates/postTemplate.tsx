@@ -12,16 +12,21 @@ import twitterShare from "../images/twitter-share.svg";
 import linkedInShare from "../images/linkedin.svg";
 import mailShare from "../images/mail.svg";
 import CopyLink from "../components/copy-link";
+import NextPrevPost from './../components/NextPrevPost';
 
 type PostTemplateProps = {
   data: {
     wordpressPost: PostDescription;
+    prevPost: PostDescription;
+    nextPost: PostDescription;
   };
   location: any;
 };
 
 const PostTemplate: React.FC<PostTemplateProps> = ({ data, location }) => {
-  const { wordpressPost } = data;
+  console.log(data);
+  const { wordpressPost, prevPost, nextPost } = data;
+  console.log({prevPost, nextPost})
   const [href, sethref] = useState("");
 
   useEffect(() => {
@@ -154,6 +159,7 @@ const PostTemplate: React.FC<PostTemplateProps> = ({ data, location }) => {
           </ul>
         </div>
       </div>
+      <NextPrevPost prevPost={prevPost} nextPost={nextPost} />
       {process.env.GATSBY_DISQUS_SHORTNAME && (
         <>
           <hr className="spacer my-8 container mx-auto" />
@@ -169,8 +175,14 @@ const PostTemplate: React.FC<PostTemplateProps> = ({ data, location }) => {
 };
 
 export const postDataQuery = graphql`
-  query($slug: String!) {
+  query($slug: String!, $prev: String, $next: String) {
     wordpressPost(slug: { eq: $slug }) {
+      ...WordPressPostData
+    }
+    prevPost: wordpressPost(id: { eq: $prev }) {
+      ...WordPressPostData
+    }
+    nextPost: wordpressPost(id: { eq: $next }) {
       ...WordPressPostData
     }
   }
