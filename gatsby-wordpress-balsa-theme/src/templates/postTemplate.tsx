@@ -4,6 +4,7 @@ import { graphql, Link, navigate } from "gatsby";
 import CtaMini from "../components/CtaMini";
 import Img from "gatsby-image";
 import Disqus from "../components/disqus";
+import FbComments from "../components/fb-comments";
 import "../styles/richtext.css";
 import { PostDescription } from "../models/all-post-description.model";
 import ArticleMeta from "../components/meta/article-meta";
@@ -168,6 +169,15 @@ const PostTemplate: React.FC<PostTemplateProps> = ({ data, location }) => {
           </section>
         </>
       )}
+      {process.env.FB_APP_ID && (
+        <>
+          <hr className="spacer my-8 container mx-auto" />
+          <section className="max-w-3xl container mx-auto px-4">
+            <FbComments href={href} />
+          </section>
+        </>
+      )}
+        
       <div className="spacer my-8"></div>
       <CtaMini />
     </Layout>
