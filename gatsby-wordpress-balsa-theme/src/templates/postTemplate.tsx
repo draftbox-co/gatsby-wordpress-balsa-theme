@@ -10,7 +10,7 @@ import { PostDescription } from "../models/all-post-description.model";
 import ArticleMeta from "../components/meta/article-meta";
 import facebookShare from "../images/facebook-share.svg";
 import twitterShare from "../images/twitter-share.svg";
-import linkedInShare from "../images/linkedin.svg";
+import linkedInShare from "../images/linkedin-share.svg";
 import mailShare from "../images/mail.svg";
 import CopyLink from "../components/copy-link";
 import NextPrevPost from './../components/NextPrevPost';
@@ -169,7 +169,7 @@ const PostTemplate: React.FC<PostTemplateProps> = ({ data, location }) => {
           </section>
         </>
       )}
-      {process.env.FB_APP_ID && (
+      {process.env.GATSBY_FB_APP_ID && (
         <>
           <hr className="spacer my-8 container mx-auto" />
           <section className="max-w-3xl container mx-auto px-4">
