@@ -48,8 +48,8 @@ const NextPrevPost: React.FC<NextPrevPostProps> = ({ prevPost, nextPost }) => {
               <h2 className="text-xl font-bold mb-2 text-gray-800">
                 {prevPost.plainTitle}
               </h2>
-              <p className="mb-2">{prevPost.plainExcerpt}&hellip;</p>
-              <p className="mb-2 prev-next-post text-gray-600">
+              <p className="mb-2 prev-next-post text-gray-600">{prevPost.plainExcerpt}&hellip;</p>
+              <p className="text-gray-600 text-xs mt-auto">
                 <time dateTime="{{date format='DD-MM-YYYY'}}">
                   {prevPost.date}
                 </time>

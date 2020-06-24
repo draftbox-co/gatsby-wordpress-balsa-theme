@@ -636,3 +636,7 @@ select {
   float: left;
   width: 45%;
 }
+
+amp-img img {
+  object-fit: contain;
+}
