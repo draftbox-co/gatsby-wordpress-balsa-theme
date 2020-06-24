@@ -8,4 +8,14 @@
 
 /* ! purgecss start ignore */
 .fb-comments iframe { width: 100% !important; }
+
+.prev-next-post {
+  height: 3rem;
+  margin: 0 0 1rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 /* ! purgecss end ignore */

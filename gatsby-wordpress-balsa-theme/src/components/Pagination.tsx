@@ -21,7 +21,7 @@ const Pagination: React.FC<PaginationProps> = ({ pageContext }) => {
               to={`${pageContext.previousPagePath}`}
               data-config-id="prev"
             >
-              Newer Posts
+             ← Newer Posts
             </Link>
           </li>
         )}
@@ -33,7 +33,7 @@ const Pagination: React.FC<PaginationProps> = ({ pageContext }) => {
               to={`${pageContext.nextPagePath}`}
               data-config-id="next"
             >
-              Older Posts
+              Older Posts →
             </Link>
           )}
         </li>

@@ -164,7 +164,7 @@ module.exports = (themeOptions) => {
           fonts: {
             google: [
               {
-                family: "IBM Plex Sans",
+                family: "Montserrat",
                 variants: ["400", "500", "600", "700"],
                 //subsets: ['latin']
                 //text: 'Hello'
@@ -172,7 +172,7 @@ module.exports = (themeOptions) => {
                 strategy: "selfHosted", // 'base64' || 'cdn'
               },
               {
-                family: "IBM Plex Serif",
+                family: "Merriweather",
                 variants: ["300", "400", "500", "600", "700"],
                 //subsets: ['latin']
                 //text: 'Hello'

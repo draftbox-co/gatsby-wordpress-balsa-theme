@@ -25,9 +25,8 @@ type PostTemplateProps = {
 };
 
 const PostTemplate: React.FC<PostTemplateProps> = ({ data, location }) => {
-  console.log(data);
   const { wordpressPost, prevPost, nextPost } = data;
-  console.log({prevPost, nextPost})
+  
   const [href, sethref] = useState("");
 
   useEffect(() => {
@@ -54,11 +53,11 @@ const PostTemplate: React.FC<PostTemplateProps> = ({ data, location }) => {
       <div className="spacer my-6"></div>
       <section className="px-4 max-w-4xl mx-auto">
         <h1
-          className=" text-4xl text-center font-heading font-semibo break-words"
+          className=" text-4xl text-center font-heading font-semibold break-words"
           dangerouslySetInnerHTML={{ __html: wordpressPost.title }}
         ></h1>
-        <p className="text-center">
-          <span>{wordpressPost.date}, by </span>
+        <p className="text-center mt-3">
+          <span>{wordpressPost.date}</span><strong className="mx-2">&bull;</strong>
           <Link
             className="text-blue-700 hover:underline"
             to={`/author/${wordpressPost.author.slug}`}
@@ -92,7 +91,7 @@ const PostTemplate: React.FC<PostTemplateProps> = ({ data, location }) => {
       <div className="spacer my-6"></div>
       <div
         dangerouslySetInnerHTML={{ __html: wordpressPost.content }}
-        className="richtext max-w-3xl mx-4 lg:mx-auto font-serif text-gray-800"
+        className="richtext max-w-3xl px-4 mx-auto font-serif text-gray-800"
       ></div>
 
       {wordpressPost.tags && wordpressPost.tags.length > 0 && (
@@ -163,16 +162,14 @@ const PostTemplate: React.FC<PostTemplateProps> = ({ data, location }) => {
       <NextPrevPost prevPost={prevPost} nextPost={nextPost} />
       {process.env.GATSBY_DISQUS_SHORTNAME && (
         <>
-          <hr className="spacer my-8 container mx-auto" />
-          <section className="max-w-3xl container mx-auto px-4">
+          <section className="max-w-4xl container mx-auto px-4 mt-16">
             <Disqus slug={wordpressPost.slug} title={wordpressPost.title} />
           </section>
         </>
       )}
       {process.env.GATSBY_FB_APP_ID && (
-        <>
-          <hr className="spacer my-8 container mx-auto" />
-          <section className="max-w-3xl container mx-auto px-4">
+        <>          
+          <section className="max-w-4xl container mx-auto px-4 mt-16">
             <FbComments href={href} />
           </section>
         </>

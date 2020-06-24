@@ -45,11 +45,11 @@
 }
 
 .richtext h1 {
-  @apply leading-tight text-3xl font-medium mb-4 mt-12 pb-2;
+  @apply leading-tight text-3xl font-semibold mb-4 mt-12 pb-2;
 }
 
 .richtext h2 {
-  @apply leading-tight text-2xl font-medium mb-4 mt-12 pb-2;
+  @apply leading-tight text-2xl font-semibold mb-4 mt-12 pb-2;
 }
 
 .richtext h3 {
