@@ -27,7 +27,7 @@ const PostTemplate: React.FC<PostTemplate> = ({
         <nav className="blog-title">
           <Link
             to="/"
-            dangerouslySetInnerHTML={{ __html: pageContext.title }}
+            dangerouslySetInnerHTML={{ __html: data.wordpressPost.title }}
           ></Link>
         </nav>
       </header>
@@ -66,6 +66,21 @@ const PostTemplate: React.FC<PostTemplate> = ({
             className="post-content"
             dangerouslySetInnerHTML={{ __html: data.wordpressPost.content }}
           ></section>
+
+          {data.wordpressPost.tags && data.wordpressPost.tags.length > 0 && (
+            <div className="tags">
+              <span>Tag:</span>
+              <a className="tag" href={`/tag/${data.wordpressPost.tags[0].slug}`}>
+                {data.wordpressPost.tags[0].name}
+              </a>
+            </div>
+          )}
+
+          <div className="comment-button-container">
+            <button>
+              <a href={`${data.wordpressPost.slug}`}>Leave a comment</a>
+            </button>
+          </div>
         </article>
       </main>
     </>
@@ -75,12 +90,12 @@ export default PostTemplate;
 
 export const postDataQuery = graphql`
   query($slug: String!) {
-    wordpressPost(slug: { eq: $slug }) {
+    wordpressPost(permaLinkSlug: { eq: $slug }) {
       title
       content
       excerpt
       plainExcerpt
-      slug
+      slug: permaLinkSlug
       categories {
         name
         slug

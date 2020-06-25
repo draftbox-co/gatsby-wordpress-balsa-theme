@@ -183,7 +183,7 @@ const PostTemplate: React.FC<PostTemplateProps> = ({ data, location }) => {
 
 export const postDataQuery = graphql`
   query($slug: String!, $prev: String, $next: String) {
-    wordpressPost(slug: { eq: $slug }) {
+    wordpressPost(permaLinkSlug: { eq: $slug }) {
       ...WordPressPostData
     }
     prevPost: wordpressPost(id: { eq: $prev }) {

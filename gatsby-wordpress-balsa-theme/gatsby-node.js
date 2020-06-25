@@ -8,7 +8,7 @@ const { paginate } = require(`gatsby-awesome-pagination`);
 const htmlToText = require("html-to-text");
 const readingTime = require("reading-time");
 exports.sourceNodes = require("./fix-source-nodes");
-const fetch = require('node-fetch');
+const fetch = require("node-fetch");
 
 exports.createSchemaCustomization = ({ actions, schema }) => {
   const { createFieldExtension, createTypes } = actions;
@@ -44,6 +44,22 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
             );
           }
           return [];
+        },
+      };
+    },
+  });
+
+  createFieldExtension({
+    name: "permaLinkSlug",
+    extend(options, prevFieldConfig) {
+      return {
+        resolve(source, context) {
+          if (source.link) {
+            const pathName = new URL(source.link).pathname;
+            return pathName;
+          } else {
+            return "";
+          }
         },
       };
     },
@@ -101,6 +117,7 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
       plainTitle: String @plainTitle
       tags_custom: [wordpress__TAG] @tags_custom
       featured_media_custom: wordpress__wp_media @featured_media_custom
+      permaLinkSlug: String @permaLinkSlug
     }
   `);
 
@@ -200,11 +217,13 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const result = await graphql(
     `
       {
-        allWordpressPost(sort: { fields: [sticky, date], order: [DESC, DESC] }) {
+        allWordpressPost(
+          sort: { fields: [sticky, date], order: [DESC, DESC] }
+        ) {
           edges {
             node {
               id
-              slug
+              slug: permaLinkSlug
             }
           }
         }
@@ -264,7 +283,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   posts.forEach((post, i, arr) => {
     createPage({
-      path: `/${post.node.slug}`,
+      path: `${post.node.slug}`,
       component: postTemplate,
       context: {
         slug: post.node.slug,
@@ -274,7 +293,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     });
 
     createPage({
-      path: `/${post.node.slug}/amp`,
+      path: `${post.node.slug}amp`,
       component: postAmpTemplate,
       context: {
         slug: post.node.slug,
