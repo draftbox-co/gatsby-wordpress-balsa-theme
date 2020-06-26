@@ -7,7 +7,14 @@
 @tailwind utilities;
 
 /* ! purgecss start ignore */
-.fb-comments iframe { width: 100% !important; }
+
+html {
+  @apply text-gray-800;
+}
+
+.fb-comments iframe {
+  width: 100% !important;
+}
 
 .prev-next-post {
   height: 3rem;

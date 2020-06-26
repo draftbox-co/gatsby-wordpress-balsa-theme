@@ -283,7 +283,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   posts.forEach((post, i, arr) => {
     createPage({
-      path: `${post.node.slug}`,
+      path: `${decodeURIComponent(post.node.slug)}`,
       component: postTemplate,
       context: {
         slug: post.node.slug,
@@ -293,7 +293,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     });
 
     createPage({
-      path: `${post.node.slug}amp`,
+      path: `${decodeURIComponent(post.node.slug)}amp`,
       component: postAmpTemplate,
       context: {
         slug: post.node.slug,
@@ -405,7 +405,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     .filter((page) => !page.node.slug.startsWith("contact"))
     .forEach((page) => {
       createPage({
-        path: `/${page.node.slug}`,
+        path: `/${decodeURIComponent(page.node.slug)}`,
         component: pageTemplate,
         context: {
           slug: page.node.slug,

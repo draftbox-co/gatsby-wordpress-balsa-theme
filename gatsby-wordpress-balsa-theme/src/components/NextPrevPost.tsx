@@ -12,10 +12,13 @@ const NextPrevPost: React.FC<NextPrevPostProps> = ({ prevPost, nextPost }) => {
     <>
       <aside className="px-4 max-w-4xl mx-auto flex flex-wrap mt-10">
         <a
-          className={classNames("w-full md:w-1/2 px-4 relative py-4 border-t border-b", {
-            "pointer-events-none hidden md:block": !nextPost,
-            "py-4": nextPost,
-          })}
+          className={classNames(
+            "w-full md:w-1/2 px-4 relative py-4 border-t border-b",
+            {
+              "pointer-events-none hidden md:block": !nextPost,
+              "py-4": nextPost,
+            }
+          )}
           href={nextPost?.slug ? nextPost.slug : "#"}
         >
           {nextPost && (
@@ -24,7 +27,9 @@ const NextPrevPost: React.FC<NextPrevPostProps> = ({ prevPost, nextPost }) => {
               <h2 className="text-xl font-bold mb-2 text-gray-800">
                 {nextPost.plainTitle}
               </h2>
-              <p className="mb-2 prev-next-post text-gray-600">{nextPost.plainExcerpt}&hellip;</p>
+              <p className="mb-2 prev-next-post text-gray-600 font-serif font-light">
+                {nextPost.plainExcerpt}&hellip;
+              </p>
               <p className="text-gray-600 text-xs mt-auto">
                 <time dateTime="{{date format='DD-MM-YYYY'}}">
                   {nextPost.date}
@@ -35,11 +40,14 @@ const NextPrevPost: React.FC<NextPrevPostProps> = ({ prevPost, nextPost }) => {
         </a>
 
         <a
-          className={classNames("w-full md:w-1/2 px-4 relative md:border-l md:border-t border-b", {
-            "pointer-events-none hidden md:block": !prevPost,
-            "py-4": prevPost,
-            "border-t": !nextPost
-          })}
+          className={classNames(
+            "w-full md:w-1/2 px-4 relative md:border-l md:border-t border-b",
+            {
+              "pointer-events-none hidden md:block": !prevPost,
+              "py-4": prevPost,
+              "border-t": !nextPost,
+            }
+          )}
           href={prevPost?.slug ? prevPost.slug : "#"}
         >
           {prevPost && (
@@ -48,7 +56,9 @@ const NextPrevPost: React.FC<NextPrevPostProps> = ({ prevPost, nextPost }) => {
               <h2 className="text-xl font-bold mb-2 text-gray-800">
                 {prevPost.plainTitle}
               </h2>
-              <p className="mb-2 prev-next-post text-gray-600">{prevPost.plainExcerpt}&hellip;</p>
+              <p className="mb-2 prev-next-post text-gray-600 font-serif font-light">
+                {prevPost.plainExcerpt}&hellip;
+              </p>
               <p className="text-gray-600 text-xs mt-auto">
                 <time dateTime="{{date format='DD-MM-YYYY'}}">
                   {prevPost.date}

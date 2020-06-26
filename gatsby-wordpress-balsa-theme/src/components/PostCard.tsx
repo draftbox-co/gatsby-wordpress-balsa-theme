@@ -90,7 +90,7 @@ const PostCard: React.FC<PostCardTypes> = ({ post }) => {
                 dangerouslySetInnerHTML={{ __html: post.title }}
               ></h3>
               <p
-                className="text-gray-600 font-serif break-words"
+                className="text-gray-600 font-serif break-words font-light"
                 dangerouslySetInnerHTML={{ __html: excerpt }}
               ></p>
             </div>

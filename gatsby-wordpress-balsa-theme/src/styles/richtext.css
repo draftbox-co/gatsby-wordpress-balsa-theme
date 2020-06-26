@@ -68,6 +68,10 @@
   @apply leading-tight italic font-medium mb-4 mt-6;
 }
 
+.richtext p {
+  @apply font-light;
+}
+
 .richtext blockquote {
   @apply text-xl border-l-4 border-blue-600 pl-4 pr-4 text-gray-900 italic;
 }
