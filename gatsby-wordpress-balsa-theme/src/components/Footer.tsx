@@ -25,6 +25,7 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
         <div className="w-full lg:w-1/5 text-center lg:text-left">
           <span className="block md:inline-block md:mb-0">
             <span
+              className="text-blue-900"
               dangerouslySetInnerHTML={{
                 __html: footer.copyright ? footer.copyright : name,
               }}
