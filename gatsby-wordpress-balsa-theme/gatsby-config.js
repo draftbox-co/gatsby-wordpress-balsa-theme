@@ -51,7 +51,7 @@ module.exports = (themeOptions) => {
                         edges {
                           node {
                             id
-                            slug
+                            slug: permaLinkSlug
                             date
                           }
                         }
@@ -141,7 +141,7 @@ module.exports = (themeOptions) => {
                   allWordpressPost(sort: {fields: date, order: DESC}) {
                     edges {
                       node {
-                        slug
+                        slug: permaLinkSlug
                         content
                         title
                         excerpt
