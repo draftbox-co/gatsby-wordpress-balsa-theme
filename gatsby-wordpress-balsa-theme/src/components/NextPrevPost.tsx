@@ -27,7 +27,7 @@ const NextPrevPost: React.FC<NextPrevPostProps> = ({ prevPost, nextPost }) => {
               <h2 className="text-xl font-bold mb-2 text-gray-800">
                 {nextPost.plainTitle}
               </h2>
-              <p className="mb-2 prev-next-post text-gray-600 font-serif font-light">
+              <p className="mb-2 prev-next-post text-gray-600 font-serif font-light break-words">
                 {nextPost.plainExcerpt}&hellip;
               </p>
               <p className="text-gray-600 text-xs mt-auto">
@@ -56,7 +56,7 @@ const NextPrevPost: React.FC<NextPrevPostProps> = ({ prevPost, nextPost }) => {
               <h2 className="text-xl font-bold mb-2 text-gray-800">
                 {prevPost.plainTitle}
               </h2>
-              <p className="mb-2 prev-next-post text-gray-600 font-serif font-light">
+              <p className="mb-2 prev-next-post text-gray-600 font-serif font-light break-words">
                 {prevPost.plainExcerpt}&hellip;
               </p>
               <p className="text-gray-600 text-xs mt-auto">
