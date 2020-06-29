@@ -45,27 +45,27 @@
 }
 
 .richtext h1 {
-  @apply leading-tight text-3xl font-semibold mb-4 mt-12 pb-2;
+  @apply leading-tight text-4xl font-semibold mb-4 mt-12 pb-2;
 }
 
 .richtext h2 {
-  @apply leading-tight text-2xl font-semibold mb-4 mt-12 pb-2;
+  @apply leading-tight text-3xl font-semibold mb-4 mt-12 pb-2;
 }
 
 .richtext h3 {
-  @apply leading-snug text-xl font-medium mb-4 mt-8;
+  @apply leading-snug text-2xl font-semibold mb-4 mt-8;
 }
 
 .richtext h4 {
-  @apply leading-none text-lg uppercase font-medium mb-4 mt-8;
+  @apply leading-none text-xl uppercase font-semibold mb-4 mt-8;
 }
 
 .richtext h5 {
-  @apply leading-tight font-medium mb-4 mt-6;
+  @apply leading-tight text-lg font-semibold mb-4 mt-6;
 }
 
 .richtext h6 {
-  @apply leading-tight italic font-medium mb-4 mt-6;
+  @apply leading-tight text-base italic font-semibold mb-4 mt-6;
 }
 
 .richtext p {
@@ -94,6 +94,10 @@
 
 .richtext ol {
   @apply pl-8 list-decimal;
+}
+
+.richtext li {
+  @apply font-light;
 }
 
 .richtext kbd {
@@ -150,6 +154,15 @@
   max-width: 100%;
   padding: 0;
   margin-bottom: 1.75em;
+}
+
+.wp-block-gallery ul {
+  list-style: none;
+  padding: 0;
+}
+
+.wp-block-gallery figure {
+  margin-bottom: 1rem;
 }
 
 /*!purgecss end ignore */

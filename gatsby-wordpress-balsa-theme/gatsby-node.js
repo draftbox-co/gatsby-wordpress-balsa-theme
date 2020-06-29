@@ -155,7 +155,6 @@ exports.createResolvers = async ({
   reporter,
 }) => {
   const { createNode } = actions;
-  console.log("createResolvers called");
 
   createResolvers({
     Query: {
@@ -324,9 +323,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     // This part here defines, that our author pages will use
     // a `/author/:slug/` permalink.
     node.url = `/author/${node.slug}/`;
-
-    console.log(numberOfPages, "number of pages");
-    console.log(node.url, "number of pages");
 
     Array.from({ length: numberOfPages }).forEach((_, i) => {
       const currentPage = i + 1;
