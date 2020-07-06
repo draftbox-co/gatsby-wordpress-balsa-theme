@@ -49,7 +49,7 @@ const PostTemplate: React.FC<PostTemplateProps> = ({ data, location }) => {
 
   return (
     <Layout>
-      <ArticleMeta data={wordpressPost} amp={false} />
+      <ArticleMeta data={wordpressPost} amp={false} location={location} />
       <div className="spacer my-6"></div>
       <section className="px-4 max-w-4xl mx-auto">
         <h1

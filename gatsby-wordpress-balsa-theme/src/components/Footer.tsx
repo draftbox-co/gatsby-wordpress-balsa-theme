@@ -14,9 +14,8 @@ type FooterProps = {
 
 const Footer: React.FC<FooterProps> = ({ footerData }) => {
   const {
-    wpSiteMetaData: { name },
     site: {
-      siteMetadata: { footer, siteUrl, apiUrl, socialLinks },
+      siteMetadata: { footer, siteUrl, apiUrl, socialLinks, siteTitle },
     },
   } = footerData;
   return (
@@ -27,7 +26,7 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
             <span
               className="text-blue-900"
               dangerouslySetInnerHTML={{
-                __html: footer.copyright ? footer.copyright : name,
+                __html: footer.copyright ? footer.copyright : siteTitle,
               }}
             ></span>{" "}
             © {new Date().getFullYear()}

@@ -22,7 +22,7 @@ const PostTemplate: React.FC<PostTemplate> = ({
   const { wordpressPost } = data;
   return (
     <>
-      <ArticleMeta data={wordpressPost} amp={pageContext.amp} />
+      <ArticleMeta data={wordpressPost} amp={pageContext.amp} location={location}/>
       <header className="main-header">
         <nav className="blog-title">
           <Link
@@ -122,6 +122,7 @@ export const postDataQuery = graphql`
         slug
       }
       date(formatString: "MMMM DD YYYY")
+      modified(formatString: "MMMM DD YYYY")
     }
   }
 `;

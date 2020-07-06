@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import classNames from "classnames";
 import { Link, graphql, useStaticQuery } from "gatsby";
 import { SettingsAndSlugs } from "../models/settings-and-page-slugs.model";
+import url from "url";
 
 type NavbarProps = {
   navbarData: SettingsAndSlugs;
@@ -9,9 +10,10 @@ type NavbarProps = {
 
 const Navbar: React.FC<NavbarProps> = ({ navbarData }) => {
   const {
-    wpSiteMetaData: { name },
-    site: {siteMetadata : { header: { navigation }, siteUrl, apiUrl }}
+    site: {siteMetadata : { header: { navigation }, siteUrl, apiUrl, logoUrl, siteTitle }}
   } = navbarData;
+
+  const logo = logoUrl ? url.resolve(siteUrl, logoUrl) : null;
 
   const [isMenuToggled, setIsMenuToggled] = useState(false);
 
@@ -21,8 +23,13 @@ const Navbar: React.FC<NavbarProps> = ({ navbarData }) => {
         <Link
           className="text-2xl text-blue-700 font-semibold font-serif"
           to="/"
-          dangerouslySetInnerHTML={{ __html: name }}
-        ></Link>
+        >
+          {logo ? (
+            <img className="h-10" src={logo} alt={siteTitle} />
+          ) : (
+            <span dangerouslySetInnerHTML={{ __html: siteTitle }}></span>
+          )}
+        </Link>
       </div>
       <div className="block lg:hidden">
         {" "}

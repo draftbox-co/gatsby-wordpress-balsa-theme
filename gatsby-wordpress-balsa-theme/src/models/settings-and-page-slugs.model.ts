@@ -34,6 +34,9 @@ export interface SettingsAndSlugs {
         helpText: string;
         successMessage: string;
       },
+      logoUrl: string;
+      siteTitle: string;
+      language: string;
     };
   };
 }

@@ -48,17 +48,18 @@ export const wordPressPostData = graphql`
       slug
     }
     date(formatString: "MMMM DD YYYY")
+    modified(formatString: "MMMM DD YYYY")
     sticky
   }
 `;
 
-export const wordpressSiteMetaData = graphql`
-  fragment WordpressSiteMetaData on WPSiteMetaData {
-    name: siteName
-    description: siteDescription
-    language: language
-  }
-`;
+// export const wordpressSiteMetaData = graphql`
+//   fragment WordpressSiteMetaData on WPSiteMetaData {
+//     name: siteName
+//     description: siteDescription
+//     language: language
+//   }
+// `;
 
 export const wordpressPageData = graphql`
   fragment WordpressPageData on wordpress__PAGE {

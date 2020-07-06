@@ -7,6 +7,8 @@ import { PaginationContext } from "../models/pagination.model";
 import PostCard from "../components/PostCard";
 import Pagination from "../components/Pagination";
 import WebsiteMeta from "../components/meta/website-meta";
+import url from "url";
+import classNames from "classnames";
 
 type IndexPageProps = {
   data: {
@@ -21,9 +23,13 @@ type IndexPageProps = {
         node: PostDescription;
       }[];
     };
-    wpSiteMetaData: {
-      name: string;
-      description: string;
+    site: {
+      siteMetadata: {
+        siteTitle: string;
+        siteDescription: string;
+        coverUrl: string;
+        siteUrl: string;
+      };
     };
   };
   location: any;
@@ -35,22 +41,40 @@ const IndexPage: React.FC<IndexPageProps> = ({
   location,
   pageContext,
 }) => {
-  const { wpSiteMetaData, allWordpressPost } = data;
+  const { site, allWordpressPost } = data;
+
+  const backgroundImage = site.siteMetadata.coverUrl
+    ? url.resolve(site.siteMetadata.siteUrl, site.siteMetadata.coverUrl)
+    : null;
 
   return (
     <>
       <Layout>
         <WebsiteMeta />
-        <section className="text-center bg-cover max-w-full bg-blue-900">
+        <section
+          className="text-center bg-cover max-w-full"
+          style={{
+            backgroundImage: `url(${
+              backgroundImage ? backgroundImage : "none"
+            })`
+          }}
+        >
           <div className="relative flex items-center py-32">
-            <div className="absolute bg-black opacity-50 inset-0" />
+            <div className={classNames("absolute inset-0", {
+              "bg-black opacity-50": backgroundImage,
+              "bg-blue-900": !backgroundImage,
+            })}/>
             <div className="z-10 max-w-2xl mx-auto px-4">
               <h1
-                dangerouslySetInnerHTML={{ __html: wpSiteMetaData.name }}
+                dangerouslySetInnerHTML={{
+                  __html: site.siteMetadata.siteTitle,
+                }}
                 className="mb-4 text-4xl leading-tight font-semibold font-heading text-white break-words"
               ></h1>
               <p
-                dangerouslySetInnerHTML={{ __html: wpSiteMetaData.description }}
+                dangerouslySetInnerHTML={{
+                  __html: site.siteMetadata.siteDescription,
+                }}
                 className="text-2xl leading-tight font-light text-white"
               ></p>
             </div>
@@ -88,9 +112,13 @@ export const pageQuery = graphql`
         }
       }
     }
-
-    wpSiteMetaData {
-      ...WordpressSiteMetaData
+    site {
+      siteMetadata {
+        siteTitle
+        siteDescription
+        coverUrl
+        siteUrl
+      }
     }
   }
 `;

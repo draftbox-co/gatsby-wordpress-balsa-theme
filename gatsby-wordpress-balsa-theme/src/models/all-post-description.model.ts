@@ -29,4 +29,5 @@ export interface PostDescription {
   tags: Tag[];
   date: string;
   sticky: boolean;
+  modified: string;
 }

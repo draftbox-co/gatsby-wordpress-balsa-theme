@@ -13,9 +13,6 @@ const Layout: React.FC = ({ children }) => {
 
   const data = useStaticQuery<SettingsAndSlugs>(graphql`
     query {
-      wpSiteMetaData {
-        ...WordpressSiteMetaData
-      }
       site {
         siteMetadata {
           siteUrl
@@ -40,6 +37,9 @@ const Layout: React.FC = ({ children }) => {
             linkedin
             github
           }
+          logoUrl
+          siteTitle
+          language
         }
       }
     }
@@ -47,7 +47,7 @@ const Layout: React.FC = ({ children }) => {
 
   return (
     <ArmadaFormsProvider client={process.env.GATSBY_FORM_URL}>
-      <Helmet htmlAttributes={{ lang: data.wpSiteMetaData.language }} />
+      <Helmet htmlAttributes={{ lang: data.site.siteMetadata.language }} />
       <div>
         <Navbar navbarData={data} />
         <hr />

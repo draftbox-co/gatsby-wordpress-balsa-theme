@@ -1,5 +1,5 @@
 module.exports = {
-  siteUrl: "https://wp-balsa-preview.draftbox.com", // Site domain. Do not include a trailing slash!
+  siteUrl: "https://miesel-blog-d395.netlify.app", // Site domain. Do not include a trailing slash!
 
   postsPerPage: 10, // Number of posts shown on paginated pages (changes this requires sometimes to delete the cache)
 
@@ -14,7 +14,7 @@ module.exports = {
   siteIcon: "favicon.png", // Logo in /static dir used for SEO, RSS, and App manifest
   backgroundColor: "#e9e9e9", // Used for Offline Manifest
   themeColor: "#15171A", // Used for Offline Manifest
-  apiUrl: "https://wordpress.theasdfghjkl.com", 
+  apiUrl: "https://wordpress.theasdfghjkl.com",
   subscribeWidget: {
     title: "Subscribe to Draftbox",
     helpText: "Get the latest posts delivered right to your inbox.",
@@ -68,4 +68,31 @@ module.exports = {
     title: "Contact Built with Draftbox",
     successMessage: "We’ll get in touch with you soon.",
   },
+  metadata: {
+    title: "Built with Draftbox",
+    description:
+      "Lightning fast, secure front-end for your WordPress or Ghost blog, without coding. Draftbox is a new-age blogging platform for everyone, built on Gatsby.",
+  },
+  twitterCard: {
+    title: "Built with Draftbox",
+    description:
+      "Lightning fast, secure front-end for your WordPress or Ghost blog, without coding. Draftbox is a new-age blogging platform for everyone, built on Gatsby.",
+    imageUrl: "twitterImage.png",
+    username: "@DraftboxHQ",
+  },
+  facebookCard: {
+    title: "Built with Bro",
+    description:
+      "Lightning fast, secure front-end for your WordPress or Ghost blog, without coding. Draftbox is a new-age blogging platform for everyone, built on Gatsby.",
+    imageUrl: "facebookImage.jpg",
+    appId: "2391725224459953",
+  },
+  siteTitle: "Built with Draftbox",
+  siteDescription:
+    "Lightning fast, secure front-end for your WordPress or Ghost blog, without coding.",
+  language: "en",
+  logoUrl: "logo.png",
+  iconUrl: "favicon.png",
+  coverUrl: "cover.jpg",
+  alternateLogoUrl: "logo.png",
 };
