@@ -109,12 +109,12 @@ const ArticleMeta: React.FC<ArticleMetaProps> = ({ data, amp, location }) => {
     : null;
 
   const twitterImageUrl = feature_image
-  ? url.resolve(config.siteUrl, feature_image)
-  : config.twitterCard.imageUrl
-  ? url.resolve(config.siteUrl, config.twitterCard.imageUrl)
-  : config.coverUrl
-  ? url.resolve(config.siteUrl, config.coverUrl)
-  : null;
+    ? url.resolve(config.siteUrl, feature_image)
+    : config.twitterCard.imageUrl
+    ? url.resolve(config.siteUrl, config.twitterCard.imageUrl)
+    : config.coverUrl
+    ? url.resolve(config.siteUrl, config.coverUrl)
+    : null;
 
   const author = data.author;
   const publicTags = _.map(data.tags, (tag) => tag.name);
@@ -139,12 +139,14 @@ const ArticleMeta: React.FC<ArticleMetaProps> = ({ data, amp, location }) => {
   const jsonLd = {
     "@context": `https://schema.org/`,
     "@type": `Article`,
-    author: {
-      "@type": `Person`,
-      name: author.name,
-      image: undefined,
-      sameAs: undefined,
-    },
+    author: author
+      ? {
+          "@type": `Person`,
+          name: author.name,
+          image: undefined,
+          sameAs: undefined,
+        }
+      : null,
     keywords: publicTags.length ? publicTags.join(`, `) : undefined,
     headline: data.plainTitle || config.siteTitle,
     url: canonicalUrl,
@@ -217,16 +219,20 @@ const ArticleMeta: React.FC<ArticleMetaProps> = ({ data, amp, location }) => {
           content={data.plainExcerpt || config.siteDescription}
         />
         <meta name="twitter:url" content={canonicalUrl} />
-        <meta name="twitter:label1" content="Written by" />
-        <meta name="twitter:data1" content={author.name} />
+        {author && <meta name="twitter:label1" content="Written by" />}
+        {author && <meta name="twitter:data1" content={author.name} />}
         {primaryTag && <meta name="twitter:label2" content="Filed under" />}
         {primaryTag && <meta name="twitter:data2" content={primaryTag} />}
 
         {twitterImageUrl && (
           <meta name="twitter:card" content="summary_large_image" />
         )}
-        {twitterImageUrl && <meta name="twitter:image" content={twitterImageUrl} />}
-        {facebookImageUrl && <meta property="og:image" content={facebookImageUrl} />}
+        {twitterImageUrl && (
+          <meta name="twitter:image" content={twitterImageUrl} />
+        )}
+        {facebookImageUrl && (
+          <meta property="og:image" content={facebookImageUrl} />
+        )}
         {config.twitterCard.username && (
           <meta name="twitter:site" content={config.twitterCard.username} />
         )}
