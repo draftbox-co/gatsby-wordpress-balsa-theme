@@ -269,8 +269,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     return;
   }
 
-  // const postsPerPage = result.data.site.siteMetadata.postsPerPage;
-  const postsPerPage = 9;
+  const postsPerPage = result.data.site.siteMetadata.postsPerPage;
   const posts = result.data.allWordpressPost.edges;
   const authors = result.data.allWordpressWpUsers.edges;
   const tags = result.data.allWordpressTag.edges;

@@ -74,6 +74,7 @@ const WebsiteMeta = () => {
           alternateLogoUrl
           shareImageWidth
           shareImageHeight
+          language
         }
       }
     }
@@ -89,10 +90,10 @@ const WebsiteMeta = () => {
 
   const description = config.metadata.description || config.siteDescription;
 
-  const publisherLogo = url.resolve(
+  const publisherLogo = (config.logoUrl || config.alternateLogoUrl) ? url.resolve(
     config.siteUrl,
     config.logoUrl || config.alternateLogoUrl
-  );
+  ) : null;
   let shareImage =
     config.coverUrl ||
     config.facebookCard.imageUrl ||
@@ -135,7 +136,7 @@ const WebsiteMeta = () => {
 
   return (
     <>
-      <Helmet htmlAttributes={{language:config.language}}>
+      <Helmet htmlAttributes={{lang: config.language}}>
         <title>{config.metadata.title || config.siteTitle}</title>
         <meta
           name="description"
@@ -193,6 +194,12 @@ const WebsiteMeta = () => {
         {config.twitterCard.imageUrl && (
           <meta name="twitter:image" content={twitterImageUrl} />
         )}
+
+        {config.twitterCard.imageUrl && (
+          <meta name="twitter:card" content="summary_large_image" />
+        )}
+
+        
         <script type="application/ld+json">
           {JSON.stringify(jsonLd, undefined, 4)}
         </script>

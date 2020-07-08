@@ -63,13 +63,33 @@ export const wordPressPostData = graphql`
 
 export const wordpressPageData = graphql`
   fragment WordpressPageData on wordpress__PAGE {
-    slug
     title
+    content
     excerpt
     plainExcerpt
     plainTitle
-    content
+    slug
+    readingTime
+    featured_media: featured_media_custom {
+      localFile {
+        publicURL
+        childImageSharp {
+          fluid(maxWidth: 2000, sizes: "90") {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+    }
+    author {
+      name
+      slug
+      avatar_urls {
+        wordpress_96
+      }
+      description
+    }
     date(formatString: "MMMM DD YYYY")
+    modified(formatString: "MMMM DD YYYY")
   }
 `;
 
