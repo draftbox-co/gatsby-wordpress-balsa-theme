@@ -95,8 +95,7 @@ const ArticleMeta: React.FC<ArticleMetaProps> = ({ data, amp, location }) => {
   const baseUrl = queryData.site.siteMetadata.siteUrl;
   const siteTitle = queryData.site.siteMetadata.siteTitle;
   const canonicalUrl = url.resolve(baseUrl, location.pathname);
-
-  const feature_image = data.featured_media?.localFile?.publicURL;
+  const feature_image = data.featured_media?.localFile?.seo?.fixed.src;
 
   const config = queryData.site.siteMetadata;
 

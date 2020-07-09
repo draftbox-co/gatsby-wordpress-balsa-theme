@@ -20,6 +20,9 @@ export interface PostDescription {
       childImageSharp: {
         fluid: any;
       };
+      seo: {
+        fixed: any;
+      }
     };
   };
   author: {
