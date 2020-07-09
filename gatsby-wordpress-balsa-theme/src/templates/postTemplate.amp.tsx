@@ -95,18 +95,27 @@ export const postDataQuery = graphql`
       content
       excerpt
       plainExcerpt
+      plainTitle
       slug: permaLinkSlug
       categories {
         name
         slug
       }
+      readingTime
       featured_media: featured_media_custom {
         localFile {
+          publicURL
           childImageSharp {
-            fluid {
+            fluid(maxWidth: 2000, sizes: "90") {
+              ...GatsbyImageSharpFluid
+            }
+          }
+          seo: childImageSharp {
+            fixed(width: 1200, quality: 100) {
               src
             }
           }
+          
         }
       }
       author {
@@ -123,6 +132,7 @@ export const postDataQuery = graphql`
       }
       date(formatString: "MMMM DD YYYY")
       modified(formatString: "MMMM DD YYYY")
+      sticky
     }
   }
 `;
