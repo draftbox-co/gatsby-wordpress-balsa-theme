@@ -163,12 +163,14 @@ const ArticleMeta: React.FC<ArticleMetaProps> = ({ data, amp, location }) => {
     publisher: {
       "@type": `Organization`,
       name: config.siteTitle,
-      logo: {
-        "@type": `ImageObject`,
-        url: publisherLogo,
-        width: 60,
-        height: 60,
-      },
+      logo: publisherLogo
+        ? {
+            "@type": `ImageObject`,
+            url: publisherLogo,
+            width: 60,
+            height: 60,
+          }
+        : undefined,
     },
     description: data.plainExcerpt || config.siteDescription,
     mainEntityOfPage: {
