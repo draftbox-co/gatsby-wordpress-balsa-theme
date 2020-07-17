@@ -75,7 +75,7 @@
     "gatsby-plugin-feed": "^2.3.27",
     "gatsby-plugin-force-trailing-slashes": "^1.0.4",
     "gatsby-plugin-manifest": "^2.2.42",
-    "gatsby-plugin-offline": "^3.0.35",
+    "gatsby-plugin-remove-serviceworker": "^1.0.0",
     "gatsby-plugin-page-creator": "^2.1.40",
     "gatsby-plugin-postcss": "^2.1.20",
     "gatsby-plugin-purgecss": "^5.0.0",

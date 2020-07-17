@@ -89,6 +89,8 @@ module.exports = (themeOptions) => {
             `/404`,
             `/404.html`,
             `/offline-plugin-app-shell-fallback`,
+            `/offline`,
+            `/offline.html`,
           ],
           createLinkInHead: true,
           addUncaughtPages: true,
@@ -97,7 +99,6 @@ module.exports = (themeOptions) => {
       `gatsby-plugin-catch-links`,
       `gatsby-plugin-react-helmet`,
       `gatsby-plugin-force-trailing-slashes`,
-      `gatsby-plugin-offline`,
       {
         resolve: `gatsby-plugin-manifest`,
         options: {
@@ -204,7 +205,7 @@ module.exports = (themeOptions) => {
         options: {
           canonicalBaseUrl: siteConfig.siteUrl,
           components: [`amp-form`],
-          excludedPaths: [`/404*`, `/`],
+          excludedPaths: [`/404*`, `/`, `/offline*`],
           pathIdentifier: `amp/`,
           relAmpHtmlPattern: `{{canonicalBaseUrl}}{{pathname}}{{pathIdentifier}}`,
           useAmpClientIdApi: true,
