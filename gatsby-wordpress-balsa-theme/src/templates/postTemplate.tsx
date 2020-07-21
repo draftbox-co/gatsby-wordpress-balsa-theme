@@ -14,6 +14,7 @@ import linkedInShare from "../images/linkedin-share.svg";
 import mailShare from "../images/mail.svg";
 import CopyLink from "../components/copy-link";
 import NextPrevPost from './../components/NextPrevPost';
+import { InView } from "react-intersection-observer";
 
 type PostTemplateProps = {
   data: {
@@ -28,6 +29,13 @@ const PostTemplate: React.FC<PostTemplateProps> = ({ data, location }) => {
   const { wordpressPost, prevPost, nextPost } = data;
   
   const [href, sethref] = useState("");
+  const [showComments, setshowComments] = useState(false);
+
+  const handleCommentsVisibility = (inView) => {
+    if (inView && !showComments) {
+      setshowComments(true);
+    }
+  };
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -160,21 +168,26 @@ const PostTemplate: React.FC<PostTemplateProps> = ({ data, location }) => {
         </div>
       </div>
       <NextPrevPost prevPost={prevPost} nextPost={nextPost} />
-      {process.env.GATSBY_DISQUS_SHORTNAME && (
-        <>
-          <section className="max-w-4xl container mx-auto px-4 mt-16">
-            <Disqus slug={wordpressPost.slug} title={wordpressPost.title} />
-          </section>
-        </>
-      )}
-      {process.env.GATSBY_FB_APP_ID && (
-        <>          
-          <section className="max-w-4xl container mx-auto px-4 mt-16">
-            <FbComments href={href} />
-          </section>
-        </>
-      )}
-        
+      <InView
+        as="div"
+        onChange={(inView) => handleCommentsVisibility(inView)}
+      ></InView>
+      <div>
+        {process.env.GATSBY_DISQUS_SHORTNAME && showComments && (
+          <>
+            <section className="max-w-4xl container mx-auto px-4 mt-16">
+              <Disqus slug={wordpressPost.slug} title={wordpressPost.title} />
+            </section>
+          </>
+        )}
+        {process.env.GATSBY_FB_APP_ID && showComments && (
+          <>          
+            <section className="max-w-4xl container mx-auto px-4 mt-16">
+              <FbComments href={href} />
+            </section>
+          </>
+        )}
+      </div>  
       <div className="spacer my-8"></div>
       <CtaMini />
     </Layout>

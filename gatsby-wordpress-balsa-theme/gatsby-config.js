@@ -219,6 +219,7 @@ module.exports = (themeOptions) => {
           content: `Draftbox`,
         },
       },
+      `gatsby-plugin-remove-serviceworker`,
     ],
   };
 };
