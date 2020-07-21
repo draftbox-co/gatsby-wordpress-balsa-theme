@@ -27,7 +27,7 @@ const PostTemplate: React.FC<PostTemplate> = ({
         <nav className="blog-title">
           <Link
             to="/"
-            dangerouslySetInnerHTML={{ __html: data.wordpressPost.title }}
+            dangerouslySetInnerHTML={{ __html: pageContext.title }}
           ></Link>
         </nav>
       </header>
@@ -78,7 +78,7 @@ const PostTemplate: React.FC<PostTemplate> = ({
 
           <div className="comment-button-container">
             <button>
-              <a href={`${data.wordpressPost.slug}`}>Leave a comment</a>
+              <a href={`${data.wordpressPost.slug}`}>View original article</a>
             </button>
           </div>
         </article>
