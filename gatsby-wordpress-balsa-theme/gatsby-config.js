@@ -190,6 +190,57 @@ module.exports = (themeOptions) => {
         },
       },
       {
+        resolve: "@draftbox-co/gatsby-plugin-css-variables",
+        options: {
+          variables: [
+            {
+              varName: "--primary-color",
+              value: `#2b6cb0`,
+            },
+            {
+              varName: "--primary-color-active",
+              value: `#2a4365`,
+            },
+            {
+              varName: "--primary-color-light",
+              value: `#bee3f8`,
+            },
+            {
+              varName: "--sans-font",
+              value: `"Montserrat", Lato, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`,
+            },
+            {
+              varName: "--sans-font-normal",
+              value: `400`,
+            },
+            {
+              varName: "--sans-font-medium",
+              value: `500`,
+            },
+            {
+              varName: "--sans-font-semibold",
+              value: `600`,
+            },
+            {
+              varName: "--sans-font-bold",
+              value: `700`,
+            },
+            {
+              varName: "--serif-font",
+              value: `"Merriweather", Gerogia, Cambria, "Times New Roman", Times, serif`,
+            },
+            { varName: "--serif-font-light", value: `300` },
+            { varName: "--serif-font-normal", value: `400` },
+            { varName: "--serif-font-medium", value: `500` },
+            { varName: "--serif-font-bold", value: `600` },
+            {
+              varName: "--mono-font",
+              value: `Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace`,
+            },
+          ],
+        },
+      },
+      {
         resolve: `gatsby-plugin-purgecss`,
         options: {
           printRejected: true, // Print removed selectors and processed file names

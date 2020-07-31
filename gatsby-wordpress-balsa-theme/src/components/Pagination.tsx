@@ -15,7 +15,7 @@ const Pagination: React.FC<PaginationProps> = ({ pageContext }) => {
           <li>
             <Link
               className={classNames(
-                "block px-3 py-2 text-blue-700 hover:text-white hover:bg-blue-700",
+                "block px-3 py-2 text-primary hover:text-white hover:bg-primary",
                 { "border-r border-grey-light": pageContext.nextPagePath }
               )}
               to={`${pageContext.previousPagePath}`}
@@ -29,7 +29,7 @@ const Pagination: React.FC<PaginationProps> = ({ pageContext }) => {
         <li>
           {pageContext.nextPagePath && (
             <Link
-              className="block px-3 py-2 text-blue-700 hover:text-white hover:bg-blue-700"
+              className="block px-3 py-2 text-primary hover:text-white hover:bg-primary"
               to={`${pageContext.nextPagePath}`}
               data-config-id="next"
             >

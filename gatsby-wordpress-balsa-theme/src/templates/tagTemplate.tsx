@@ -33,12 +33,12 @@ const TagTemplate: React.FC<TagTemplateProps> = ({
       <WebsiteMeta />
       <section className="text-center bg-cover">
         <div className="relative flex items-center py-32">
-          <div className="absolute bg-blue-900 inset-0" />
+          <div className="absolute bg-primaryActive inset-0" />
           <div className="z-10 max-w-2xl mx-auto px-4">
-            <h3 className="text-3xl font-semibold font-heading text-white capitalize">
+            <h3 className="text-3xl font-sansSemibold text-white capitalize">
               {wordpressTag.name}
             </h3>
-            <span className="font-semibold font-heading text-white">
+            <span className="font-sansSemibold text-white">
               {wordpressTag.count} {wordpressTag.count > 1 ? "posts" : "post"}
             </span>
           </div>

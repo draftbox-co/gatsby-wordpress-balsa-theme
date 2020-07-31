@@ -30,7 +30,7 @@ const PostCard: React.FC<PostCardTypes> = ({ post }) => {
     >
       {post.sticky && (
         <span
-          className="absolute bg-white rounded-full px-2 py-1 text-xs font-semibold z-10 flex items-center"
+          className="absolute bg-white rounded-full px-2 py-1 text-xs font-sansMedium z-10 flex items-center"
           style={{ right: "20px", top: "5px" }}
         >
           <span className="mr-1">
@@ -86,11 +86,11 @@ const PostCard: React.FC<PostCardTypes> = ({ post }) => {
                 )}
               </p>
               <Link to={`/${post.slug}`}
-                className="text-2xl my-2 font-heading font-semibold tracking-tight leading-tight break-words"
+                className="text-2xl my-2 font-sansSemibold tracking-tight leading-tight break-words"
                 dangerouslySetInnerHTML={{ __html: post.title }}
               ></Link>
               <p
-                className="text-gray-600 font-serif break-words font-light"
+                className="text-gray-600 font-serifLight break-words"
                 dangerouslySetInnerHTML={{ __html: excerpt }}
               ></p>
             </div>

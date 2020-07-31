@@ -62,14 +62,14 @@ const IndexPage: React.FC<IndexPageProps> = ({
           <div className="relative flex items-center py-32">
             <div className={classNames("absolute inset-0", {
               "bg-black opacity-50": backgroundImage,
-              "bg-blue-900": !backgroundImage,
+              "bg-primaryActive": !backgroundImage,
             })}/>
             <div className="z-10 max-w-2xl mx-auto px-4">
               <h1
                 dangerouslySetInnerHTML={{
                   __html: site.siteMetadata.siteTitle,
                 }}
-                className="mb-4 text-4xl leading-tight font-semibold font-heading text-white break-words"
+                className="mb-4 text-4xl leading-tight font-sansSemibold text-white break-words"
               ></h1>
               <p
                 dangerouslySetInnerHTML={{

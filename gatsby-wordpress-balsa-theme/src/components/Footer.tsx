@@ -1,7 +1,6 @@
 import React from "react";
 import { SettingsAndSlugs } from "../models/settings-and-page-slugs.model";
 import { Link } from "gatsby";
-import rssLogo from "../images/rss.svg";
 import facebookLogo from "../images/facebook.svg";
 import twitterLogo from "../images/twitter.svg";
 import instagramLogo from "./../images/instagram.svg";
@@ -24,7 +23,7 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
         <div className="w-full lg:w-1/5 text-center lg:text-left">
           <span className="block md:inline-block md:mb-0">
             <span
-              className="text-blue-900"
+              className="text-primaryActive"
               dangerouslySetInnerHTML={{
                 __html: footer.copyright ? footer.copyright : siteTitle,
               }}
@@ -39,7 +38,7 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
               url.startsWith(apiUrl) ? (
               <Link
                 key={i}
-                className="block lg:inline-block mt-4 lg:mt-0 lg:mx-5 text-blue-900 hover:text-blue-700"
+                className="block lg:inline-block mt-4 lg:mt-0 lg:mx-5 text-body hover:text-primary"
                 to={`${
                   url.startsWith("/")
                     ? url
@@ -56,7 +55,7 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
                 href={url}
                 rel="noreferrer noopener"
                 target="_blank"
-                className="block lg:inline-block mt-4 lg:mt-0 lg:mx-5 text-blue-900 hover:text-blue-700"
+                className="block lg:inline-block mt-4 lg:mt-0 lg:mx-5 text-primaryActive hover:text-primary"
               >
                 {label}
               </a>
@@ -140,7 +139,7 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
           href="https://draftbox.co?ref=preview"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-blue-500 uppercase"
+          className="text-primary hover:text-primaryActive uppercase"
         >
           Published with DraftBox
         </a>
