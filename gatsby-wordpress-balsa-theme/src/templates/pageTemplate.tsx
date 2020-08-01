@@ -111,7 +111,7 @@ const PageTemplate: React.FC<IndexPageProps> = ({ data, location }) => {
           <ul className="flex">
             <li>
               <a
-                className="block p-2 bg-blue-500 hover:bg-primary rounded-full mr-2"
+                className="block p-2 bg-primary hover:bg-primaryActive rounded-full mr-2"
                 href={facebookShareUrl}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -121,7 +121,7 @@ const PageTemplate: React.FC<IndexPageProps> = ({ data, location }) => {
             </li>
             <li>
               <a
-                className="block p-2 bg-blue-500 hover:bg-primary rounded-full mr-2"
+                className="block p-2 bg-primary hover:bg-primaryActive rounded-full mr-2"
                 href={twitterShareUrl}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -131,7 +131,7 @@ const PageTemplate: React.FC<IndexPageProps> = ({ data, location }) => {
             </li>
             <li>
               <a
-                className="block p-2 bg-blue-500 hover:bg-primary rounded-full mr-2"
+                className="block p-2 bg-primary hover:bg-primaryActive rounded-full mr-2"
                 href={linkedInShareUrl}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -141,7 +141,7 @@ const PageTemplate: React.FC<IndexPageProps> = ({ data, location }) => {
             </li>
             <li>
               <a
-                className="block p-2 bg-blue-500 hover:bg-primary rounded-full mr-2"
+                className="block p-2 bg-primary hover:bg-primaryActive rounded-full mr-2"
                 href={mailShareUrl}
                 target="_blank"
                 rel="noopener noreferrer"

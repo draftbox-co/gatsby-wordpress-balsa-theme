@@ -52,18 +52,20 @@ const IndexPage: React.FC<IndexPageProps> = ({
       <Layout>
         <WebsiteMeta />
         <section
-          className="text-center bg-cover max-w-full"
+          className="text-center bg-cover max-w-full bg-primary"
           style={{
-            backgroundImage: `url(${
-              backgroundImage ? backgroundImage : "none"
-            })`
+            backgroundImage: backgroundImage
+              ? `url(${backgroundImage})`
+              : "none",
           }}
         >
           <div className="relative flex items-center py-32">
-            <div className={classNames("absolute inset-0", {
-              "bg-black opacity-50": backgroundImage,
-              "bg-primaryActive": !backgroundImage,
-            })}/>
+            <div
+              className={classNames("absolute inset-0", {
+                "bg-black opacity-50": backgroundImage,
+                "bg-primaryActive": !backgroundImage,
+              })}
+            />
             <div className="z-10 max-w-2xl mx-auto px-4">
               <h1
                 dangerouslySetInnerHTML={{
@@ -91,7 +93,7 @@ const IndexPage: React.FC<IndexPageProps> = ({
 
         {/* Pagination */}
         <Pagination pageContext={pageContext} />
-        <CtaMini/>
+        <CtaMini />
       </Layout>
     </>
   );

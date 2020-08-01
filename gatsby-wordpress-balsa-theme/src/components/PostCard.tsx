@@ -57,7 +57,7 @@ const PostCard: React.FC<PostCardTypes> = ({ post }) => {
           {!post.featured_media?.localFile?.childImageSharp?.fluid &&
             !post.featured_media?.localFile.publicURL && (
               <div
-                className="flex justify-center bg-blue-500 items-center text-white font-black mb-4 h-48 w-full object-cover rounded-t"
+                className="flex justify-center bg-primary items-center text-white font-sansBold mb-4 h-48 w-full object-cover rounded-t"
                 style={{
                   fontSize: "6rem",
                 }}

@@ -86,7 +86,7 @@
 }
 
 .richtext blockquote {
-  @apply text-xl border-l-4 border-blue-600 pl-4 pr-4 text-gray-900 italic;
+  @apply text-xl border-l-4 border-primary pl-4 pr-4 text-gray-900 italic;
 }
 
 .richtext code {
