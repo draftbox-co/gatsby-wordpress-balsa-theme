@@ -4,7 +4,6 @@ import { graphql } from "gatsby";
 import { PaginationContext } from "../models/pagination.model";
 import PostCard from "../components/PostCard";
 import Pagination from "../components/Pagination";
-import CtaBig from "../components/CtaBig";
 import { PostDescription } from "../models/all-post-description.model";
 import WebsiteMeta from "../components/meta/website-meta";
 
@@ -53,7 +52,6 @@ const TagTemplate: React.FC<TagTemplateProps> = ({
         </div>
       </section>
       <Pagination pageContext={pageContext} />
-      <CtaBig />
     </Layout>
   );
 };

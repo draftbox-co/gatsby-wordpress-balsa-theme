@@ -1,6 +1,5 @@
 import React from "react";
 import Layout from "../components/Layout";
-import CtaBig from "../components/CtaBig";
 import { graphql } from "gatsby";
 import { PostDescription } from "../models/all-post-description.model";
 import { PaginationContext } from "../models/pagination.model";
@@ -9,6 +8,7 @@ import Pagination from "../components/Pagination";
 import WebsiteMeta from "../components/meta/website-meta";
 import url from "url";
 import classNames from "classnames";
+import CtaMini from "../components/CtaMini";
 
 type IndexPageProps = {
   data: {
@@ -91,7 +91,7 @@ const IndexPage: React.FC<IndexPageProps> = ({
 
         {/* Pagination */}
         <Pagination pageContext={pageContext} />
-        <CtaBig />
+        <CtaMini/>
       </Layout>
     </>
   );

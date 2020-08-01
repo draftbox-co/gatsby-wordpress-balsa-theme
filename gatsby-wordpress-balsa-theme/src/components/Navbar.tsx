@@ -10,7 +10,15 @@ type NavbarProps = {
 
 const Navbar: React.FC<NavbarProps> = ({ navbarData }) => {
   const {
-    site: {siteMetadata : { header: { navigation }, siteUrl, apiUrl, logoUrl, siteTitle }}
+    site: {
+      siteMetadata: {
+        header: { navigation },
+        siteUrl,
+        apiUrl,
+        logoUrl,
+        siteTitle,
+      },
+    },
   } = navbarData;
 
   const logo = logoUrl ? url.resolve(siteUrl, logoUrl) : null;
@@ -20,10 +28,7 @@ const Navbar: React.FC<NavbarProps> = ({ navbarData }) => {
   return (
     <nav className="flex flex-wrap items-center justify-between p-4 container mx-auto">
       <div className="flex flex-shrink-0 mr-6 w-4/5 lg:w-auto">
-        <Link
-          className="text-2xl text-primary font-serifBold"
-          to="/"
-        >
+        <Link className="text-2xl text-primary font-serifBold" to="/">
           {logo ? (
             <img className="h-10" src={logo} alt={siteTitle} />
           ) : (
@@ -54,15 +59,20 @@ const Navbar: React.FC<NavbarProps> = ({ navbarData }) => {
         )}
       >
         <div>
-        {navigation.map(({ label, url }, i) => {
-            return url.startsWith("/") || url.startsWith(siteUrl) || url.startsWith(apiUrl) ? (
+          {navigation.map(({ label, url }, i) => {
+            return url.startsWith("/") ||
+              url.startsWith(siteUrl) ||
+              url.startsWith(apiUrl) ? (
               <Link
                 key={i}
-                className="block lg:inline-block mt-4 lg:mt-0 lg:mx-5 text-primaryActive hover:text-primary"
+                className="block lg:inline-block mt-4 lg:mt-0 lg:mx-5 text-body hover:border-primary hover:border-b-3"
+                activeClassName="border-b-3 border-primaryLight"
                 to={`${
                   url.startsWith("/")
                     ? url
-                    : (url.startsWith(siteUrl) ? url.slice(siteUrl.length, url.length): url.slice(apiUrl.length, url.length))
+                    : url.startsWith(siteUrl)
+                    ? url.slice(siteUrl.length, url.length)
+                    : url.slice(apiUrl.length, url.length)
                 }`}
               >
                 {label}
@@ -73,7 +83,7 @@ const Navbar: React.FC<NavbarProps> = ({ navbarData }) => {
                 href={url}
                 rel="noreferrer noopener"
                 target="_blank"
-                className="block lg:inline-block mt-4 lg:mt-0 lg:mx-5 text-primaryActive hover:text-primary"
+                className="block lg:inline-block mt-4 lg:mt-0 lg:mx-5 text-body hover:border-primary hover:border-b-3"
               >
                 {label}
               </a>

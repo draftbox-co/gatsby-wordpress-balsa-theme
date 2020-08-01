@@ -38,7 +38,7 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
               url.startsWith(apiUrl) ? (
               <Link
                 key={i}
-                className="block lg:inline-block mt-4 lg:mt-0 lg:mx-5 text-body hover:text-primary"
+                className="block lg:inline-block mt-4 lg:mt-0 lg:mx-5 text-body border-b-3 border-transparent hover:border-b-3 hover:border-primary"
                 to={`${
                   url.startsWith("/")
                     ? url
@@ -55,7 +55,7 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
                 href={url}
                 rel="noreferrer noopener"
                 target="_blank"
-                className="block lg:inline-block mt-4 lg:mt-0 lg:mx-5 text-primaryActive hover:text-primary"
+                className="block lg:inline-block mt-4 lg:mt-0 lg:mx-5 text-body border-b-3 border-transparent hover:border-b-3 hover:border-primary"
               >
                 {label}
               </a>

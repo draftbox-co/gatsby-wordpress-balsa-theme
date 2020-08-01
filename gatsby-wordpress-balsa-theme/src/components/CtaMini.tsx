@@ -61,9 +61,9 @@ const CtaMini = () => {
         </section>
       )}
       {!succeeded && (
-        <section className="px-4 py-12 bg-gray-200" id="subscribe">
+        <section className="px-4 py-8 bg-gray-200" id="subscribe">
           <div className="w-full max-w-2xl mx-auto text-center">
-            <h2 className="text-5xl mt-4 mb-8 leading-tight font-sansNomal">
+            <h2 className="text-3xl mt-4 mb-8 leading-tight font-sansNomal">
               <span
                 dangerouslySetInnerHTML={{
                   __html: `${
@@ -99,7 +99,7 @@ const CtaMini = () => {
                   </button>
                 </div>
               </div>
-              <p className="text-sm text-gray-500 leading-relaxed">
+              <p className="text-sm text-gray-600 leading-relaxed">
                 {subscribeWidget.helpText
                   ? subscribeWidget.helpText
                   : `Get the latest posts delivered right to your inbox.`}

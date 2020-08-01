@@ -61,7 +61,7 @@ const PostTemplate: React.FC<PostTemplateProps> = ({ data, location }) => {
       <div className="spacer my-6"></div>
       <section className="px-4 max-w-4xl mx-auto">
         <h1
-          className=" text-5xl text-center font-sansMedium break-words"
+          className="text-3xl md:text-5xl text-center font-sansMedium break-words"
           dangerouslySetInnerHTML={{ __html: wordpressPost.title }}
         ></h1>
         <p className="text-center mt-3">

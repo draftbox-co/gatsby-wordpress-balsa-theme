@@ -6,6 +6,7 @@
 }
 
 .richtext {
+  line-height: 1.75;
   font-weight: var(--serif-font-normal);
   @apply leading-normal break-words text-body text-lg;
 }
@@ -39,7 +40,7 @@
 }
 
 .richtext a {
-  @apply border-primaryLight border-b-2 inline-block;
+  @apply border-primaryLight border-b-3 inline;
 }
 
 .richtext strong a {
