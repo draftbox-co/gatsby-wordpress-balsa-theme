@@ -239,7 +239,8 @@ module.exports = {
       heading: "var(--sans-font)",
       sans: "var(--sans-font)",
       serif: "var(--serif-font)",
-      mono: "var(--mono-font)",
+      mono:
+        'Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
     },
     fontSize: {
       xs: "0.75rem",
@@ -341,7 +342,9 @@ module.exports = {
       "0": "0",
       "25": "0.25",
       "50": "0.5",
+      "70": "0.7",
       "75": "0.75",
+      "85": "0.85",
       "100": "1",
     },
     order: {

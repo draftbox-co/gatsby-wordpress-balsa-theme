@@ -233,10 +233,6 @@ module.exports = (themeOptions) => {
             { varName: "--serif-font-normal", value: `400` },
             { varName: "--serif-font-medium", value: `500` },
             { varName: "--serif-font-bold", value: `600` },
-            {
-              varName: "--mono-font",
-              value: `Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace`,
-            },
           ],
         },
       },

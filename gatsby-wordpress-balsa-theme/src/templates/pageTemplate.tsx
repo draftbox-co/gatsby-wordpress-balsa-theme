@@ -45,28 +45,28 @@ const PageTemplate: React.FC<IndexPageProps> = ({ data, location }) => {
   return (
     <Layout>
       <ArticleMeta data={wordpressPage} amp={false} location={location} />
-      <div className="spacer my-6"></div>
-      <section className="px-4 max-w-4xl mx-auto">
+      <div className="spacer my-8 lg:my-12"></div>
+      <section className="px-4 max-w-3xl mx-auto">
         <h1
-          className="text-3xl md:text-5xl text-center font-sansMedium break-words"
+          className="text-4xl lg:text-5xl font-sansSemibold break-words leading-tight"
           dangerouslySetInnerHTML={{ __html: wordpressPage.title }}
         ></h1>
-        <p className="text-center mt-3">
+        <p className="text-gray-600 break-words my-2 text-sm lg:text-base px-1">
           <span>{wordpressPage.date}</span>
-          <strong className="mx-2">&bull;</strong>
+          <span className="mx-2">•</span>
           <Link
-            className="text-primary hover:underline"
+            className="no-underline hover:underline cursor-pointer"
             to={`/author/${wordpressPage.author.slug}`}
           >
             {wordpressPage.author.name}
           </Link>
         </p>
       </section>
-      <div className="spacer my-6"></div>
+      <div className="spacer my-8 lg:my-12"></div>
       {wordpressPage.featured_media?.localFile?.childImageSharp?.fluid && (
-        <section className="px-4 container mx-auto">
+        <section className="px-4 container mx-auto max-w-4xl">
           <Img
-            style={{ maxHeight: "60vh", maxWidth: "100%" }}
+            style={{ maxHeight: "100%", maxWidth: "100%" }}
             fluid={wordpressPage.featured_media.localFile.childImageSharp.fluid}
             alt=""
           />
@@ -74,17 +74,17 @@ const PageTemplate: React.FC<IndexPageProps> = ({ data, location }) => {
       )}
       {!wordpressPage.featured_media?.localFile?.childImageSharp?.fluid &&
         wordpressPage.featured_media?.localFile?.publicURL && (
-          <section className="px-4 container mx-auto">
+          <section className="px-4 container mx-auto max-w-4xl">
             <img
               className="mx-auto"
-              style={{ maxHeight: "60vh", maxWidth: "100%" }}
+              style={{ maxHeight: "100%" }}
               src={wordpressPage.featured_media.localFile.publicURL}
               alt=""
             />
           </section>
         )}
 
-      <div className="spacer my-6"></div>
+      <div className="spacer my-8 lg:my-12"></div>
       <div
         dangerouslySetInnerHTML={{ __html: wordpressPage.content }}
         className="richtext max-w-3xl px-4 mx-auto font-serifNormal text-gray-800"
@@ -111,7 +111,7 @@ const PageTemplate: React.FC<IndexPageProps> = ({ data, location }) => {
           <ul className="flex">
             <li>
               <a
-                className="block p-2 bg-primary hover:bg-primaryActive rounded-full mr-2"
+                className="block p-2 bg-gray-700 hover:bg-primary rounded-full mr-2"
                 href={facebookShareUrl}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -121,7 +121,7 @@ const PageTemplate: React.FC<IndexPageProps> = ({ data, location }) => {
             </li>
             <li>
               <a
-                className="block p-2 bg-primary hover:bg-primaryActive rounded-full mr-2"
+                className="block p-2 bg-gray-700 hover:bg-primary rounded-full mr-2"
                 href={twitterShareUrl}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -131,7 +131,7 @@ const PageTemplate: React.FC<IndexPageProps> = ({ data, location }) => {
             </li>
             <li>
               <a
-                className="block p-2 bg-primary hover:bg-primaryActive rounded-full mr-2"
+                className="block p-2 bg-gray-700 hover:bg-primary rounded-full mr-2"
                 href={linkedInShareUrl}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -141,7 +141,7 @@ const PageTemplate: React.FC<IndexPageProps> = ({ data, location }) => {
             </li>
             <li>
               <a
-                className="block p-2 bg-primary hover:bg-primaryActive rounded-full mr-2"
+                className="block p-2 bg-gray-700 hover:bg-primary rounded-full mr-2"
                 href={mailShareUrl}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -156,7 +156,7 @@ const PageTemplate: React.FC<IndexPageProps> = ({ data, location }) => {
         </div>
       </div>
 
-      <div className="spacer my-8"></div>
+      <div className="spacer my-12"></div>
       <CtaMini />
     </Layout>
   );

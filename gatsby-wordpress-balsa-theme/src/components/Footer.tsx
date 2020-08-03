@@ -20,8 +20,8 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
   return (
     <footer className="bg-gray-100">
       <div className="flex flex-wrap items-center py-4 px-4 border-b container mx-auto">
-        <div className="w-full lg:w-1/5 text-center lg:text-left">
-          <span className="block md:inline-block md:mb-0">
+        <div className="w-full lg:w-1/5 text-center lg:text-left mt-4 lg:mt-0">
+          <span className="block md:inline-block md:mb-0 text-gray-700">
             <span
               className="text-primaryActive"
               dangerouslySetInnerHTML={{
@@ -38,7 +38,7 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
               url.startsWith(apiUrl) ? (
               <Link
                 key={i}
-                className="inline-block my-2 mx-4 lg:mx-5 text-body border-b-3 border-transparent hover:border-b-3 hover:border-primary"
+                className="inline-block my-2 mx-4 lg:mx-5 text-gray-700 border-b-3 border-transparent hover:border-b-3 hover:border-primary"
                 to={`${
                   url.startsWith("/")
                     ? url
@@ -55,7 +55,7 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
                 href={url}
                 rel="noreferrer noopener"
                 target="_blank"
-                className="inline-block my-2 mx-4 lg:mx-5 text-body border-b-3 border-transparent hover:border-b-3 hover:border-primary"
+                className="inline-block my-2 mx-4 lg:mx-5 text-gray-700 border-b-3 border-transparent hover:border-b-3 hover:border-primary"
               >
                 {label}
               </a>

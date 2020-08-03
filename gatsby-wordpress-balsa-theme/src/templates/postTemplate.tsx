@@ -13,7 +13,7 @@ import twitterShare from "../images/twitter-share.svg";
 import linkedInShare from "../images/linkedin-share.svg";
 import mailShare from "../images/mail.svg";
 import CopyLink from "../components/copy-link";
-import NextPrevPost from './../components/NextPrevPost';
+import NextPrevPost from "./../components/NextPrevPost";
 import { InView } from "react-intersection-observer";
 
 type PostTemplateProps = {
@@ -27,7 +27,7 @@ type PostTemplateProps = {
 
 const PostTemplate: React.FC<PostTemplateProps> = ({ data, location }) => {
   const { wordpressPost, prevPost, nextPost } = data;
-  
+
   const [href, sethref] = useState("");
   const [showComments, setshowComments] = useState(false);
 
@@ -58,27 +58,28 @@ const PostTemplate: React.FC<PostTemplateProps> = ({ data, location }) => {
   return (
     <Layout>
       <ArticleMeta data={wordpressPost} amp={false} location={location} />
-      <div className="spacer my-6"></div>
-      <section className="px-4 max-w-4xl mx-auto">
+      <div className="spacer my-8 lg:my-12"></div>
+      <section className="px-4 max-w-3xl mx-auto">
         <h1
-          className="text-3xl md:text-5xl text-center font-sansMedium break-words"
+          className="text-4xl lg:text-5xl font-sansSemibold break-words leading-tight"
           dangerouslySetInnerHTML={{ __html: wordpressPost.title }}
         ></h1>
-        <p className="text-center mt-3">
-          <span>{wordpressPost.date}</span><strong className="mx-2">&bull;</strong>
+        <p className="text-gray-600 break-words my-2 text-sm lg:text-base px-1">
+          <span>{wordpressPost.date}</span>
+          <span className="mx-2">•</span>
           <Link
-            className="text-primary hover:underline"
+            className="no-underline hover:underline cursor-pointer"
             to={`/author/${wordpressPost.author.slug}`}
           >
             {wordpressPost.author.name}
           </Link>
         </p>
       </section>
-      <div className="spacer my-6"></div>
+      <div className="spacer my-8 lg:my-12"></div>
       {wordpressPost.featured_media?.localFile?.childImageSharp?.fluid && (
-        <section className="px-4 container mx-auto">
+        <section className="px-4 container mx-auto max-w-4xl">
           <Img
-            style={{ maxHeight: "60vh", maxWidth: "100%" }}
+            style={{ maxHeight: "100%", maxWidth: "100%" }}
             fluid={wordpressPost.featured_media.localFile.childImageSharp.fluid}
             alt=""
           />
@@ -89,26 +90,26 @@ const PostTemplate: React.FC<PostTemplateProps> = ({ data, location }) => {
           <section className="px-4 container mx-auto">
             <img
               className="mx-auto"
-              style={{ maxHeight: "60vh", maxWidth: "100%" }}
+              style={{ maxHeight: "100%", maxWidth: "100%" }}
               src={wordpressPost.featured_media.localFile.publicURL}
               alt=""
             />
           </section>
         )}
 
-      <div className="spacer my-6"></div>
+      <div className="spacer my-12"></div>
       <div
         dangerouslySetInnerHTML={{ __html: wordpressPost.content }}
         className="richtext max-w-3xl px-4 mx-auto font-serifNormal text-gray-800"
       ></div>
 
       {wordpressPost.tags && wordpressPost.tags.length > 0 && (
-        <div className="flex items-center max-w-3xl mt-8 lg:mx-auto flex-wrap px-4">
+        <div className="flex items-center max-w-3xl mt-8 mx-auto flex-wrap px-4">
           {wordpressPost.tags.map((tag, index) => {
             return (
               <div
                 onClick={(e) => handleNavigation(e, `tag/${tag.slug}`)}
-                className="px-3 py-1 rounded-full mr-3 text-gray-700 cursor-pointer hover:text-white hover:border-gray-700 hover:bg-gray-700 bg-gray-300 mb-4"
+                className="px-3 py-1 rounded-full mr-3 text-gray-700 cursor-pointer hover:text-white hover:bg-primary bg-gray-300 mb-4"
                 key={index}
               >
                 #{tag.name}
@@ -117,13 +118,13 @@ const PostTemplate: React.FC<PostTemplateProps> = ({ data, location }) => {
           })}
         </div>
       )}
-      <div className="flex items-center max-w-3xl mt-8 lg:mx-auto px-4">
+      <div className="flex items-center max-w-3xl mt-8 mx-auto px-4">
         <span className="mr-2 text-lg text-gray-700">Share:</span>
         <div className="social-icons">
           <ul className="flex">
             <li>
               <a
-                className="block p-2 bg-primary hover:bg-primaryActive rounded-full mr-2"
+                className="block p-2 bg-gray-700 hover:bg-primary rounded-full mr-2"
                 href={facebookShareUrl}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -133,7 +134,7 @@ const PostTemplate: React.FC<PostTemplateProps> = ({ data, location }) => {
             </li>
             <li>
               <a
-                className="block p-2 bg-primary hover:bg-primaryActive rounded-full mr-2"
+                className="block p-2 bg-gray-700 hover:bg-primary rounded-full mr-2"
                 href={twitterShareUrl}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -143,7 +144,7 @@ const PostTemplate: React.FC<PostTemplateProps> = ({ data, location }) => {
             </li>
             <li>
               <a
-                className="block p-2 bg-primary hover:bg-primaryActive rounded-full mr-2"
+                className="block p-2 bg-gray-700 hover:bg-primary rounded-full mr-2"
                 href={linkedInShareUrl}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -153,7 +154,7 @@ const PostTemplate: React.FC<PostTemplateProps> = ({ data, location }) => {
             </li>
             <li>
               <a
-                className="block p-2 bg-primary hover:bg-primaryActive rounded-full mr-2"
+                className="block p-2 bg-gray-700 hover:bg-primary rounded-full mr-2"
                 href={mailShareUrl}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -181,14 +182,14 @@ const PostTemplate: React.FC<PostTemplateProps> = ({ data, location }) => {
           </>
         )}
         {process.env.GATSBY_FB_APP_ID && showComments && (
-          <>          
+          <>
             <section className="max-w-4xl container mx-auto px-4 mt-16">
               <FbComments href={href} />
             </section>
           </>
         )}
-      </div>  
-      <div className="spacer my-8"></div>
+      </div>
+      <div className="spacer my-12"></div>
       <CtaMini />
     </Layout>
   );

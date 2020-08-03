@@ -17,6 +17,7 @@ type TagTemplateProps = {
     wordpressTag: {
       name: string;
       count: number;
+      description: string;
     };
   };
 };
@@ -30,16 +31,22 @@ const TagTemplate: React.FC<TagTemplateProps> = ({
   return (
     <Layout>
       <WebsiteMeta />
-      <section className="text-center bg-cover">
+      <section className="text-center bg-cover bg-center">
         <div className="relative flex items-center py-32">
           <div className="absolute bg-primaryActive inset-0" />
           <div className="z-10 max-w-2xl mx-auto px-4">
-            <h3 className="text-3xl font-sansSemibold text-white capitalize">
-              {wordpressTag.name}
-            </h3>
-            <span className="font-sansSemibold text-white">
+            <span className="text-sm leading-tight font-sansNormal text-white opacity-70 uppercase">
               {wordpressTag.count} {wordpressTag.count > 1 ? "posts" : "post"}
             </span>
+            <h1 className="mb-4 mt-2 text-3xl leading-tight font-sansSemibold text-white break-words">
+              {wordpressTag.name}
+            </h1>
+            {wordpressTag.description && (
+              <p
+                className="text-xl font-serifLight text-white opacity-85"
+                dangerouslySetInnerHTML={{ __html: wordpressTag.description }}
+              ></p>
+            )}
           </div>
         </div>
       </section>
@@ -63,6 +70,7 @@ export const TagTemplateQuery = graphql`
     wordpressTag(slug: { eq: $slug }) {
       name
       count
+      description
     }
     allWordpressPost(
       filter: { tags_custom: { elemMatch: { slug: { eq: $slug } } } }

@@ -47,7 +47,7 @@ const CopyLink: React.FC<CopyLinkProps> = ({ textToCopy }) => {
     <div>
       <button
         onClick={(e) => copyToClipboard()}
-        className="block p-2 bg-primary hover:bg-primaryActive rounded-full mr-2"
+        className="block p-2 bg-gray-700 hover:bg-primary rounded-full mr-2"
         title="Copy to clipboard"
       >
         <img

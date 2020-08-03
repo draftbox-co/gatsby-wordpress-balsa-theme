@@ -39,7 +39,7 @@ const CtaMini = () => {
         <section className="py-8 px-4">
           <div className="flex flex-wrap -mx-4">
             <div className="px-12 py-6 mb-8 lg:mb-0 text-center bg-green-200 text-green-900 mx-auto rounded">
-              <h2 className="text-2xl font-sansNormal text-center flex items-center">
+              <h2 className="text-2xl font-sansMedium text-center flex items-center">
                 <img className="mr-2 h-6 mt-1" src={checkMark} alt="" />
                 {subscribeWidget.successMessage && (
                   <span
