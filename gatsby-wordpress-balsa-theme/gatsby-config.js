@@ -174,7 +174,7 @@ module.exports = (themeOptions) => {
               },
               {
                 family: "Merriweather",
-                variants: ["300", "400", "500", "600", "700"],
+                variants: ["300", "400", "700"],
                 //subsets: ['latin']
                 //text: 'Hello'
                 fontDisplay: "swap",
@@ -231,8 +231,8 @@ module.exports = (themeOptions) => {
             },
             { varName: "--serif-font-light", value: `300` },
             { varName: "--serif-font-normal", value: `400` },
-            { varName: "--serif-font-medium", value: `500` },
-            { varName: "--serif-font-bold", value: `600` },
+            { varName: "--serif-font-medium", value: `400` },
+            { varName: "--serif-font-bold", value: `700` },
           ],
         },
       },
