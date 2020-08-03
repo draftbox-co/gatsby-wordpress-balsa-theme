@@ -12,6 +12,8 @@ import facebookShare from "../images/facebook-share.svg";
 import twitterShare from "../images/twitter-share.svg";
 import linkedInShare from "../images/linkedin-share.svg";
 import mailShare from "../images/mail.svg";
+import pintrestShare from "../images/pinterest-share.svg";
+import whatsappShare from "../images/whatsapp-share.svg";
 import CopyLink from "../components/copy-link";
 import NextPrevPost from "./../components/NextPrevPost";
 import { InView } from "react-intersection-observer";
@@ -29,6 +31,9 @@ const PostTemplate: React.FC<PostTemplateProps> = ({ data, location }) => {
   const { wordpressPost, prevPost, nextPost } = data;
 
   const [href, sethref] = useState("");
+
+  const [origin, setOrigin] = useState("");
+
   const [showComments, setshowComments] = useState(false);
 
   const handleCommentsVisibility = (inView) => {
@@ -40,6 +45,7 @@ const PostTemplate: React.FC<PostTemplateProps> = ({ data, location }) => {
   useEffect(() => {
     if (typeof window !== "undefined") {
       sethref(window.location.href);
+      setOrigin(window.location.origin);
     }
   }, []);
   const twitterShareUrl = `https://twitter.com/share?text=${wordpressPost.plainTitle}&url=${href}`;
@@ -49,6 +55,20 @@ const PostTemplate: React.FC<PostTemplateProps> = ({ data, location }) => {
   const linkedInShareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${href}&title=${wordpressPost.plainTitle}`;
 
   const mailShareUrl = `mailto:?subject=${wordpressPost.plainTitle}&body=${href}`;
+
+  let pinterestShareUrl = `https://www.pinterest.com/pin/create/button/?url=${href}&description=${wordpressPost.title}`;
+  if (
+    wordpressPost.featured_media.localFile &&
+    wordpressPost.featured_media.localFile.publicURL
+  ) {
+    pinterestShareUrl += `&media=${
+      origin + wordpressPost.featured_media.localFile.publicURL
+    }`;
+  }
+
+  const whatsAppShareUrl = `https://wa.me/?text=${encodeURIComponent(
+    wordpressPost.title + "\n" + href
+  )}`;
 
   const handleNavigation = (e: any, slug) => {
     e.stopPropagation();
@@ -150,6 +170,26 @@ const PostTemplate: React.FC<PostTemplateProps> = ({ data, location }) => {
                 rel="noopener noreferrer"
               >
                 <img className="h-4" src={linkedInShare} alt="LinkedIn" />
+              </a>
+            </li>
+            <li>
+              <a
+                className="block p-2 bg-gray-700 hover:bg-primary rounded-full mr-2"
+                href={pinterestShareUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img className="h-4" src={pintrestShare} alt="LinkedIn Share" />
+              </a>
+            </li>
+            <li>
+              <a
+                className="block p-2 bg-gray-700 hover:bg-primary rounded-full mr-2"
+                href={whatsAppShareUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img className="h-4" src={whatsappShare} alt="LinkedIn Share" />
               </a>
             </li>
             <li>

@@ -16,6 +16,7 @@ module.exports = {
   themeColor: "#15171A", // Used for Offline Manifest
   apiUrl: "https://wordpress.theasdfghjkl.com",
   subscribeWidget: {
+    visible: true,
     title: "Subscribe to Draftbox",
     helpText: "Get the latest posts delivered right to your inbox.",
     successMessage: "Thanks for subscribing to Draftbox.",
@@ -63,6 +64,12 @@ module.exports = {
     instagram: "https://www.instagram.com/",
     linkedin: "https://linkedin.com/",
     github: "https://github.com/draftbox-co",
+    pinterest: "",
+    youtube: "",
+    dribbble: "",
+    behance: "",
+    externalLink: "",
+    whatsapp: "",
   },
   contactWidget: {
     title: "Contact Built with Draftbox",

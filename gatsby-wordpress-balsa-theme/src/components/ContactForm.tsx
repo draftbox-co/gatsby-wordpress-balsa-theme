@@ -126,7 +126,7 @@ const ContactForm = () => {
                 ></textarea>
               </div>
               <div>
-                <button className="inline-block w-full py-4 px-8 leading-none text-white bg-primary hover:bg-primaryActive rounded shadow">
+                <button className="inline-block w-full py-4 px-8 leading-none text-white bg-primary hover:bg-primaryActive rounded shadow tracking-wide font-sansMedium focus:outline-none">
                   {submitting ? "Sending..." : "Send"}
                 </button>
               </div>

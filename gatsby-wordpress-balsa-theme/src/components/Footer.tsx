@@ -6,6 +6,12 @@ import twitterLogo from "../images/twitter.svg";
 import instagramLogo from "./../images/instagram.svg";
 import linkedinLogo from "./../images/linkedin.svg";
 import githubLogo from "./../images/github.svg";
+import youtubeLogo from "./../images/youtube.svg";
+import dribbbleLogo from "./../images/basketball.svg";
+import pinterestLogo from "./../images/pinterest.svg";
+import whatsappLogo from "./../images/whatsapp.svg";
+import behanceLogo from "./../images/behance.svg";
+import linkLogo from "./../images/link.svg";
 
 type FooterProps = {
   footerData: SettingsAndSlugs;
@@ -128,6 +134,84 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
               <img
                 className="w-5 h-5 mx-2 my-2"
                 src={githubLogo}
+                alt="LinkedIn Logo"
+              />
+            </a>
+          )}
+          {socialLinks && socialLinks.whatsapp && (
+            <a
+              rel="noreferrer noopener"
+              href={`${socialLinks.whatsapp}`}
+              target="_blank"
+            >
+              <img
+                className="w-5 h-5 mx-2 my-2"
+                src={whatsappLogo}
+                alt="LinkedIn Logo"
+              />
+            </a>
+          )}
+          {socialLinks && socialLinks.youtube && (
+            <a
+              rel="noreferrer noopener"
+              href={`${socialLinks.youtube}`}
+              target="_blank"
+            >
+              <img
+                className="w-5 h-5 mx-2 my-2"
+                src={youtubeLogo}
+                alt="LinkedIn Logo"
+              />
+            </a>
+          )}
+          {socialLinks && socialLinks.dribbble && (
+            <a
+              rel="noreferrer noopener"
+              href={`${socialLinks.dribbble}`}
+              target="_blank"
+            >
+              <img
+                className="w-5 h-5 mx-2 my-2"
+                src={dribbbleLogo}
+                alt="LinkedIn Logo"
+              />
+            </a>
+          )}
+          {socialLinks && socialLinks.pinterest && (
+            <a
+              rel="noreferrer noopener"
+              href={`${socialLinks.pinterest}`}
+              target="_blank"
+            >
+              <img
+                className="w-5 h-5 mx-2 my-2"
+                src={pinterestLogo}
+                alt="LinkedIn Logo"
+              />
+            </a>
+          )}
+          {socialLinks && socialLinks.behance && (
+            <a
+              rel="noreferrer noopener"
+              href={`${socialLinks.behance}`}
+              target="_blank"
+            >
+              <img
+                className="w-5 h-5 mx-2 my-2"
+                src={behanceLogo}
+                alt="LinkedIn Logo"
+              />
+            </a>
+          )}
+          {socialLinks && socialLinks.externalLink && (
+            <a
+              rel="noreferrer noopener"
+              href={`${socialLinks.externalLink}`}
+              target="_blank"
+            >
+              <img
+                className="w-5 h-5 mx-2 my-2"
+                src={linkLogo}
                 alt="LinkedIn Logo"
               />
             </a>

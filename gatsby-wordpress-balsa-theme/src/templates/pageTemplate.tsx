@@ -10,6 +10,8 @@ import Img from "gatsby-image";
 import facebookShare from "../images/facebook-share.svg";
 import twitterShare from "../images/twitter-share.svg";
 import linkedInShare from "../images/linkedin-share.svg";
+import pintrestShare from "../images/pinterest-share.svg";
+import whatsappShare from "../images/whatsapp-share.svg";
 import mailShare from "../images/mail.svg";
 import CopyLink from "../components/copy-link";
 
@@ -25,11 +27,15 @@ const PageTemplate: React.FC<IndexPageProps> = ({ data, location }) => {
 
   const [href, sethref] = useState("");
 
+  const [origin, setOrigin] = useState("");
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       sethref(window.location.href);
+      setOrigin(window.location.origin);
     }
   }, []);
+
   const twitterShareUrl = `https://twitter.com/share?text=${wordpressPage.plainTitle}&url=${href}`;
 
   const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${href}`;
@@ -37,6 +43,20 @@ const PageTemplate: React.FC<IndexPageProps> = ({ data, location }) => {
   const linkedInShareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${href}&title=${wordpressPage.plainTitle}`;
 
   const mailShareUrl = `mailto:?subject=${wordpressPage.plainTitle}&body=${href}`;
+
+  let pinterestShareUrl = `https://www.pinterest.com/pin/create/button/?url=${href}&description=${wordpressPage.title}`;
+  if (
+    wordpressPage.featured_media.localFile &&
+    wordpressPage.featured_media.localFile.publicURL
+  ) {
+    pinterestShareUrl += `&media=${
+      origin + wordpressPage.featured_media.localFile.publicURL
+    }`;
+  }
+
+  const whatsAppShareUrl = `https://wa.me/?text=${encodeURIComponent(
+    wordpressPage.title + "\n" + href
+  )}`;
 
   const handleNavigation = (e: any, slug) => {
     e.stopPropagation();
@@ -137,6 +157,26 @@ const PageTemplate: React.FC<IndexPageProps> = ({ data, location }) => {
                 rel="noopener noreferrer"
               >
                 <img className="h-4" src={linkedInShare} alt="LinkedIn" />
+              </a>
+            </li>
+            <li>
+              <a
+                className="block p-2 bg-gray-700 hover:bg-primary rounded-full mr-2"
+                href={pinterestShareUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img className="h-4" src={pintrestShare} alt="LinkedIn Share" />
+              </a>
+            </li>
+            <li>
+              <a
+                className="block p-2 bg-gray-700 hover:bg-primary rounded-full mr-2"
+                href={whatsAppShareUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img className="h-4" src={whatsappShare} alt="LinkedIn Share" />
               </a>
             </li>
             <li>

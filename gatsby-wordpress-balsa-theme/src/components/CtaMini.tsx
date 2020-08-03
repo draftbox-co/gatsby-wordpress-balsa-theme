@@ -13,6 +13,7 @@ const CtaMini = () => {
       site {
         siteMetadata {
           subscribeWidget {
+            visible
             title
             helpText
             successMessage
@@ -32,6 +33,10 @@ const CtaMini = () => {
     e.preventDefault();
     handleSubmit({ email });
   };
+
+  if (!subscribeWidget.visible) {
+    return null;
+  }
 
   return (
     <>
@@ -94,7 +99,7 @@ const CtaMini = () => {
                   />
                 </div>
                 <div className="w-full md:w-1/3">
-                  <button className="inline-block w-full py-4 px-8 leading-none text-white bg-primary hover:bg-primaryActive rounded md:rounded-l-none">
+                  <button className="inline-block w-full py-4 px-8 leading-none text-white bg-primary hover:bg-primaryActive rounded md:rounded-l-none tracking-wide font-sansMedium focus:outline-none">
                     {submitting ? "Subscribing..." : "Subscribe"}
                   </button>
                 </div>
