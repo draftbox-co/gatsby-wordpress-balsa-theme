@@ -45,7 +45,7 @@ const PageTemplate: React.FC<IndexPageProps> = ({ data, location }) => {
   const mailShareUrl = `mailto:?subject=${wordpressPage.plainTitle}&body=${href}`;
 
   let pinterestShareUrl = `https://www.pinterest.com/pin/create/button/?url=${href}&description=${wordpressPage.title}`;
-  if (
+  if ( wordpressPage.featured_media &&
     wordpressPage.featured_media.localFile &&
     wordpressPage.featured_media.localFile.publicURL
   ) {

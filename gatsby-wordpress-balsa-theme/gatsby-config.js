@@ -13,7 +13,7 @@ module.exports = (themeOptions) => {
   const siteConfig = themeOptions.siteConfig || siteConfigDefaults;
   const wordpressConfig = themeOptions.wordpressConfig;
 
-  return {
+  const configOptions = {
     siteMetadata: siteConfig,
     plugins: [
       /**
@@ -160,80 +160,9 @@ module.exports = (themeOptions) => {
       },
       `gatsby-plugin-postcss`,
       {
-        resolve: `@draftbox-co/gatsby-plugin-webfonts`,
-        options: {
-          fonts: {
-            google: [
-              {
-                family: "Montserrat",
-                variants: ["400", "500", "600", "700"],
-                //subsets: ['latin']
-                //text: 'Hello'
-                fontDisplay: "swap",
-                strategy: "selfHosted", // 'base64' || 'cdn'
-              },
-              {
-                family: "Merriweather",
-                variants: ["300", "400", "700"],
-                //subsets: ['latin']
-                //text: 'Hello'
-                fontDisplay: "swap",
-                strategy: "selfHosted", // 'base64' || 'cdn'
-              },
-            ],
-          },
-          formats: ["woff2", "woff"],
-          useMinify: true,
-          usePreload: true,
-          usePreconnect: true,
-          blacklist: ["/amp"],
-        },
-      },
-      {
         resolve: "@draftbox-co/gatsby-plugin-css-variables",
         options: {
-          variables: [
-            {
-              varName: "--primary-color",
-              value: `#2b6cb0`,
-            },
-            {
-              varName: "--primary-color-active",
-              value: `#2a4365`,
-            },
-            {
-              varName: "--primary-color-light",
-              value: `#bee3f8`,
-            },
-            {
-              varName: "--sans-font",
-              value: `"Montserrat", Lato, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`,
-            },
-            {
-              varName: "--sans-font-normal",
-              value: `400`,
-            },
-            {
-              varName: "--sans-font-medium",
-              value: `500`,
-            },
-            {
-              varName: "--sans-font-semibold",
-              value: `600`,
-            },
-            {
-              varName: "--sans-font-bold",
-              value: `700`,
-            },
-            {
-              varName: "--serif-font",
-              value: `"Merriweather", Gerogia, Cambria, "Times New Roman", Times, serif`,
-            },
-            { varName: "--serif-font-light", value: `300` },
-            { varName: "--serif-font-normal", value: `400` },
-            { varName: "--serif-font-medium", value: `400` },
-            { varName: "--serif-font-bold", value: `700` },
-          ],
+          variables: siteConfig.themeConfig.variables,
         },
       },
       {
@@ -268,4 +197,22 @@ module.exports = (themeOptions) => {
       },
     ],
   };
+
+  if (siteConfig.themeConfig.fonts && siteConfig.themeConfig.fonts.length > 0) {
+    configOptions.plugins.push({
+      resolve: `@draftbox-co/gatsby-plugin-webfonts`,
+      options: {
+        fonts: {
+          google: siteConfig.themeConfig.fonts,
+        },
+        formats: ["woff2", "woff"],
+        useMinify: true,
+        usePreload: true,
+        usePreconnect: true,
+        blacklist: ["/amp"],
+      },
+    },)
+  }
+
+  return configOptions;
 };

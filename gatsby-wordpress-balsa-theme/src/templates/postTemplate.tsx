@@ -57,7 +57,7 @@ const PostTemplate: React.FC<PostTemplateProps> = ({ data, location }) => {
   const mailShareUrl = `mailto:?subject=${wordpressPost.plainTitle}&body=${href}`;
 
   let pinterestShareUrl = `https://www.pinterest.com/pin/create/button/?url=${href}&description=${wordpressPost.title}`;
-  if (
+  if (wordpressPost.featured_media &&
     wordpressPost.featured_media.localFile &&
     wordpressPost.featured_media.localFile.publicURL
   ) {
