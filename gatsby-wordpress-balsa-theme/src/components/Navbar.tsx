@@ -27,7 +27,7 @@ const Navbar: React.FC<NavbarProps> = ({ navbarData }) => {
 
   return (
     <nav className="flex flex-wrap items-center justify-between p-4 container mx-auto">
-      <div className="flex flex-shrink-0 mr-6 w-4/5 lg:w-auto">
+      <div className="flex flex-shrink-0 mr-6 w-2/3 lg:w-auto">
         <Link className="text-2xl text-primary font-serifBold" to="/">
           {logo ? (
             <img className="h-10" src={logo} alt={siteTitle} />
