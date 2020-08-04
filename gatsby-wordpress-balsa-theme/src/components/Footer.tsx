@@ -29,7 +29,7 @@ const Footer: React.FC<FooterProps> = ({ footerData }) => {
         <div className="w-full lg:w-1/5 text-center lg:text-left mt-4 lg:mt-0">
           <span className="block md:inline-block md:mb-0 text-gray-700">
             <span
-              className="text-primaryActive"
+              className="text-gray-700"
               dangerouslySetInnerHTML={{
                 __html: footer.copyright ? footer.copyright : siteTitle,
               }}
