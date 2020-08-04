@@ -1,0 +1,70 @@
+/* ! purgecss start ignore */
+@tailwind base;
+/* ! purgecss end ignore */
+
+@tailwind components;
+
+@tailwind utilities;
+
+/* ! purgecss start ignore */
+
+html {
+  @apply text-body;
+  font-family: var(--sans-font);
+  font-weight: var(--sans-font-normal);
+}
+
+.font-sansNormal {
+  font-family: var(--sans-font);
+  font-weight: var(--sans-font-normal);
+}
+
+.font-sansMedium {
+  font-family: var(--sans-font);
+  font-weight: var(--sans-font-medium);
+}
+
+.font-sansSemibold {
+  font-family: var(--sans-font);
+  font-weight: var(--sans-font-semibold);
+}
+
+.font-sansBold {
+  font-family: var(--sans-font);
+  font-weight: var(--sans-font-bold);
+}
+
+.font-serifLight {
+  font-family: var(--serif-font);
+  font-weight: var(--serif-font-light);
+}
+
+.font-serifNormal {
+  font-family: var(--serif-font);
+  font-weight: var(--serif-font-normal);
+}
+
+.font-serifMedium {
+  font-family: var(--serif-font);
+  font-weight: var(--serif-font-medium);
+}
+
+.font-serifBold {
+  font-family: var(--serif-font);
+  font-weight: var(--serif-font-bold);
+}
+
+.fb-comments iframe {
+  width: 100% !important;
+}
+
+.prev-next-post {
+  height: 3rem;
+  margin: 0 0 1rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* ! purgecss end ignore */
