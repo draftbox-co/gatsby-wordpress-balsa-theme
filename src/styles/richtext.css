@@ -1,0 +1,181 @@
+/*!purgecss start ignore */
+
+.py-05 {
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
+}
+
+.richtext {
+  line-height: 1.75;
+  font-weight: var(--serif-font-normal);
+  @apply leading-normal break-words text-body text-lg;
+}
+
+.richtext * {
+  font-family: var(--serif-font);
+  font-weight: var(--serif-font-normal);
+}
+
+@screen lg {
+  .richtext {
+    @apply leading-loose text-xl;
+  }
+}
+
+.richtext > * {
+  @apply mt-0 mb-4;
+}
+
+.richtext li + li {
+  @apply mt-1;
+}
+
+/* Could not understand the logic here */
+/* .richtext li > p + p {
+  @apply mt-6;
+} */
+
+.richtext strong {
+  font-weight: var(--serif-font-medium);
+}
+
+.richtext a {
+  @apply border-primaryLight border-b-3 inline;
+}
+
+.richtext strong a {
+  font-weight: var(--serif-font-medium);
+}
+
+.richtext a:hover {
+  @apply border-primary;
+}
+
+.richtext h1 {
+  font-weight: var(--serif-font-bold);
+  @apply leading-tight text-4xl mb-4 mt-12 pb-2;
+}
+
+.richtext h2 {
+  font-weight: var(--serif-font-bold);
+  @apply leading-tight text-3xl mb-4 mt-12 pb-2;
+}
+
+.richtext h3 {
+  font-weight: var(--serif-font-bold);
+  @apply leading-snug text-2xl mb-4 mt-8;
+}
+
+.richtext h4 {
+  font-weight: var(--serif-font-bold);
+  @apply leading-none text-xl uppercase mb-4 mt-8;
+}
+
+.richtext h5 {
+  font-weight: var(--serif-font-bold);
+  @apply leading-tight text-lg mb-4 mt-6;
+}
+
+.richtext h6 {
+  font-weight: var(--serif-font-bold);
+  @apply leading-tight text-base italic mb-4 mt-6;
+}
+
+.richtext p {
+  font-weight: var(--serif-font-light);
+}
+
+.richtext blockquote {
+  @apply text-xl border-l-4 border-primary pl-4 pr-4 text-gray-900 italic;
+}
+
+.richtext code {
+  @apply font-mono text-sm inline bg-gray-200 rounded px-1 py-05;
+}
+
+.richtext pre {
+  @apply bg-gray-100 rounded p-4 mt-1 overflow-auto;
+}
+
+.richtext pre code {
+  @apply block text-sm bg-transparent p-0 overflow-visible rounded-none;
+}
+
+.richtext ul {
+  @apply pl-8 list-disc;
+}
+
+.richtext ol {
+  @apply pl-8 list-decimal;
+}
+
+.richtext li {
+  font-weight: var(--serif-font-light);
+}
+
+.richtext kbd {
+  @apply inline-block rounded border px-1 py-05 align-middle font-mono shadow;
+}
+
+.richtext table {
+  @apply text-base border-gray-600;
+}
+
+.richtext th {
+  @apply border py-1 px-3;
+}
+
+.richtext td {
+  @apply border py-1 px-3;
+}
+
+.richtext .highlight pre {
+  @apply bg-gray-100 !important;
+}
+
+.richtext p img {
+  @apply inline;
+}
+
+.richtext figure,
+.richtext img {
+  max-width: 100%;
+}
+
+.richtext figure {
+  @apply flex flex-col items-center justify-center;
+}
+
+.richtext iframe {
+  max-width: 100%;
+}
+
+.richtext figcaption {
+  @apply max-w-3xl text-center text-gray-600 text-sm;
+}
+
+@media screen and (max-width: 425px) {
+  .richtext iframe {
+    max-width: 100%;
+  }
+  .richtext figure img {
+    max-width: 100%;
+  }
+}
+
+.wp-caption {
+  max-width: 100%;
+  padding: 0;
+  margin-bottom: 1.75em;
+}
+
+.wp-block-gallery ul {
+  list-style: none;
+  padding: 0;
+}
+
+.wp-block-gallery figure {
+  margin-bottom: 1rem;
+}
+
+/*!purgecss end ignore */
