@@ -1,6 +1,5 @@
 import React from "react";
 import Layout from "../components/Layout";
-import CtaBig from "../components/CtaBig";
 import { graphql } from "gatsby";
 import { PostDescription } from "../models/all-post-description.model";
 import { PaginationContext } from "../models/pagination.model";
@@ -9,6 +8,7 @@ import Pagination from "../components/Pagination";
 import WebsiteMeta from "../components/meta/website-meta";
 import url from "url";
 import classNames from "classnames";
+import CtaMini from "../components/CtaMini";
 
 type IndexPageProps = {
   data: {
@@ -52,30 +52,32 @@ const IndexPage: React.FC<IndexPageProps> = ({
       <Layout>
         <WebsiteMeta />
         <section
-          className="text-center bg-cover max-w-full"
+          className="text-center bg-cover bg-center max-w-full bg-primary"
           style={{
-            backgroundImage: `url(${
-              backgroundImage ? backgroundImage : "none"
-            })`
+            backgroundImage: backgroundImage
+              ? `url(${backgroundImage})`
+              : "none",
           }}
         >
           <div className="relative flex items-center py-32">
-            <div className={classNames("absolute inset-0", {
-              "bg-black opacity-50": backgroundImage,
-              "bg-blue-900": !backgroundImage,
-            })}/>
+            <div
+              className={classNames("absolute inset-0", {
+                "bg-black opacity-70": backgroundImage,
+                "bg-primaryActive": !backgroundImage,
+              })}
+            />
             <div className="z-10 max-w-2xl mx-auto px-4">
               <h1
                 dangerouslySetInnerHTML={{
                   __html: site.siteMetadata.siteTitle,
                 }}
-                className="mb-4 text-4xl leading-tight font-semibold font-heading text-white break-words"
+                className="mb-4 text-4xl leading-tight font-sansSemibold text-white break-words"
               ></h1>
               <p
                 dangerouslySetInnerHTML={{
                   __html: site.siteMetadata.siteDescription,
                 }}
-                className="text-2xl leading-tight font-light text-white"
+                className="text-2xl font-serifLight text-white opacity-85"
               ></p>
             </div>
           </div>
@@ -91,7 +93,7 @@ const IndexPage: React.FC<IndexPageProps> = ({
 
         {/* Pagination */}
         <Pagination pageContext={pageContext} />
-        <CtaBig />
+        <CtaMini />
       </Layout>
     </>
   );

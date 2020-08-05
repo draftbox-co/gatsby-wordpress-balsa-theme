@@ -10,6 +10,8 @@ import Img from "gatsby-image";
 import facebookShare from "../images/facebook-share.svg";
 import twitterShare from "../images/twitter-share.svg";
 import linkedInShare from "../images/linkedin-share.svg";
+import pintrestShare from "../images/pinterest-share.svg";
+import whatsappShare from "../images/whatsapp-share.svg";
 import mailShare from "../images/mail.svg";
 import CopyLink from "../components/copy-link";
 
@@ -25,11 +27,15 @@ const PageTemplate: React.FC<IndexPageProps> = ({ data, location }) => {
 
   const [href, sethref] = useState("");
 
+  const [origin, setOrigin] = useState("");
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       sethref(window.location.href);
+      setOrigin(window.location.origin);
     }
   }, []);
+
   const twitterShareUrl = `https://twitter.com/share?text=${wordpressPage.plainTitle}&url=${href}`;
 
   const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${href}`;
@@ -38,6 +44,20 @@ const PageTemplate: React.FC<IndexPageProps> = ({ data, location }) => {
 
   const mailShareUrl = `mailto:?subject=${wordpressPage.plainTitle}&body=${href}`;
 
+  let pinterestShareUrl = `https://www.pinterest.com/pin/create/button/?url=${href}&description=${wordpressPage.title}`;
+  if ( wordpressPage.featured_media &&
+    wordpressPage.featured_media.localFile &&
+    wordpressPage.featured_media.localFile.publicURL
+  ) {
+    pinterestShareUrl += `&media=${
+      origin + wordpressPage.featured_media.localFile.publicURL
+    }`;
+  }
+
+  const whatsAppShareUrl = `https://wa.me/?text=${encodeURIComponent(
+    wordpressPage.title + "\n" + href
+  )}`;
+
   const handleNavigation = (e: any, slug) => {
     e.stopPropagation();
     navigate(slug);
@@ -45,28 +65,28 @@ const PageTemplate: React.FC<IndexPageProps> = ({ data, location }) => {
   return (
     <Layout>
       <ArticleMeta data={wordpressPage} amp={false} location={location} />
-      <div className="spacer my-6"></div>
-      <section className="px-4 max-w-4xl mx-auto">
+      <div className="spacer my-8 lg:my-12"></div>
+      <section className="px-4 max-w-3xl mx-auto">
         <h1
-          className=" text-5xl text-center font-heading font-medium break-words"
+          className="text-4xl lg:text-5xl font-sansSemibold break-words leading-tight"
           dangerouslySetInnerHTML={{ __html: wordpressPage.title }}
         ></h1>
-        <p className="text-center mt-3">
+        <p className="text-gray-600 break-words my-2 text-sm lg:text-base px-1">
           <span>{wordpressPage.date}</span>
-          <strong className="mx-2">&bull;</strong>
+          <span className="mx-2">•</span>
           <Link
-            className="text-blue-700 hover:underline"
+            className="no-underline hover:underline cursor-pointer"
             to={`/author/${wordpressPage.author.slug}`}
           >
             {wordpressPage.author.name}
           </Link>
         </p>
       </section>
-      <div className="spacer my-6"></div>
+      <div className="spacer my-8 lg:my-12"></div>
       {wordpressPage.featured_media?.localFile?.childImageSharp?.fluid && (
-        <section className="px-4 container mx-auto">
+        <section className="px-4 container mx-auto max-w-4xl">
           <Img
-            style={{ maxHeight: "60vh", maxWidth: "100%" }}
+            style={{ maxHeight: "100%", maxWidth: "100%" }}
             fluid={wordpressPage.featured_media.localFile.childImageSharp.fluid}
             alt=""
           />
@@ -74,20 +94,20 @@ const PageTemplate: React.FC<IndexPageProps> = ({ data, location }) => {
       )}
       {!wordpressPage.featured_media?.localFile?.childImageSharp?.fluid &&
         wordpressPage.featured_media?.localFile?.publicURL && (
-          <section className="px-4 container mx-auto">
+          <section className="px-4 container mx-auto max-w-4xl">
             <img
               className="mx-auto"
-              style={{ maxHeight: "60vh", maxWidth: "100%" }}
+              style={{ maxHeight: "100%" }}
               src={wordpressPage.featured_media.localFile.publicURL}
               alt=""
             />
           </section>
         )}
 
-      <div className="spacer my-6"></div>
+      <div className="spacer my-8 lg:my-12"></div>
       <div
         dangerouslySetInnerHTML={{ __html: wordpressPage.content }}
-        className="richtext max-w-3xl px-4 mx-auto font-serif text-gray-800"
+        className="richtext max-w-3xl px-4 mx-auto font-serifNormal text-gray-800"
       ></div>
 
       {wordpressPage.tags && wordpressPage.tags.length > 0 && (
@@ -111,7 +131,7 @@ const PageTemplate: React.FC<IndexPageProps> = ({ data, location }) => {
           <ul className="flex">
             <li>
               <a
-                className="block p-2 bg-blue-500 hover:bg-blue-700 rounded-full mr-2"
+                className="block p-2 bg-gray-700 hover:bg-primary rounded-full mr-2"
                 href={facebookShareUrl}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -121,7 +141,7 @@ const PageTemplate: React.FC<IndexPageProps> = ({ data, location }) => {
             </li>
             <li>
               <a
-                className="block p-2 bg-blue-500 hover:bg-blue-700 rounded-full mr-2"
+                className="block p-2 bg-gray-700 hover:bg-primary rounded-full mr-2"
                 href={twitterShareUrl}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -131,7 +151,7 @@ const PageTemplate: React.FC<IndexPageProps> = ({ data, location }) => {
             </li>
             <li>
               <a
-                className="block p-2 bg-blue-500 hover:bg-blue-700 rounded-full mr-2"
+                className="block p-2 bg-gray-700 hover:bg-primary rounded-full mr-2"
                 href={linkedInShareUrl}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -141,7 +161,27 @@ const PageTemplate: React.FC<IndexPageProps> = ({ data, location }) => {
             </li>
             <li>
               <a
-                className="block p-2 bg-blue-500 hover:bg-blue-700 rounded-full mr-2"
+                className="block p-2 bg-gray-700 hover:bg-primary rounded-full mr-2"
+                href={pinterestShareUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img className="h-4" src={pintrestShare} alt="LinkedIn Share" />
+              </a>
+            </li>
+            <li>
+              <a
+                className="block p-2 bg-gray-700 hover:bg-primary rounded-full mr-2"
+                href={whatsAppShareUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img className="h-4" src={whatsappShare} alt="LinkedIn Share" />
+              </a>
+            </li>
+            <li>
+              <a
+                className="block p-2 bg-gray-700 hover:bg-primary rounded-full mr-2"
                 href={mailShareUrl}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -156,7 +196,7 @@ const PageTemplate: React.FC<IndexPageProps> = ({ data, location }) => {
         </div>
       </div>
 
-      <div className="spacer my-8"></div>
+      <div className="spacer my-12"></div>
       <CtaMini />
     </Layout>
   );

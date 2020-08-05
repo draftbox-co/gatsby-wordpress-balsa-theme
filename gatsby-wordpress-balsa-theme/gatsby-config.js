@@ -13,7 +13,7 @@ module.exports = (themeOptions) => {
   const siteConfig = themeOptions.siteConfig || siteConfigDefaults;
   const wordpressConfig = themeOptions.wordpressConfig;
 
-  return {
+  const configOptions = {
     siteMetadata: siteConfig,
     plugins: [
       /**
@@ -160,33 +160,9 @@ module.exports = (themeOptions) => {
       },
       `gatsby-plugin-postcss`,
       {
-        resolve: `@draftbox-co/gatsby-plugin-webfonts`,
+        resolve: "@draftbox-co/gatsby-plugin-css-variables",
         options: {
-          fonts: {
-            google: [
-              {
-                family: "Montserrat",
-                variants: ["400", "500", "600", "700"],
-                //subsets: ['latin']
-                //text: 'Hello'
-                fontDisplay: "swap",
-                strategy: "selfHosted", // 'base64' || 'cdn'
-              },
-              {
-                family: "Merriweather",
-                variants: ["300", "400", "500", "600", "700"],
-                //subsets: ['latin']
-                //text: 'Hello'
-                fontDisplay: "swap",
-                strategy: "selfHosted", // 'base64' || 'cdn'
-              },
-            ],
-          },
-          formats: ["woff2", "woff"],
-          useMinify: true,
-          usePreload: true,
-          usePreconnect: true,
-          blacklist: ["/amp"],
+          variables: siteConfig.themeConfig.variables,
         },
       },
       {
@@ -221,4 +197,22 @@ module.exports = (themeOptions) => {
       },
     ],
   };
+
+  if (siteConfig.themeConfig.fonts && siteConfig.themeConfig.fonts.length > 0) {
+    configOptions.plugins.push({
+      resolve: `@draftbox-co/gatsby-plugin-webfonts`,
+      options: {
+        fonts: {
+          google: siteConfig.themeConfig.fonts,
+        },
+        formats: ["woff2", "woff"],
+        useMinify: true,
+        usePreload: true,
+        usePreconnect: true,
+        blacklist: ["/amp"],
+      },
+    },)
+  }
+
+  return configOptions;
 };

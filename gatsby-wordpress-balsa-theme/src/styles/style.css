@@ -9,7 +9,49 @@
 /* ! purgecss start ignore */
 
 html {
-  @apply text-gray-800;
+  @apply text-body;
+  font-family: var(--sans-font);
+  font-weight: var(--sans-font-normal);
+}
+
+.font-sansNormal {
+  font-family: var(--sans-font);
+  font-weight: var(--sans-font-normal);
+}
+
+.font-sansMedium {
+  font-family: var(--sans-font);
+  font-weight: var(--sans-font-medium);
+}
+
+.font-sansSemibold {
+  font-family: var(--sans-font);
+  font-weight: var(--sans-font-semibold);
+}
+
+.font-sansBold {
+  font-family: var(--sans-font);
+  font-weight: var(--sans-font-bold);
+}
+
+.font-serifLight {
+  font-family: var(--serif-font);
+  font-weight: var(--serif-font-light);
+}
+
+.font-serifNormal {
+  font-family: var(--serif-font);
+  font-weight: var(--serif-font-normal);
+}
+
+.font-serifMedium {
+  font-family: var(--serif-font);
+  font-weight: var(--serif-font-medium);
+}
+
+.font-serifBold {
+  font-family: var(--serif-font);
+  font-weight: var(--serif-font-bold);
 }
 
 .fb-comments iframe {

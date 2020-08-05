@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import CtaBig from "./CtaBig";
+import CtaMini from "./CtaMini";
 import { useForm } from "../hook/useForm";
 import checkMark from "../images/check.svg";
 import { useStaticQuery, graphql } from "gatsby";
@@ -10,7 +10,7 @@ const ContactForm = () => {
       siteMetadata: { contactWidget, siteTitle },
     },
   } = useStaticQuery(graphql`
-    query {      
+    query {
       site {
         siteMetadata {
           contactWidget {
@@ -59,7 +59,7 @@ const ContactForm = () => {
         <section className="py-8 px-4">
           <div className="flex flex-wrap -mx-4">
             <div className="px-12 py-6 mb-8 lg:mb-0 text-center bg-green-200 text-green-900 mx-auto rounded">
-              <h2 className="text-2xl font-heading text-center flex items-center">
+              <h2 className="text-2xl font-sansNormal text-center flex items-center">
                 <img className="mr-2 h-6 mt-1" src={checkMark} alt="" />
                 {contactWidget.successMessage
                   ? contactWidget.successMessage
@@ -71,7 +71,7 @@ const ContactForm = () => {
       )}
       {!succeeded && (
         <section className="py-12 px-4">
-          <h2 className="text-3xl mb-8 text-center font-heading">
+          <h2 className="text-3xl mb-8 text-center font-sansNormal">
             <span
               dangerouslySetInnerHTML={{
                 __html: contactWidget.title
@@ -126,8 +126,8 @@ const ContactForm = () => {
                 ></textarea>
               </div>
               <div>
-                <button className="inline-block w-full py-4 px-8 leading-none text-white bg-blue-700 hover:bg-blue-900 rounded shadow">
-                  {submitting ? "Submitting..." : "Submit"}
+                <button className="inline-block w-full py-4 px-8 leading-none text-white bg-primary hover:bg-primaryActive rounded shadow tracking-wide font-sansMedium focus:outline-none">
+                  {submitting ? "Sending..." : "Send"}
                 </button>
               </div>
             </form>
@@ -135,7 +135,7 @@ const ContactForm = () => {
         </section>
       )}
       <div className="spacer my-8"></div>
-      <CtaBig />
+      <CtaMini />
     </>
   );
 };

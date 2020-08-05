@@ -36,6 +36,12 @@ const Layout: React.FC = ({ children }) => {
             instagram
             linkedin
             github
+            pinterest
+            youtube
+            dribbble
+            behance
+            externalLink
+            whatsapp
           }
           logoUrl
           siteTitle

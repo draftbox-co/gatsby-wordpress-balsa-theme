@@ -1238,6 +1238,13 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
+"@babel/runtime@^7.10.5":
+  version "7.10.5"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.10.5.tgz#303d8bd440ecd5a491eae6117fd3367698674c5c"
+  integrity sha512-otddXKhdNn7d0ptoFRHtMLa8LqDxLYwTjB4nYgM1yy5N6gU/MUf8zqyyLltCH3yAVitBzmwK4us+DD0l/MauAg==
+  dependencies:
+    regenerator-runtime "^0.13.4"
+
 "@babel/runtime@^7.9.2":
   version "7.9.2"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.9.2.tgz#d90df0583a3a252f09aaa619665367bae518db06"
@@ -1340,6 +1347,13 @@
     lodash.flattendeep "^4.4.0"
     minimatch "^3.0.4"
     react "^16.6.1"
+
+"@draftbox-co/gatsby-plugin-css-variables@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@draftbox-co/gatsby-plugin-css-variables/-/gatsby-plugin-css-variables-0.0.3.tgz#90baf9d83509bf5fe405b94e5a21455b5e916b8d"
+  integrity sha512-6dg9hLUKaXWOLnBTZSRxBYxks3GAlFOSCp/3BrPl7RBPWk74ybcrAmNptCe2MbZHi8wUCaAhgaOH/8Jito7P0Q==
+  dependencies:
+    "@babel/runtime" "^7.10.5"
 
 "@draftbox-co/gatsby-plugin-webfonts@^1.1.3":
   version "1.1.3"
@@ -1842,6 +1856,11 @@
   version "0.0.30"
   resolved "https://registry.yarnpkg.com/@types/debug/-/debug-0.0.30.tgz#dc1e40f7af3b9c815013a7860e6252f6352a84df"
   integrity sha512-orGL5LXERPYsLov6CWs3Fh6203+dXzJkR7OnddIr2514Hsecwc8xRpzCapshBbKFImCsvS/mk6+FWiN5LyZJAQ==
+
+"@types/eslint-visitor-keys@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@types/eslint-visitor-keys/-/eslint-visitor-keys-1.0.0.tgz#1ee30d79544ca84d68d4b3cdb0af4f205663dd2d"
+  integrity sha512-OCutwjDZ4aFS6PB1UZ988C4YgwlBHJd6wCeQqaLdmadZ/7e+w79+hbMUFC1QXDNCmdyoRfAFdm0RypzwR+Qpag==
 
 "@types/events@*":
   version "3.0.0"

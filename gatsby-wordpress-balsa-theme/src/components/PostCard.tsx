@@ -30,7 +30,7 @@ const PostCard: React.FC<PostCardTypes> = ({ post }) => {
     >
       {post.sticky && (
         <span
-          className="absolute bg-white rounded-full px-2 py-1 text-xs font-semibold z-10 flex items-center"
+          className="absolute bg-white rounded-full px-2 py-1 text-xs font-sansMedium z-10 flex items-center"
           style={{ right: "20px", top: "5px" }}
         >
           <span className="mr-1">
@@ -57,7 +57,7 @@ const PostCard: React.FC<PostCardTypes> = ({ post }) => {
           {!post.featured_media?.localFile?.childImageSharp?.fluid &&
             !post.featured_media?.localFile.publicURL && (
               <div
-                className="flex justify-center bg-blue-500 items-center text-white font-black mb-4 h-48 w-full object-cover rounded-t"
+                className="flex justify-center bg-primary items-center text-white font-sansBold mb-4 h-48 w-full object-cover rounded-t"
                 style={{
                   fontSize: "6rem",
                 }}
@@ -75,7 +75,7 @@ const PostCard: React.FC<PostCardTypes> = ({ post }) => {
                     <span className="text-gray-600">
                       <a
                         onClick={(e) =>
-                          handleNavigation(e, `tag/${post.tags[0].slug}`)
+                          handleNavigation(e, `/tag/${post.tags[0].slug}`)
                         }
                         className="no-underline hover:underline mr-2"
                       >
@@ -85,12 +85,15 @@ const PostCard: React.FC<PostCardTypes> = ({ post }) => {
                   </>
                 )}
               </p>
-              <Link to={`/${post.slug}`}
-                className="text-2xl my-2 font-heading font-semibold tracking-tight leading-tight break-words"
-                dangerouslySetInnerHTML={{ __html: post.title }}
-              ></Link>
+              <div className="my-2">
+                <Link
+                  to={`/${post.slug}`}
+                  className="text-2xl my-2 font-sansSemibold tracking-tight leading-tight break-words"
+                  dangerouslySetInnerHTML={{ __html: post.title }}
+                ></Link>
+              </div>
               <p
-                className="text-gray-600 font-serif break-words font-light"
+                className="text-gray-600 font-serifLight break-words"
                 dangerouslySetInnerHTML={{ __html: excerpt }}
               ></p>
             </div>

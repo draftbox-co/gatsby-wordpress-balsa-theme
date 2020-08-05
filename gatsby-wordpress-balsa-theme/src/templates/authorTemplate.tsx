@@ -31,9 +31,9 @@ const AuthorTemplate: React.FC<AuthorTemplateProps> = ({
   return (
     <Layout>
       <WebsiteMeta />
-      <section className="text-center bg-cover">
+      <section className="text-center bg-cover bg-center">
         <div className="relative flex items-center py-32">
-          <div className="absolute bg-blue-900 inset-0"></div>
+          <div className="absolute bg-primaryActive inset-0"></div>
           <div className="z-10 max-w-2xl mx-auto px-4">
             <img
               className="w-16 mx-auto mb-4 rounded-full"
@@ -44,9 +44,9 @@ const AuthorTemplate: React.FC<AuthorTemplateProps> = ({
               }
               alt=""
             />
-            <h3 className="text-3xl font-semibold font-heading text-white">
+            <h1 className="mb-4 text-3xl leading-tight font-sansSemibold text-white break-words">
               {wordpressWpUsers.name}
-            </h3>
+            </h1>
             {/* <span className="text-lg font-semibold font-heading text-white">
               Regional Manager
             </span> */}
@@ -55,7 +55,7 @@ const AuthorTemplate: React.FC<AuthorTemplateProps> = ({
                 dangerouslySetInnerHTML={{
                   __html: wordpressWpUsers.description,
                 }}
-                className="mt-4 text-gray-100 leading-relaxed break-words"
+                className="text-xl font-serifLight text-white opacity-85"
               ></p>
             )}
           </div>

@@ -6,7 +6,14 @@
 }
 
 .richtext {
-  @apply leading-normal break-words text-body font-serif text-lg;
+  line-height: 1.75;
+  font-weight: var(--serif-font-normal);
+  @apply leading-normal break-words text-body text-lg;
+}
+
+.richtext * {
+  font-family: var(--serif-font);
+  font-weight: var(--serif-font-normal);
 }
 
 @screen lg {
@@ -29,51 +36,57 @@
 } */
 
 .richtext strong {
-  @apply font-medium;
+  font-weight: var(--serif-font-medium);
 }
 
 .richtext a {
-  @apply border-blue-200 border-b-2 inline-block;
+  @apply border-primaryLight border-b-3 inline;
 }
 
 .richtext strong a {
-  @apply font-medium;
+  font-weight: var(--serif-font-medium);
 }
 
 .richtext a:hover {
-  @apply border-blue-700;
+  @apply border-primary;
 }
 
 .richtext h1 {
-  @apply leading-tight text-4xl font-semibold mb-4 mt-12 pb-2;
+  font-weight: var(--serif-font-bold);
+  @apply leading-tight text-4xl mb-4 mt-12 pb-2;
 }
 
 .richtext h2 {
-  @apply leading-tight text-3xl font-semibold mb-4 mt-12 pb-2;
+  font-weight: var(--serif-font-bold);
+  @apply leading-tight text-3xl mb-4 mt-12 pb-2;
 }
 
 .richtext h3 {
-  @apply leading-snug text-2xl font-semibold mb-4 mt-8;
+  font-weight: var(--serif-font-bold);
+  @apply leading-snug text-2xl mb-4 mt-8;
 }
 
 .richtext h4 {
-  @apply leading-none text-xl uppercase font-semibold mb-4 mt-8;
+  font-weight: var(--serif-font-bold);
+  @apply leading-none text-xl uppercase mb-4 mt-8;
 }
 
 .richtext h5 {
-  @apply leading-tight text-lg font-semibold mb-4 mt-6;
+  font-weight: var(--serif-font-bold);
+  @apply leading-tight text-lg mb-4 mt-6;
 }
 
 .richtext h6 {
-  @apply leading-tight text-base italic font-semibold mb-4 mt-6;
+  font-weight: var(--serif-font-bold);
+  @apply leading-tight text-base italic mb-4 mt-6;
 }
 
 .richtext p {
-  @apply font-light;
+  font-weight: var(--serif-font-light);
 }
 
 .richtext blockquote {
-  @apply text-xl border-l-4 border-blue-600 pl-4 pr-4 text-gray-900 italic;
+  @apply text-xl border-l-4 border-primary pl-4 pr-4 text-gray-900 italic;
 }
 
 .richtext code {
@@ -97,11 +110,11 @@
 }
 
 .richtext li {
-  @apply font-light;
+  font-weight: var(--serif-font-light);
 }
 
 .richtext kbd {
-  @apply inline-block rounded border px-1 py-05 align-middle font-normal font-mono shadow;
+  @apply inline-block rounded border px-1 py-05 align-middle font-mono shadow;
 }
 
 .richtext table {

@@ -13,6 +13,7 @@ const CtaMini = () => {
       site {
         siteMetadata {
           subscribeWidget {
+            visible
             title
             helpText
             successMessage
@@ -33,13 +34,17 @@ const CtaMini = () => {
     handleSubmit({ email });
   };
 
+  if (!subscribeWidget.visible) {
+    return null;
+  }
+
   return (
     <>
       {succeeded && (
         <section className="py-8 px-4">
           <div className="flex flex-wrap -mx-4">
             <div className="px-12 py-6 mb-8 lg:mb-0 text-center bg-green-200 text-green-900 mx-auto rounded">
-              <h2 className="text-2xl font-heading text-center flex items-center">
+              <h2 className="text-2xl font-sansMedium text-center flex items-center">
                 <img className="mr-2 h-6 mt-1" src={checkMark} alt="" />
                 {subscribeWidget.successMessage && (
                   <span
@@ -61,9 +66,9 @@ const CtaMini = () => {
         </section>
       )}
       {!succeeded && (
-        <section className="px-4 py-12 bg-gray-200" id="subscribe">
+        <section className="px-4 py-8 bg-gray-200" id="subscribe">
           <div className="w-full max-w-2xl mx-auto text-center">
-            <h2 className="text-5xl mt-4 mb-8 leading-tight font-heading">
+            <h2 className="text-3xl mt-4 mb-8 leading-tight font-sansNomal">
               <span
                 dangerouslySetInnerHTML={{
                   __html: `${
@@ -94,12 +99,12 @@ const CtaMini = () => {
                   />
                 </div>
                 <div className="w-full md:w-1/3">
-                  <button className="inline-block w-full py-4 px-8 leading-none text-white bg-blue-700 hover:bg-blue-900 rounded md:rounded-l-none">
+                  <button className="inline-block w-full py-4 px-8 leading-none text-white bg-primary hover:bg-primaryActive rounded md:rounded-l-none tracking-wide font-sansMedium focus:outline-none">
                     {submitting ? "Subscribing..." : "Subscribe"}
                   </button>
                 </div>
               </div>
-              <p className="text-sm text-gray-500 leading-relaxed">
+              <p className="text-sm text-gray-600 leading-relaxed">
                 {subscribeWidget.helpText
                   ? subscribeWidget.helpText
                   : `Get the latest posts delivered right to your inbox.`}

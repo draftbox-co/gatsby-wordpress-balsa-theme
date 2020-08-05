@@ -8,7 +8,13 @@ interface SocialLinks {
   facebook: string;
   instagram: string;
   linkedin: string;
-  github: string
+  github: string;
+  pinterest: string;
+  youtube: string;
+  dribbble: string;
+  behance: string;
+  externalLink: string;
+  whatsapp: string;
 }
 
 export interface SettingsAndSlugs {
@@ -22,18 +28,18 @@ export interface SettingsAndSlugs {
       siteUrl: string;
       apiUrl: string;
       header: {
-        navigation: Navigation[]
+        navigation: Navigation[];
       };
       footer: {
         copyright: string;
-        navigation: Navigation[]
+        navigation: Navigation[];
       };
-      socialLinks: SocialLinks
+      socialLinks: SocialLinks;
       subscribeWidget: {
         title: string;
         helpText: string;
         successMessage: string;
-      },
+      };
       logoUrl: string;
       siteTitle: string;
       language: string;
