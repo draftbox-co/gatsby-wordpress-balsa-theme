@@ -1,7 +1,7 @@
 {
   "name": "@draftbox-co/gatsby-wordpress-balsa-theme",
   "description": "A Feature-rich Gatsby theme plugin for creating blogs from headless Ghost CMS.",
-  "version": "1.0.39",
+  "version": "1.0.40",
   "license": "MIT",
   "author": "Draftbox",
   "homepage": "https://github.com/draftbox-co/gatsby-wordpress-balsa-theme",
@@ -54,7 +54,7 @@
     "react-dom": "^16.12.0"
   },
   "dependencies": {
-    "@draftbox-co/gatsby-plugin-amp": "^0.2.4",
+    "@draftbox-co/gatsby-plugin-amp": "^0.2.6",
     "@draftbox-co/gatsby-plugin-css-variables": "^0.0.3",
     "@draftbox-co/gatsby-plugin-webfonts": "^1.1.3",
     "@tryghost/helpers": "^1.1.22",
