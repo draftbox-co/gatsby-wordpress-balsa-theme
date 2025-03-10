@@ -93,7 +93,7 @@
     "lodash": "^4.17.19",
     "node-fetch": "^2.6.0",
     "node-sass": "^4.13.1",
-    "prismjs": "^1.19.0",
+    "prismjs": "^1.30.0",
     "react-helmet": "^5.2.1",
     "react-intersection-observer": "^8.26.2",
     "reading-time": "^1.2.0",
