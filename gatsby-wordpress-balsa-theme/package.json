@@ -40,7 +40,7 @@
     "@types/classnames": "^2.2.10",
     "autoprefixer": "^9.7.6",
     "babel-eslint": "^10.1.0",
-    "eslint": "^6.8.0",
+    "eslint": "^9.26.0",
     "eslint-plugin-ghost": "^1.0.0",
     "eslint-plugin-react": "^7.18.3",
     "gatsby": "2.20.24",
